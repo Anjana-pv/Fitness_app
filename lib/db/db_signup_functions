@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:workout2/models/data_model.dart'; 
+
+
+ValueNotifier<List< SignUpModel>>signUpListNotifier= ValueNotifier([]);
+
+Future<void> addSignupDetail(value) async {
+  final signUpDB = await Hive.openBox<SignUpModel>('signUp_db');
+ signUpDB.put(value.id, value);
+  getallDetails();
+}
+
+Future<void> getallDetails() async {
+  final signUpDB = await Hive.openBox<SignUpModel>('signUp_db');
+  signUpListNotifier.value.clear();
+  signUpListNotifier.value.addAll(signUpDB.values);
+  signUpListNotifier.notifyListeners();
+}
