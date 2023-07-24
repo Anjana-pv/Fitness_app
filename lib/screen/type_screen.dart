@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/body_focus/body.dart';
 
 import 'package:workout2/screen/advanced_screen.dart';
 import 'package:workout2/screen/biggner.dart';
@@ -64,7 +65,7 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
                     onTap: () {
                       // Handle onTap for 'Advanced'
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => ScreenAdvanced()),
+                        MaterialPageRoute(builder: (ctx) =>BodySelection()),
                       );
                     },
                 

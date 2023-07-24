@@ -5,17 +5,18 @@ import 'package:workout2/demo_model/model.dart';
 
 enum SampleItem { itemOne, itemTwo }
 
-
-class Absbody extends StatefulWidget {
-  const Absbody({Key? key}) : super(key: key);
+class leginbody extends StatefulWidget {
+  const leginbody({Key? key}) : super(key: key);
 
   @override
-  State<Absbody> createState() => _AbsbodyState();
+  State<leginbody> createState() => _leginbodyState();
 }
 
-class _AbsbodyState extends State<Absbody> {
-  SampleItem? selectedMenu;
+class _leginbodyState extends State<leginbody> {
+ 
 
+  SampleItem? selectedMenu;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +29,7 @@ class _AbsbodyState extends State<Absbody> {
                 height: 300,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assest/image/assets/bodyparts/abbs.jpeg'),
+                    image: AssetImage('assest/image/assets/bodyparts/leg.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -36,43 +37,29 @@ class _AbsbodyState extends State<Absbody> {
             ],
           ),
           Positioned(
-            top: 150,
-
-            left: 170,
-
-
-
-
-
-
-
-
+            top: 100,
+            left: 20,
             right: 0,
             child: Container(
               padding: const EdgeInsets.all(20),
               child: const Text(
-               "   Sweat is just fat crying",
+                '',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 240, 238, 238),
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
-          SizedBox(height: 30,),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                
-                
                 width: double.infinity,
                 height: 600,
-
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 245, 244, 244),
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 child: Column(
@@ -83,35 +70,37 @@ class _AbsbodyState extends State<Absbody> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            '6 Mins, 6 Exercises',
+                            '6 Mins, 5 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          PopupMenuButton<SampleItem>(
-                            initialValue: selectedMenu,
-                            onSelected: (SampleItem item) {
-                              setState(() {
-                                selectedMenu = item;
-                              });
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<SampleItem>>[
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemOne,
-                                child: Text('Reset Plan'),
-                              ),
-                              
-                            ],
-                          ),
+                          // PopupMenuButton<SampleItem>(
+                          //   initialValue: selectedMenu,
+                          //   onSelected: (SampleItem item) {
+                          //     setState(() {
+                          //       selectedMenu = item;
+                          //     });
+                          //   },
+                          //   itemBuilder: (BuildContext context) =>
+                          //       <PopupMenuEntry<SampleItem>>[
+                          //     const PopupMenuItem<SampleItem>(
+                          //       value: SampleItem.itemOne,
+                          //       child: Text('Edit Plan'),
+                          //     ),
+                          //     const PopupMenuItem<SampleItem>(
+                          //       value: SampleItem.itemTwo,
+                          //       child: Text('Reset Plan'),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
                     SingleChildScrollView(
                       child: Container(
-                       
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
@@ -154,7 +143,7 @@ class _AbsbodyState extends State<Absbody> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(161, 52, 51, 52),
+                    backgroundColor: Color.fromARGB(239, 130, 137, 228),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(
@@ -175,36 +164,30 @@ class _AbsbodyState extends State<Absbody> {
 
 List<DayOneModel> dayOneList = [
   DayOneModel(
-    image: 'assest/image/assets/abs/high stepping.gif',
-    title: 'HIGH STEPPING',
+    image: 'assest/image/assets/abs/Jumping-Jacks.gif',
+    title: 'SQUATS',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/maountain climber.gif',
-    title: 'MOUNTAIN CLIMBER',
+    image: 'assest/image/assets/day1_images/squads.jpeg',
+    title: 'WALL PUSH-UPS',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/reverse crunches.gif',
-    title: 'REVERSE CRUNCHES',
+    image: 'assest/image/assets/day1_images/backward luges.jpeg',
+    title: 'BACKWARDS LUNGES',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/plank.png',
-    title: 'PLANK',
+    image: 'assest/image/assets/day1_images/cursty luges.jpeg',
+    title: 'CURSTY LUNGES',
     subtitle: '20 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/cobra.gif',
-    title: 'COBRA STRACH',
+    image: 'assest/image/assets/day1_images/squads.jpeg',
+    title: 'SQUADS',
     subtitle: '30 s',
   ),
-  DayOneModel(
-    image: 'assest/image/assets/abs/Jumping-Jacks.gif',
-    title: 'JUMPING JACKS',
-    subtitle: '30 s',
-
-
-  ),
+  
 ];
 

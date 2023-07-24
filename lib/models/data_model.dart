@@ -1,3 +1,4 @@
+
 import 'package:hive/hive.dart';
 
 part 'data_model.g.dart';
@@ -33,21 +34,36 @@ class PersonalDetails {
   @HiveField(0)
   final String id;
   @HiveField(1)
-  final String gender;
-  @HiveField(2)
   final String height;
+  @HiveField(2)
+  final String  weight;
   @HiveField(3)
-  final String weight;
+  final String age ;
   @HiveField(4)
   final String bmi;
-  @HiveField(5) 
-  final String type;
+
+  
+
+
 
   PersonalDetails(
       {required this.id,
-      required this.gender,
       required this.height,
       required this.weight,
-      required this.bmi,
-      required this.type});
+      required this.age,
+      required this.bmi});
+}
+
+  @HiveType(typeId: 3)
+class GenterDetails {
+  @HiveField(0)
+  final String id;
+  @HiveField(1)
+  final String genter;
+
+
+  GenterDetails({
+    required this.id,
+    required  this.genter,
+});
 }

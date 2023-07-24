@@ -36,8 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_keyboard_visibility: ^5.4.1
+  flutter_svg: ^2.0.7
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  path_provider: ^2.0.15
+  table_calendar: ^3.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -68,15 +72,17 @@ flutter:
     - assest/image/assets/advance.jpg
     - assest/image/assets/typ.jpg
     - assest/image/assets/biggner.jpg
+    - assest/image/assets/imagg333 (1).jpg
     # body parts image
     - assest/image/assets/bodyparts/abbs.jpeg
     - assest/image/assets/bodyparts/arms.jpeg
-
+    - assest/fitness-woman-cartoon-_preview_rev_2.png
     - assest/image/assets/bodyparts/img.jpeg
     - assest/image/assets/bodyparts/download (1).jpeg
     - assest/image/assets/bodyparts/face.jpeg
     - assest/image/assets/bodyparts/leg.jpeg
-    # giff of workout
+    - assest/male.png
+    # giff fullbody of workout
     - assest/image/assets/day1_images/butt_bridge.gif
     - assest/image/assets/day1_images/clapping crunches.gif
     - assest/image/assets/day1_images/fire-hydrant-exercise-illustration (1)
@@ -85,6 +91,42 @@ flutter:
     - assest/image/assets/day1_images/plank.png
     - assest/image/assets/day1_images/stand bicycle crunch.gif
     - assest/image/assets/day1_images/Wall-Push-Up.gif
+    # face of work
+    - 
+    - assest/image/assets/face/cheeks3.jpeg
+    - assest/image/assets/face/cheeksup4.gif
+    - assest/image/assets/face/cheeksup4.gif
+    - assest/image/assets/face/erss1.gif
+    - assest/image/assets/face/eyebross2.gif
+    - assest/image/assets/face/face wallpaper.jpg
+    
+    - assest/image/assets/face/face wallpaper.jpg
+    #Abs workOuts
+    - assest/image/assets/abs/high stepping.gif
+    - assest/image/assets/abs/maountain climber.gif
+    - assest/image/assets/abs/reverse crunches.gif
+    - assest/image/assets/abs/cobra.gif
+    - assest/image/assets/abs/Jumping-Jacks.gif
+    - assest/image/assets/bodyparts/abbs.jpeg
+    #butt
+    - assest/image/assets/bodyparts/download (1).jpeg
+    - assest/image/assets/day1_images/jumping squads.jpeg
+    - assest/image/assets/day1_images/squads.jpeg
+    - assest/image/assets/day1_images/side lunges.jpeg
+    - assest/image/assets/abs/buttkick.gif
+    - assest/image/assets/day1_images/cursty luges.jpeg
+    - assest/image/assets/day1_images/backward luges.jpeg
+    - assest/image/assets/day1_images/alternate.gif
+    - assest/image/assets/day1_images/Wall-Push-Up.gif
+    - assest/image/assets/day1_images/knee arm swing.jpeg
+    - assest/image/assets/day1_images/wall push.gif
+    - assest/image/assets/day1_images/up and plank.jpeg
+
+    -
+
+
+    #
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

@@ -1,69 +1,114 @@
 import 'package:flutter/material.dart';
-
-import 'package:workout2/body_focus/workout.dart';
+import 'package:workout2/body_focus/fullbody.dart';
+import 'package:workout2/menu/plan.dart';
+import 'package:workout2/menu/profile.dart';
+import 'package:workout2/menu/recipies.dart';
 
 class DailyScreen extends StatefulWidget {
+
   const DailyScreen({super.key});
 
+ 
   @override
   State<DailyScreen> createState() => _DailyScreenState();
 }
 
 class _DailyScreenState extends State<DailyScreen> {
-  SampleItem? selectedMenu;
   int _selectedIndex = 0;
+  
+  
 
-  void onitemTapped(int index) {
+  void onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Recipies()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Plan()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Center()),
+        );
+        break;
+      case 3:
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => Profile(),
+        // ),);
+        // break;
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(210, 155, 62, 192),
+          backgroundColor: Color.fromARGB(210, 84, 7, 216),
           title: const Text(
             'DAILY PLAN',
-            style: TextStyle(color: Color.fromARGB(255, 221, 214, 214)),
+            style: TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255),
+              fontWeight: FontWeight.w900,
+            ),
           ),
         ),
-        body: Column(
-          children: [
-            Card(
-              child: Container(
-                width: 350,
-                height: 300,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assest/image/assets/maxresdefault.jpg'),
-                    fit: BoxFit.cover,
+        body: SingleChildScrollView(
+          // Wrap the whole content inside SingleChildScrollView
+          child: Column(
+            children: [
+              Card(
+                child: Container(
+                  width: double.infinity,
+                  height: 300,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assest/image/assets/maxresdefault.jpg'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: Center(
                     child: ListView.separated(
+                      shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final weekList = week[index];
                         if (index == 0) {
                           // Display start button for Week 1
                           return Card(
-                            color: const Color.fromARGB(238, 119, 68, 240),
+                            color: Color.fromARGB(192, 162, 131, 235),
                             child: ListTile(
-                              title: Text(weekList),
-                              subtitle: const Text(' 6 Exercises'),
+                              title: Text('Day 1',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600)),
+                              subtitle: const Text(' 6 Exercises',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600)),
                               trailing: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (ctx) =>WorkoutScreen()),
+                                      builder: (ctx) => WorkoutScreen(),
+                                    ),
                                   );
                                 },
                                 child: const Text('Start'),
@@ -73,7 +118,7 @@ class _DailyScreenState extends State<DailyScreen> {
                         } else {
                           // Display lock icon for other weeks
                           return Card(
-                            color: Colors.blueGrey.shade50,
+                            color: Color.fromARGB(255, 211, 214, 216),
                             child: ListTile(
                               title: Row(
                                 children: [
@@ -95,20 +140,20 @@ class _DailyScreenState extends State<DailyScreen> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.black,
-          onTap: onitemTapped,
+          onTap: onItemTapped,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.local_dining_outlined,
                 color: Colors.black,
               ),
-              label: 'Recipies',
+              label: 'Recipes',
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -122,7 +167,7 @@ class _DailyScreenState extends State<DailyScreen> {
                 Icons.equalizer_rounded,
                 color: Colors.black,
               ),
-              label: 'Report',
+              label: 'Calendar',
             ),
             BottomNavigationBarItem(
               icon: Icon(

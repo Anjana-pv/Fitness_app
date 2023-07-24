@@ -5,17 +5,19 @@ import 'package:workout2/demo_model/model.dart';
 
 enum SampleItem { itemOne, itemTwo }
 
-
-class Absbody extends StatefulWidget {
-  const Absbody({Key? key}) : super(key: key);
+class Armsbody extends StatefulWidget {
+  const Armsbody ({Key? key}) : super(key: key);
 
   @override
-  State<Absbody> createState() => _AbsbodyState();
+  State<Armsbody> createState() => _ArmsbodyState();
 }
 
-class _AbsbodyState extends State<Absbody> {
-  SampleItem? selectedMenu;
+class _ArmsbodyState extends State<Armsbody> {
 
+  
+
+  SampleItem? selectedMenu;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,8 @@ class _AbsbodyState extends State<Absbody> {
                 height: 300,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assest/image/assets/bodyparts/abbs.jpeg'),
+                    image: AssetImage('assest/image/assets/bodyparts/arms.jpeg'),
+                    
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -36,43 +39,29 @@ class _AbsbodyState extends State<Absbody> {
             ],
           ),
           Positioned(
-            top: 150,
-
-            left: 170,
-
-
-
-
-
-
-
-
+            top: 100,
+            left: 20,
             right: 0,
             child: Container(
               padding: const EdgeInsets.all(20),
               child: const Text(
-               "   Sweat is just fat crying",
+                '',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 240, 238, 238),
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
-          SizedBox(height: 30,),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                
-                
                 width: double.infinity,
                 height: 600,
-
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 245, 244, 244),
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 child: Column(
@@ -101,9 +90,12 @@ class _AbsbodyState extends State<Absbody> {
                                 <PopupMenuEntry<SampleItem>>[
                               const PopupMenuItem<SampleItem>(
                                 value: SampleItem.itemOne,
+                                child: Text('Edit Plan'),
+                              ),
+                              const PopupMenuItem<SampleItem>(
+                                value: SampleItem.itemTwo,
                                 child: Text('Reset Plan'),
                               ),
-                              
                             ],
                           ),
                         ],
@@ -111,7 +103,6 @@ class _AbsbodyState extends State<Absbody> {
                     ),
                     SingleChildScrollView(
                       child: Container(
-                       
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
@@ -154,7 +145,7 @@ class _AbsbodyState extends State<Absbody> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(161, 52, 51, 52),
+                    backgroundColor: Color.fromARGB(240, 49, 187, 218),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(
@@ -175,36 +166,34 @@ class _AbsbodyState extends State<Absbody> {
 
 List<DayOneModel> dayOneList = [
   DayOneModel(
-    image: 'assest/image/assets/abs/high stepping.gif',
-    title: 'HIGH STEPPING',
+    image: 'assest/image/assets/day1_images/alternate.gif',
+    title: 'ALTERNATING HOOKS',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/maountain climber.gif',
-    title: 'MOUNTAIN CLIMBER',
+    image: 'assest/image/assets/day1_images/Wall-Push-Up.gif',
+    title: 'WALL PUSH-UPS',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/reverse crunches.gif',
-    title: 'REVERSE CRUNCHES',
+    image: 'assest/image/assets/day1_images/knee arm swing.jpeg',
+    title: 'KNEE ARM SWING',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/plank.png',
-    title: 'PLANK',
+    image: 'assest/image/assets/day1_images/wall push.gif',
+    title: ' WALL PUSH',
     subtitle: '20 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/cobra.gif',
-    title: 'COBRA STRACH',
+    image: 'assest/image/assets/day1_images/up and plank.jpeg',
+    title: 'UP AND PLANK',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/abs/Jumping-Jacks.gif',
-    title: 'JUMPING JACKS',
+    image: 'assest/image/assets/day1_images/Wall-Push-Up.gif',
+    title: 'WALL PUSH-UP',
     subtitle: '30 s',
-
-
   ),
 ];
 

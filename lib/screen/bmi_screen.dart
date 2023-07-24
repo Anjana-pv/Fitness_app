@@ -1,12 +1,53 @@
 import 'package:flutter/material.dart';
 
 import 'package:workout2/body_focus/body.dart';
+import 'package:workout2/screen/advanced_screen.dart';
+import 'package:workout2/screen/deit.dart';
+
+class Bmiscreen extends StatefulWidget {
+  final String bmi;
+  const Bmiscreen({super.key, required this.bmi});
+
+  @override
+  State<Bmiscreen> createState() => _BmiscreenState();
+}
+
+class _BmiscreenState extends State<Bmiscreen> {
+  late String bmiStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    bmiStatus = getBMIStatus(double.parse(widget.bmi));
+  }
 
 
-
-
-class Bmiscreen extends StatelessWidget {
-  const Bmiscreen({super.key});
+  String getBMIStatus(double bmi) {
+    if (bmi < 18.5) {
+      return 'Underweight';
+    } else if (bmi >= 18.5 && bmi < 25.0) {
+      return 'Normal';
+    } else if (bmi >= 25.0 && bmi < 30.0) {
+      return 'Overweight';
+    } else {
+      return 'Obesity';
+    }
+  }
+  
+IconData getBMIStatusIcon(String status) {
+  switch (status) {
+    case 'Underweight':
+      return Icons.sentiment_very_dissatisfied_sharp;
+    case 'Normal':
+      return Icons.sentiment_satisfied;
+    case 'Overweight':
+      return Icons.sentiment_neutral;
+    case 'Obesity':
+      return Icons.sentiment_very_dissatisfied_sharp;
+    default:
+      return Icons.sentiment_satisfied;
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +62,7 @@ class Bmiscreen extends StatelessWidget {
                   width: 400,
                   height: 40,
                   child: Text(
-                    "                     Let's Find your BMI",
+                    "                    Let's Find your BMI",
                     style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Rancho',
@@ -31,46 +72,95 @@ class Bmiscreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 80),
-                Stack(
-                  alignment: Alignment.center,
+                Column(
                   children: [
-                    Container(
-                      width: 350,
-                      height: 160,
-                      color: const Color.fromARGB(255, 222, 218, 218),
-                      child: const Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 16),
-                          child: Text(
-                            'BMI',
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.w500),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 350,
+                          height: 160,
+                          color: const Color.fromARGB(255, 222, 218, 218),
+                          child: const Align(
+                            alignment: Alignment.topCenter,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 16),
+                              child: Text(
+                                'BMI',
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 70,
-                      top: 70,
-                      child: Container(
-                        width: 200,
-                        height: 10,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment(1.00, 0.00),
-                            end: Alignment(-1, 0),
-                            colors: [
-                              Color(0xE0F70D0D),
-                              Color.fromARGB(255, 237, 137, 8),
-                              Color.fromARGB(234, 250, 238, 64),
-                              Color.fromARGB(238, 69, 180, 5),
-                              Color.fromARGB(255, 22, 180, 223),
-                              Color.fromARGB(255, 22, 180, 223),
-                            ],
+                        Positioned(
+                          left: 120,
+
+
+
+                          top: 60,
+
+                          child: Container(
+                            width: 200,
+                            height: 10,
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment(1.00, 0.00),
+                                end: Alignment(-1, 0),
+                                colors: [
+                                  Color(0xE0F70D0D),
+                                  Color.fromARGB(255, 237, 137, 8),
+                                  Color.fromARGB(234, 250, 238, 64),
+                                  Color.fromARGB(238, 69, 180, 5),
+                                  Color.fromARGB(255, 22, 180, 223),
+                                  Color.fromARGB(255, 22, 180, 223),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        Column(
+                          children: [
+                            SizedBox(height: 70),
+                            Text(
+                              widget.bmi,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                           
+                            Padding(
+                              padding: const EdgeInsets.only(left: 130), 
+                              child: Row(
+
+                                
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Color.fromARGB(255, 223, 225, 98),
+                                    child: Icon(
+                                      getBMIStatusIcon(bmiStatus),
+                                      color: Color.fromARGB(255, 17, 17, 2),
+                                      size: 24,
+
+
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    bmiStatus,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -143,9 +233,9 @@ class Bmiscreen extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (ctx) => BodySelection()),
+                              MaterialPageRoute(
+                                  builder: (ctx) =>Screendiet()),
                             );
-                            
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:

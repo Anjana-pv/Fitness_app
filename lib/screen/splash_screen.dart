@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:workout2/screen/login.dart';
+// import 'package:workout2/body_focus/bmiclt.dart';
+import 'package:workout2/body_focus/body.dart';
+// import 'package:workout2/screen/login.dart';
 
 class SplashScreen extends StatefulWidget{
   const SplashScreen ({super.key});
@@ -99,7 +101,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 4));
     // ignore: use_build_context_synchronously
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (ctx) => const Screenlogin()),
+      MaterialPageRoute(builder: (ctx) =>BodySelection()),
      );
    }
 }

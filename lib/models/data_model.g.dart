@@ -64,30 +64,27 @@ class PersonalDetailsAdapter extends TypeAdapter<PersonalDetails> {
     };
     return PersonalDetails(
       id: fields[0] as String,
-      gender: fields[1] as String,
-      height: fields[2] as String,
-      weight: fields[3] as String,
+      height: fields[1] as String,
+      weight: fields[2] as String,
+      age: fields[3] as String,
       bmi: fields[4] as String,
-      type: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, PersonalDetails obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.gender)
-      ..writeByte(2)
       ..write(obj.height)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.weight)
+      ..writeByte(3)
+      ..write(obj.age)
       ..writeByte(4)
-      ..write(obj.bmi)
-      ..writeByte(5)
-      ..write(obj.type);
+      ..write(obj.bmi);
   }
 
   @override
@@ -97,6 +94,43 @@ class PersonalDetailsAdapter extends TypeAdapter<PersonalDetails> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is PersonalDetailsAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class GenterDetailsAdapter extends TypeAdapter<GenterDetails> {
+  @override
+  final int typeId = 3;
+
+  @override
+  GenterDetails read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return GenterDetails(
+      id: fields[0] as String,
+      genter: fields[1] as String,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, GenterDetails obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.genter);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GenterDetailsAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

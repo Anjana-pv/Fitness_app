@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+// import 'package:workout2/body_focus/bmiclt.dart';
 import 'package:workout2/models/data_model.dart';
 import 'package:workout2/db/db_signup_functions';
 import 'package:workout2/screen/genter_screen.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
+
+// import 'package:shared_preferences/shared_preferences.dart';
 
 //import 'package:workout2/screen/login.dart';
 
@@ -20,7 +22,7 @@ final TextEditingController _passwordController = TextEditingController();
 final _formkey = GlobalKey<FormState>();
 
 class _ScreenSignupState extends State<ScreenSignup> {
-  // bool _Matched = true;
+   bool _Matched = true;
   @override
   void initState() {
     getallDetails();
@@ -147,15 +149,15 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     },
                   ),
                 ),
-                // Visibility(
-                //   visible: !_Matched,
-                //   child: Text(
-                //     'username and Password do not match',
-                //     style: TextStyle(
-                //       color: Colors.red,
-                //     ),
-                //   ),
-                // ),
+                Visibility(
+                  visible: !_Matched,
+                  child: Text(
+                    'username and Password do not match',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 30,
                 ),
@@ -211,7 +213,7 @@ class _ScreenSignupState extends State<ScreenSignup> {
           password: password);
       addSignupDetail(workoutObject);
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (ctx) => Screengenter()),
+        MaterialPageRoute(builder: (ctx) => FindGenderScreen()),
       );
       print('$username $phone $email $password');
     }

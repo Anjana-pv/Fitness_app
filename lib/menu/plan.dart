@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/abs.dart';
-import 'package:workout2/body_focus/arms.dart';
 import 'package:workout2/body_focus/btt.dart';
-import 'package:workout2/body_focus/face.dart';
 import 'package:workout2/body_focus/leg.dart';
 import 'package:workout2/screen/daily_screen.dart';
 
 
-class BodySelection extends StatefulWidget {
-  const BodySelection({Key? key}) : super(key: key);
+
+class Plan extends StatefulWidget {
+  const Plan({Key? key}) : super(key: key);
 
   @override
-  State<BodySelection> createState() => _BodySelectionState();
+  State<Plan> createState() => _Plan();
 }
 
-class _BodySelectionState extends State<BodySelection> {
+class _Plan extends State<Plan> {
   List<String> imagePaths = [
     'assest/image/assets/bodyparts/download (1).jpeg',
     'assest/image/assets/bodyparts/arms.jpeg',
@@ -80,15 +79,14 @@ class _BodySelectionState extends State<BodySelection> {
     switch (routeName) {
       case 'Workout for FullBody':
          return DailyScreen(); // Replace with your full body widget
-       case 'Workout for Arms':
-         return Armsbody(); // Replace with your arms widget
+      //  case 'Workout for Arms':
+      //    return (); // Replace with your arms widget
         case 'Workout for Leg':
          return leginbody(); // Replace with your leg widget
       case 'Workout for Butt':
         return Bttbody(); // Replace with your butt widget
       case 'Workout for Abs':
         return Absbody();
-        
       default:
         return Scaffold(
           appBar: AppBar(title: Text('Error')),
@@ -145,15 +143,7 @@ class _BodySelectionState extends State<BodySelection> {
               ),
             ),
             const SizedBox(height: 15),
-             GestureDetector(
-    onTap: () {
-      Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => facebody()),
-  );
-    },
-          child:  Card(
-            
+            Card(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
@@ -164,17 +154,14 @@ class _BodySelectionState extends State<BodySelection> {
                   title: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      ' Slim down your face \n\n Click here',
-                      
-
+                      ' Slim down your face',
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                   subtitle: Text(''),
                 ),
               ),
-          ),
-             ),
+            ),
             SizedBox(
               height: 90,
             ),
@@ -191,7 +178,6 @@ class _BodySelectionState extends State<BodySelection> {
                 ),
               ),
             ),
-             
           ],
         ),
       ),

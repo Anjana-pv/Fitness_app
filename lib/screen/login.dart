@@ -95,7 +95,7 @@ class _ScreenloginState extends State<Screenlogin> {
                         child: ElevatedButton( 
                           onPressed: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (ctx) => Screengenter()),
+                              MaterialPageRoute(builder: (ctx) =>FindGenderScreen()),
                             );
                           },
                           style: ButtonStyle(
