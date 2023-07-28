@@ -1,23 +1,21 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workout2/db/db_genter.dart';
+import 'package:workout2/db/db_signup_functions';
+import 'package:workout2/db/new_db_functions.dart';
+import 'package:workout2/db/targetweight_function.dart';
 
 import 'package:workout2/models/data_model.dart';
+import 'package:workout2/screen/login.dart';
 
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
-  final String height;
-  final String weight;
-  final String age;
-  final int index;
-  final double bmi;
 
-  const Profile(
+   int index;
+   Profile(
       {super.key,
-      required this.height,
-      required this.weight,
-      required this.age,
-      required this.bmi,
-      required this.index,
+      required this.index
       });
 
   @override
@@ -30,34 +28,53 @@ class _ProfileState extends State<Profile> {
   TextEditingController _ageController = TextEditingController();
   TextEditingController _genderController = TextEditingController();
   TextEditingController _targetWeightController = TextEditingController();
+  TextEditingController _usercontoller =TextEditingController();
 var bmi;
-
+var data;
   @override
   void initState() {
-    super.initState();
 
-    _heightController = TextEditingController(text: widget.height);
-    _weightController = TextEditingController(text: widget.weight);
-    _ageController = TextEditingController(text: widget.age);
-    bmi=widget.bmi;
+     getalDatas();
+      gettargetweight();
+
+   _heightController = TextEditingController(text: personalListNotifier.value[0].height);
+    _weightController = TextEditingController(text: personalListNotifier.value[0].weight);
+    _ageController = TextEditingController(text: personalListNotifier.value[0].age);
+    _genderController = TextEditingController(text: genterListNotifier.value[0].genter);
+    _targetWeightController = TextEditingController(text: weighttarget.value[0].targetweight);
+    _usercontoller=TextEditingController(text:signUpListNotifier.value[0].username );
+       
+
+    super.initState();
+ 
+   
   }
+
+
 
   @override
   Widget build(BuildContext context) {
+    getalDatas();
+    gettargetweight();
+    getallDetails();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 35, 36, 35),
-          title: Center(
-            child: Text(
-              'Profile',
-              style: TextStyle(
-                fontSize: 28,
-                color: Color.fromARGB(255, 244, 245, 241),
-                fontWeight: FontWeight.w700,
-              ),
+          backgroundColor: Color.fromARGB(255, 184, 56, 56),
+          title: Text(
+            'Profile',
+            style: TextStyle(
+              fontSize: 28,
+              color: Color.fromARGB(255, 244, 245, 241),
+              fontWeight: FontWeight.w700,
             ),
           ),
+          centerTitle: true,
+          actions: [
+            IconButton(onPressed:(){
+              logout(context);
+            }, icon: Icon(Icons.logout,color: Colors.white,))
+          ],
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
@@ -65,17 +82,17 @@ var bmi;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Text(
-                  'Hi Anjana',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+              child: Text(
+                'Hi ${_usercontoller.text}', // Displaying the "Hi" text with the username
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
                 ),
+              )
               ),
               SizedBox(height: 20),
               Card(
-                color: Color.fromARGB(255, 228, 227, 226),
+                color: Color.fromARGB(255, 254, 252, 249),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -124,7 +141,7 @@ var bmi;
                       Text('Target area'),
                       SizedBox(height: 10),
                       TextFormField(
-                        controller: _weightController,
+                        
                         decoration: InputDecoration(labelText: 'Focus part'),
                       ),
                     ],
@@ -132,11 +149,13 @@ var bmi;
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  updatetohive(context);
-                },
-                child: Text('Save Changes'),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    update();
+                  },
+                  child: Text('Save Changes'),
+                ),
               ),
             ],
           ),
@@ -145,16 +164,50 @@ var bmi;
     );
   }
 
-  Future<void> updatetohive (ctx)async {
-    final personalModel = PersonalDetails(
-      id: DateTime.now().millisecond.toString(),
-      height: _heightController.text,
-      weight: _weightController.text,
-      age: _ageController.text,
-      bmi: bmi,
-    );
-
-    await updatetohive(personalModel);
-  }
+  update() async{
   
+  PersonalDetails personalModel = PersonalDetails(
+    height: _heightController.text,
+    weight: _weightController.text,
+    age: _ageController.text,
+  );
+
+  print("Updated Profile Data: $personalModel");
+
+  await updatetohive(personalModel);
+  
+}
+
+
+ logout(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog(
+            title: const Text('SignOut'),
+            content: const Text('Do You Want To SignOut'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    sighnout(context);
+                  },
+                  child: const Text('Yes')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('No'))
+            ],
+          );
+        });
+  }
+
+  Future<void> sighnout(BuildContext context) async {
+    final sharedprefs = await SharedPreferences.getInstance();
+    await sharedprefs.clear();
+
+    // ignore: use_build_context_synchronously
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (ctx) => const Screenlogin()), (route) => false);
+  }
 }

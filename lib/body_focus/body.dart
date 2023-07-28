@@ -3,16 +3,22 @@ import 'package:workout2/body_focus/abs.dart';
 import 'package:workout2/body_focus/arms.dart';
 import 'package:workout2/body_focus/btt.dart';
 import 'package:workout2/body_focus/face.dart';
+import 'package:workout2/body_focus/fullbody.dart';
 import 'package:workout2/body_focus/leg.dart';
-import 'package:workout2/screen/daily_screen.dart';
+
 
 
 class BodySelection extends StatefulWidget {
-  const BodySelection({Key? key}) : super(key: key);
+  const BodySelection({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<BodySelection> createState() => _BodySelectionState();
 }
+
+String? selectvalue;
+String ? focusvalue;
 
 class _BodySelectionState extends State<BodySelection> {
   List<String> imagePaths = [
@@ -24,30 +30,28 @@ class _BodySelectionState extends State<BodySelection> {
   ];
   List<String> imageDescriptions = [
     'Workout for FullBody',
-    'Workout for Arms',
     'Workout for Leg',
+    'Workout for Arms',
     'Workout for Butt',
     'Workout for Abs',
   ];
-
+ 
   int selectedIndex = 0;
   int selectedImageIndex = -1;
 
   Widget buildCard(int index) {
- final isCardSelected = index == selectedImageIndex;
-  final cardColor = isCardSelected ? Colors.green : Colors.white;
-
-      
-
-  return GestureDetector(
-    onTap: () {
-      setState(() {
-        selectedImageIndex = index;
-      });
-    },
-    child: Card(
-      color: cardColor,
-      child: Container(
+    final isCardSelected = index == selectedImageIndex;
+   
+    final cardColor = isCardSelected ? Colors.green : Color.fromARGB(255, 217, 214, 214);
+  
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedImageIndex = index;
+        });
+      },
+      child: Card(
+        color: cardColor,
         child: Column(
           children: [
             Image.asset(
@@ -62,16 +66,16 @@ class _BodySelectionState extends State<BodySelection> {
           ],
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 
   void navigateToSelectedPage() {
-    if (selectedImageIndex >= 0 && selectedImageIndex < imageDescriptions.length) {
+    if (selectedImageIndex >= 0 &&
+        selectedImageIndex < imageDescriptions.length) {
       String selectedRouteName = imageDescriptions[selectedImageIndex];
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (ctx) => getPageForRouteName(selectedRouteName)),
+        MaterialPageRoute(
+            builder: (ctx) => getPageForRouteName(selectedRouteName)),
       );
     }
   }
@@ -79,21 +83,18 @@ class _BodySelectionState extends State<BodySelection> {
   Widget getPageForRouteName(String routeName) {
     switch (routeName) {
       case 'Workout for FullBody':
-         return DailyScreen(); // Replace with your full body widget
-       case 'Workout for Arms':
-         return Armsbody(); // Replace with your arms widget
-        case 'Workout for Leg':
-         return leginbody(); // Replace with your leg widget
+        return const WorkoutScreen();
+         case 'Workout for Leg':
+        return const leginbody();
+      case 'Workout for Arms':
+        return const Armsbody();
       case 'Workout for Butt':
-        return Bttbody(); // Replace with your butt widget
+        return const Bttbody();
       case 'Workout for Abs':
-        return Absbody();
-        
+        return const Absbody();
+
       default:
-        return Scaffold(
-          appBar: AppBar(title: Text('Error')),
-          body: Center(child: Text('Invalid route')),
-        );
+        return Armsbody();
     }
   }
 
@@ -104,14 +105,15 @@ class _BodySelectionState extends State<BodySelection> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 50),
               child: Center(
                 child: Column(
                   children: [
                     Text(
                       "What's Your Focus Part",
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "Focus on your target area and 25% of your time",
@@ -121,13 +123,16 @@ class _BodySelectionState extends State<BodySelection> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
-            Container(
-              height: 250,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: imagePaths.length,
-                itemBuilder: (context, index) => buildCard(index),
+            const SizedBox(height: 50),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 250,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: imagePaths.length,
+                  itemBuilder: (context, index) => buildCard(index),
+                ),
               ),
             ),
             SizedBox(
@@ -144,42 +149,45 @@ class _BodySelectionState extends State<BodySelection> {
                 ],
               ),
             ),
-            const SizedBox(height: 15),
-             GestureDetector(
-    onTap: () {
-      Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => facebody()),
-  );
-    },
-          child:  Card(
-            
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  leading: Image.asset(
-                    'assest/image/assets/bodyparts/face.jpeg',
-                    fit: BoxFit.cover,
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      ' Slim down your face \n\n Click here',
-                      
-
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            SizedBox(height: 15),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => facebody()),
+                );
+              },
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: Image.asset(
+                      'assets/image/assets/bodyparts/face.jpeg',
+                      fit: BoxFit.cover,
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Slim down your face \n\n Click here',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-                  subtitle: Text(''),
                 ),
               ),
-          ),
-             ),
+            ),
             SizedBox(
-              height: 90,
+              height: 30,
             ),
             ElevatedButton(
-              onPressed: navigateToSelectedPage,
+              onPressed: () {
+
+                navigateToSelectedPage();
+                
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromARGB(131, 172, 89, 218),
                 minimumSize: const Size(150, 50),
@@ -191,7 +199,6 @@ class _BodySelectionState extends State<BodySelection> {
                 ),
               ),
             ),
-             
           ],
         ),
       ),

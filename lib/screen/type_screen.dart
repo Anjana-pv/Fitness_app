@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:workout2/body_focus/body.dart';
 
-import 'package:workout2/screen/advanced_screen.dart';
+
 import 'package:workout2/screen/biggner.dart';
 
 class TypeselectScreen extends StatefulWidget {

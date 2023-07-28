@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/fullbody.dart';
+import 'package:workout2/menu/celender.dart';
 import 'package:workout2/menu/plan.dart';
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
 
-class DailyScreen extends StatefulWidget {
 
+class DailyScreen extends StatefulWidget {
   const DailyScreen({super.key});
 
- 
   @override
   State<DailyScreen> createState() => _DailyScreenState();
 }
 
 class _DailyScreenState extends State<DailyScreen> {
   int _selectedIndex = 0;
-  
-  
 
   void onItemTapped(int index) {
     setState(() {
@@ -39,18 +37,19 @@ class _DailyScreenState extends State<DailyScreen> {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Center()),
+          MaterialPageRoute(builder: (context) => Calendar()),
         );
         break;
       case 3:
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => Profile(),
-        // ),);
-        // break;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Profile(index: index),
+          ),
+        );
+        break;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +75,8 @@ class _DailyScreenState extends State<DailyScreen> {
                   height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assest/image/assets/maxresdefault.jpg'),
+                      image:
+                          AssetImage('assest/image/assets/maxresdefault.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),

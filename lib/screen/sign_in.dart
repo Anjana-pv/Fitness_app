@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/main.dart';
 // import 'package:workout2/body_focus/bmiclt.dart';
 import 'package:workout2/models/data_model.dart';
 import 'package:workout2/db/db_signup_functions';
 import 'package:workout2/screen/genter_screen.dart';
 
-// import 'package:shared_preferences/shared_preferences.dart';
+ import 'package:shared_preferences/shared_preferences.dart';
 
 //import 'package:workout2/screen/login.dart';
 
@@ -36,7 +37,8 @@ class _ScreenSignupState extends State<ScreenSignup> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assest/image/assets/img3.jpg'),
+              image: AssetImage('assest/image/assets/imagg333 (1).jpg'),
+
               fit: BoxFit.cover,
             ),
           ),
@@ -83,6 +85,7 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     color: Color.fromARGB(133, 238, 235, 235),
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
                     obscureText: true, // Mask the password text
                     decoration: InputDecoration(
@@ -92,7 +95,7 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return '          Please enter your password';
+                        return '          Please enter your Email';
                       } else {
                         return null;
                       }
@@ -110,6 +113,9 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     color: Color.fromARGB(133, 238, 235, 235),
                   ),
                   child: TextFormField(
+                    maxLength: 10,
+                    keyboardType: TextInputType.number,
+
                     controller: _phonecontroller,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -118,7 +124,7 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return '         Please enter your username';
+                        return '         Please enter your Phonenumber';
                       } else {
                         return null;
                       }
@@ -134,6 +140,7 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     color: Color.fromARGB(133, 238, 235, 235),
                   ),
                   child: TextFormField(
+                    obscureText: true,
                     controller: _passwordController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -142,7 +149,7 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return '         Please enter your username';
+                        return '         Please enter your Password';
                       } else {
                         return null;
                       }
@@ -190,32 +197,22 @@ class _ScreenSignupState extends State<ScreenSignup> {
   }
 
   Future<void> addDetailToModel() async {
-    final username = _usernameController.text.trim();
-    final email = _emailController.text.trim();
-    final phone = _phonecontroller.text.trim();
-    final password = _passwordController.text.trim();
-    if (username.isEmpty ||
-        email.isEmpty ||
-        phone.isEmpty ||
-        password.isEmpty) {
-      return;
-    } else {
-      _usernameController.text = '';
-      _emailController.text = '';
-      _phonecontroller.text = '';
-      _passwordController.text = '';
-
-      final workoutObject = SignUpModel(
+  
+ SignUpModel workoutObject = SignUpModel(
           id: DateTime.now().millisecond.toString(),
-          username: username,
-          email: email,
-          phone: phone,
-          password: password);
+          username: _usernameController.text.trim(),
+          email: _emailController.text.trim(),
+          phone: _phonecontroller.text.trim(),
+          password: _passwordController.text.trim());
+      
       addSignupDetail(workoutObject);
+
+      final sharedata=await SharedPreferences.getInstance();
+      await sharedata.setBool(savekey, true);
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (ctx) => FindGenderScreen()),
       );
-      print('$username $phone $email $password');
     }
   }
-}
+

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-// import 'package:workout2/body_focus/bmiclt.dart';
-import 'package:workout2/body_focus/body.dart';
-// import 'package:workout2/screen/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+import 'package:workout2/db/new_db_functions.dart';
+import 'package:workout2/main.dart';
+import 'package:workout2/screen/daily_screen.dart';
+import 'package:workout2/screen/login.dart';
+
 
 class SplashScreen extends StatefulWidget{
   const SplashScreen ({super.key});
@@ -15,6 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
    void initState() {
     gotologin();
     super.initState();
+    getalDatas();
+
+
   }
 
   @override
@@ -98,12 +106,21 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> gotologin() async {
-    await Future.delayed(const Duration(seconds: 4));
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (ctx) =>BodySelection()),
+     await Future.delayed(const Duration(seconds: 4));
+   
+    
+     final sharenew=await SharedPreferences.getInstance();
+     final usersignup=sharenew.getBool(savekey);
+    if(usersignup == null||usersignup == false){
+       Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (ctx) => Screenlogin()),
      );
+    }else{
+      Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (ctx) => DailyScreen()),);
+
+    }
    }
 }
-//}
+
 

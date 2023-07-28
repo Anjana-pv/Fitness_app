@@ -7,8 +7,10 @@ ValueNotifier<List<GenterDetails>> genterListNotifier = ValueNotifier([]);
 
 Future<void> addgenterDetail(GenterDetails value) async {
   final genterDB = await Hive.openBox<GenterDetails>('genter_db');
-  genterDB.put(value.id, value);
-  getallgenterDetails();
+ await genterDB.add(value);
+ genterListNotifier.value.addAll(genterDB.values);
+  genterListNotifier.notifyListeners;
+
 }
 
 Future<void> updategenterDetail(GenterDetails value) async {

@@ -5,10 +5,12 @@ import 'package:workout2/models/data_model.dart';
 
 ValueNotifier<List< SignUpModel>>signUpListNotifier= ValueNotifier([]);
 
-Future<void> addSignupDetail(value) async {
+Future<void> addSignupDetail(SignUpModel value) async {
   final signUpDB = await Hive.openBox<SignUpModel>('signUp_db');
- signUpDB.put(value.id, value);
-  getallDetails();
+ await signUpDB.add(value);
+ signUpListNotifier.value.addAll(signUpDB.values);
+ 
+  signUpListNotifier.notifyListeners();
 }
 
 Future<void> getallDetails() async {
@@ -16,4 +18,8 @@ Future<void> getallDetails() async {
   signUpListNotifier.value.clear();
   signUpListNotifier.value.addAll(signUpDB.values);
   signUpListNotifier.notifyListeners();
+}
+Future<bool> isUserSignedIn() async {
+  final signUpDB = await Hive.openBox<SignUpModel>('signUp_db');
+  return signUpDB.isNotEmpty;
 }

@@ -40,14 +40,17 @@ dependencies:
   flutter_svg: ^2.0.7
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  kdgaugeview: ^1.0.5
   path_provider: ^2.0.15
   table_calendar: ^3.0.1
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -91,16 +94,15 @@ flutter:
     - assest/image/assets/day1_images/plank.png
     - assest/image/assets/day1_images/stand bicycle crunch.gif
     - assest/image/assets/day1_images/Wall-Push-Up.gif
-    # face of work
-    - 
+    - assest/image/assets/face/Comp-1_1.webp
     - assest/image/assets/face/cheeks3.jpeg
     - assest/image/assets/face/cheeksup4.gif
     - assest/image/assets/face/cheeksup4.gif
     - assest/image/assets/face/erss1.gif
     - assest/image/assets/face/eyebross2.gif
     - assest/image/assets/face/face wallpaper.jpg
-    
-    - assest/image/assets/face/face wallpaper.jpg
+    - assest/image/assets/day1_images/goblet-squad.gif
+
     #Abs workOuts
     - assest/image/assets/abs/high stepping.gif
     - assest/image/assets/abs/maountain climber.gif
@@ -121,12 +123,9 @@ flutter:
     - assest/image/assets/day1_images/knee arm swing.jpeg
     - assest/image/assets/day1_images/wall push.gif
     - assest/image/assets/day1_images/up and plank.jpeg
-
-    -
-
-
+    
+    # face of work
     #
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

@@ -32,26 +32,24 @@ class SignUpModel {
 @HiveType(typeId: 2)
 class PersonalDetails {
   @HiveField(0)
-  final String id;
+  String? id;
   @HiveField(1)
-  final String height;
+   String height;
   @HiveField(2)
-  final String  weight;
+   String  weight;
   @HiveField(3)
-  final String age ;
-  @HiveField(4)
-  final String bmi;
-
+   String age ;
+  
   
 
 
 
   PersonalDetails(
-      {required this.id,
+      {
       required this.height,
       required this.weight,
       required this.age,
-      required this.bmi});
+      });
 }
 
   @HiveType(typeId: 3)
@@ -66,4 +64,22 @@ class GenterDetails {
     required this.id,
     required  this.genter,
 });
+}
+@HiveType(typeId: 4)
+class Targetweight {
+
+  @HiveField(0)
+    String? targetweight;
+
+    Targetweight({required this.targetweight});
+}
+
+
+@HiveType(typeId: 5)
+class FocusArea{
+
+  @HiveField(0)
+  String? name;
+
+  FocusArea({required this.name});
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/models/data_model.dart';
-import 'package:workout2/screen/bmi_screen.dart';
+
+import 'package:workout2/screen/bmi_calcu.dart';
 
 import '../db/new_db_functions.dart';
 
@@ -186,7 +187,8 @@ class _ScreenvitalsState extends State<Screenvitals> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 160, top: 80),
+                    padding: const EdgeInsets.only(left: 160, top: 60),
+                    
                     child: Row(
                       children: [
                         Padding(
@@ -197,16 +199,9 @@ class _ScreenvitalsState extends State<Screenvitals> {
                             onPressed: () {
                               if (heightController.text.isNotEmpty&&weightController.text.isNotEmpty&&agecontroller.text.isNotEmpty) {
                                 addPersonalDataToModel();
+                               
                               } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text(
-                                    'Please Enter All Data',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  behavior: SnackBarBehavior.floating,
-                                  backgroundColor: Colors.red,
-                                ));
+                                // addingfailed();
                               }
 
                             },
@@ -247,32 +242,34 @@ class _ScreenvitalsState extends State<Screenvitals> {
     return _bmi;
   }
 
-  Future<void> addPersonalDataToModel() async {
-    final b_mi = calculateBMI();
-    final height = heightController.text.trim();
-    final weight = weightController.text.trim();
-    final age = agecontroller.text.trim();
+  addPersonalDataToModel() async{
+    PersonalDetails db = PersonalDetails(
+   height: heightController.text, 
+    weight: weightController.text, 
+    age: agecontroller.text,
+    );
+final bmi = calculateBMI(); // Calculate the BMI here and store it in a variable
 
-    if (height.isEmpty || weight.isEmpty || age.isEmpty) {
-      return;
-    } else {
-      heightController.text = '';
-      weightController.text = '';
-      agecontroller.text = '';
+   await addpersonalDetail(db);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => Beem(bmi: bmi.toStringAsFixed(2)), 
+      ),
+    );
+  }
 
-      final personalObject = PersonalDetails(
-        id: DateTime.now().millisecond.toString(),
-        height: height,
-        weight: weight,
-        age: age,
-        bmi: b_mi.toStringAsFixed(1),
-      );
-      addpersonalDetail(personalObject);
-    }
-    print('$height $weight $age $b_mi');
+  
+  addingfailed(){
 
-     Navigator.of(context).push(
-       MaterialPageRoute(builder: (ctx) =>  Bmiscreen(bmi: b_mi.toStringAsFixed(1),)),
-     );
+    ScaffoldMessenger.of(context)
+                               .showSnackBar(SnackBar(
+                                  content: Text(
+                                    'Please Enter All Data',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.red,
+                                ));
   }
 }
+

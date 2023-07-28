@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/screen/vitals.dart';
-
 import '../db/db_genter.dart';
-
 import '../models/data_model.dart';
 
 class FindGenderScreen extends StatefulWidget {
@@ -14,11 +12,11 @@ class FindGenderScreen extends StatefulWidget {
 
 enum Gender { male, female, other }
 
-Gender? selectedGender;
+String? selectedGender;
 
 class _FindGenderScreenState extends State<FindGenderScreen> {
   void navigateToNextPageWithDelay() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Screenvitals()),
@@ -57,66 +55,65 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: 70,
               ),
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = Gender.male;
+                    selectedGender = 'Male';
                     addGenterDetail();
                   });
-                   navigateToNextPageWithDelay();
+                  navigateToNextPageWithDelay();
                 },
                 child: Card(
-                  color: selectedGender == Gender.male
-                                      ? Color.fromARGB(255, 136, 180, 136)
-                                      : null,
-                    child: Column(
-                  children: [
-                    
-                    Image.asset(
-                      'assest/male.png',
-                      height: 200,
-                      width: 200,
+                  color: selectedGender == 'Male'
+                      ? Color.fromARGB(255, 146, 219, 146) // Selected color for Male
+                      : null, // Default color for other genders
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assest/male.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                      Text(
+                        'Male',
+                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
+              
 
-                       
-                    ),
-                    Text(
-                      'Male',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-                    ),
-                  ],
-                )),
-              ),
-              SizedBox(height: 60),
+
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = Gender.female;
+                    selectedGender = 'Female';
                     addGenterDetail();
                   });
-                    navigateToNextPageWithDelay(); 
+                  navigateToNextPageWithDelay();
                 },
                 child: Card(
-                  color: selectedGender == Gender.female
-                                      ?Color.fromARGB(255, 136, 180, 136)
-                                      : null,
-                    child: Column(
-                  children: [
-                    Image.asset(
-                      'assest/fitness-woman-cartoon-_preview_rev_2.png',
-                      height: 200,
-                      width: 200,
-                      
-                    ),
-                    Text(
-                      'Female',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-                    ),
-                  ],
-                )),
+                  color: selectedGender == 'Female'
+                      ? Color.fromARGB(255, 138, 230, 138) // Selected color for Female
+                      : null, // Default color for other genders
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assest/fitness-woman-cartoon-_preview_rev_2.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                      Text(
+                        'Female',
+                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -124,9 +121,13 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
       ),
     );
   }
-}
-Future<void> addGenterDetail() async {
-final genderObject = GenterDetails(id: DateTime.now().millisecond.toString(), genter: selectedGender.toString());
-      addgenterDetail(genderObject);
-      print('$selectedGender');
+
+  Future<void> addGenterDetail() async {
+    final genderObject = GenterDetails(
+      id: DateTime.now().millisecond.toString(),
+      genter: selectedGender!,
+    );
+    addgenterDetail(genderObject);
+    print('$selectedGender');
   }
+}

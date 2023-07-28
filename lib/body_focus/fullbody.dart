@@ -1,6 +1,10 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:workout2/body_focus/body.dart';
+
 import 'package:workout2/demo_model/model.dart';
+import 'package:workout2/sub_wokoutscreen.dart/sub_squard.dart';
+
 
 
 enum SampleItem { itemOne, itemTwo }
@@ -137,7 +141,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => BodySelection()),
+                      MaterialPageRoute(builder: (ctx) =>TimerScreen())
                     );
                   },
                   style: ElevatedButton.styleFrom(

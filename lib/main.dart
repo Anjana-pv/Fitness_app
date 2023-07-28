@@ -6,7 +6,7 @@ import 'package:workout2/screen/splash_screen.dart';
 
 import 'models/data_model.dart';
 
-
+const savekey = ' userlogin';
 
 
 
@@ -22,6 +22,13 @@ Future <void> main() async {
    }
    if (!Hive.isAdapterRegistered(GenterDetailsAdapter().typeId)) {
       Hive.registerAdapter( GenterDetailsAdapter());
+   }
+   
+   if (!Hive.isAdapterRegistered(TargetweightAdapter().typeId)) {
+      Hive.registerAdapter( TargetweightAdapter());
+   }
+    if (!Hive.isAdapterRegistered(FocusAreaAdapter().typeId)) {
+      Hive.registerAdapter( FocusAreaAdapter());
    }
   
   runApp(const MyApp());
