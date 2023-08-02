@@ -30,6 +30,9 @@ Future <void> main() async {
     if (!Hive.isAdapterRegistered(FocusAreaAdapter().typeId)) {
       Hive.registerAdapter( FocusAreaAdapter());
    }
+   if (!Hive.isAdapterRegistered(WorkoutHistoryAdapter().typeId)) {
+      Hive.registerAdapter( WorkoutHistoryAdapter());
+   }
   
   runApp(const MyApp());
 }

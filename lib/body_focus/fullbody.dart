@@ -1,11 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'package:workout2/demo_model/model.dart';
 import 'package:workout2/sub_wokoutscreen.dart/sub_squard.dart';
-
-
 
 enum SampleItem { itemOne, itemTwo }
 
@@ -18,11 +14,11 @@ class WorkoutScreen extends StatefulWidget {
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
   SampleItem? selectedMenu;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack( 
+      body: Stack(
         children: [
           Column(
             children: [
@@ -109,7 +105,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             return ListTile(
                               title: Text(
                                 dayOneList[index].title,
-                                style:const TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -117,7 +113,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                               ),
                               subtitle: Text(
                                 dayOneList[index].subtitle,
-                                style:const TextStyle(color: Colors.grey),
+                                style: const TextStyle(color: Colors.grey),
                               ),
                               leading: Image.asset(
                                 dayOneList[index].image,
@@ -127,7 +123,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             );
                           },
                           separatorBuilder: (context, index) {
-                            return  const Divider();
+                            return const Divider();
                           },
                           itemCount: dayOneList.length,
                         ),
@@ -141,7 +137,27 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) =>TimerScreen())
+                      MaterialPageRoute(
+                        builder: (ctx) => const TimerScreen(
+                          imagePaths: [
+                           'assest/image/assets/day1_images/squads.jpeg',
+                  'assest/image/assets/day1_images/Wall-Push-Up.gif',
+                  'assest/image/assets/day1_images/butt_bridge.gif',
+                  'assest/image/assets/day1_images/plank.png',
+                  'assest/image/assets/day1_images/stand bicycle crunch.gif',
+                  'assest/image/assets/day1_images/fire-hydrant-exercise-illustration (1) right.gif'
+                          ],
+                          name: [
+                           " SQUARDS",
+                            'WALL PUSH_UP',
+                            'BUTT BRIDGE',
+                            'PLANK',
+                            'asa',
+                            'as',
+                            
+                          ],
+                        ),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -191,9 +207,9 @@ List<DayOneModel> dayOneList = [
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/fire-hydrant-exercise-illustration (1) right.gif',
+    image:
+        'assest/image/assets/day1_images/fire-hydrant-exercise-illustration (1) right.gif',
     title: 'FIRE HYDRANT',
     subtitle: '30 s',
   ),
 ];
-

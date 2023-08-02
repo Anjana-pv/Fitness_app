@@ -83,3 +83,12 @@ class FocusArea{
 
   FocusArea({required this.name});
 }
+
+@HiveType(typeId: 6)
+class WorkoutHistory {
+  @HiveField(0)
+  final bool isCompleted;
+
+  WorkoutHistory(this.isCompleted);
+}
+

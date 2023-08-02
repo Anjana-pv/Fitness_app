@@ -132,7 +132,7 @@ class _ScreenloginState extends State<Screenlogin> {
                               Color.fromARGB(163, 51, 168, 84),
                             ),
                           ),
-                          child: Text(
+                          child: const Text(
                             'Get Started',
                             style: TextStyle(
                               color: Colors.white,

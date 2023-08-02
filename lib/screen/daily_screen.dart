@@ -5,7 +5,6 @@ import 'package:workout2/menu/plan.dart';
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
 
-
 class DailyScreen extends StatefulWidget {
   const DailyScreen({super.key});
 
@@ -93,7 +92,7 @@ class _DailyScreenState extends State<DailyScreen> {
                         if (index == 0) {
                           // Display start button for Week 1
                           return Card(
-                            color: Color.fromARGB(192, 162, 131, 235),
+                            color: const Color.fromARGB(192, 162, 131, 235),
                             child: ListTile(
                               title: Text('Day 1',
                                   style: TextStyle(
@@ -107,7 +106,7 @@ class _DailyScreenState extends State<DailyScreen> {
                                 onPressed: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (ctx) => WorkoutScreen(),
+                                      builder: (ctx) => const WorkoutScreen(),
                                     ),
                                   );
                                 },
@@ -118,7 +117,7 @@ class _DailyScreenState extends State<DailyScreen> {
                         } else {
                           // Display lock icon for other weeks
                           return Card(
-                            color: Color.fromARGB(255, 211, 214, 216),
+                            color: const Color.fromARGB(255, 211, 214, 216),
                             child: ListTile(
                               title: Row(
                                 children: [
@@ -126,7 +125,7 @@ class _DailyScreenState extends State<DailyScreen> {
                                   const SizedBox(width: 10),
                                 ],
                               ),
-                              subtitle: const Text('6 Exercises'),
+                              subtitle: const Text('  6 Exercises'),
                               trailing: const Icon(Icons.lock),
                             ),
                           );
@@ -144,6 +143,7 @@ class _DailyScreenState extends State<DailyScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed, // Set the type to fixed
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.black,
           onTap: onItemTapped,
