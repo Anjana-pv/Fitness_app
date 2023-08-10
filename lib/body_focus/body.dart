@@ -3,8 +3,11 @@ import 'package:workout2/body_focus/abs.dart';
 import 'package:workout2/body_focus/arms.dart';
 import 'package:workout2/body_focus/btt.dart';
 import 'package:workout2/body_focus/face.dart';
-import 'package:workout2/body_focus/fullbody.dart';
 import 'package:workout2/body_focus/leg.dart';
+import 'package:workout2/models/data_model.dart';
+import 'package:workout2/screen/daily_screen.dart';
+
+import '../db/focuspard.db.dart';
 
 
 
@@ -22,16 +25,16 @@ String ? focusvalue;
 
 class _BodySelectionState extends State<BodySelection> {
   List<String> imagePaths = [
-    'assest/image/assets/bodyparts/download (1).jpeg',
+     'assest/image/assets/bodyparts/download (1).jpeg',
     'assest/image/assets/bodyparts/arms.jpeg',
     'assest/image/assets/bodyparts/leg.jpeg',
     'assest/image/assets/bodyparts/img.jpeg',
     'assest/image/assets/bodyparts/abbs.jpeg'
   ];
   List<String> imageDescriptions = [
-    'Workout for FullBody',
-    'Workout for Leg',
+     'Workout for FullBody',
     'Workout for Arms',
+    'Workout for Leg',
     'Workout for Butt',
     'Workout for Abs',
   ];
@@ -42,7 +45,7 @@ class _BodySelectionState extends State<BodySelection> {
   Widget buildCard(int index) {
     final isCardSelected = index == selectedImageIndex;
    
-    final cardColor = isCardSelected ? Colors.green : Color.fromARGB(255, 217, 214, 214);
+    final cardColor = isCardSelected ? Colors.green : const Color.fromARGB(255, 217, 214, 214);
   
     return GestureDetector(
       onTap: () {
@@ -58,10 +61,10 @@ class _BodySelectionState extends State<BodySelection> {
               imagePaths[index],
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               imageDescriptions[index],
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -82,19 +85,31 @@ class _BodySelectionState extends State<BodySelection> {
 
   Widget getPageForRouteName(String routeName) {
     switch (routeName) {
-      case 'Workout for FullBody':
-        return const WorkoutScreen();
-         case 'Workout for Leg':
-        return const leginbody();
+     case 'Workout for Fullbody':
+     return const DailyScreen(five: false,
+                four: false,
+                six: false,
+                three: false,
+                two: false,
+                one: true,
+                day1: false,
+                day2: false,
+                day3: false,
+                day4: false,
+                day5: false,
+                day6: false,);
+        
       case 'Workout for Arms':
         return const Armsbody();
+         case 'Workout for Leg':
+        return const Leginbody();
       case 'Workout for Butt':
         return const Bttbody();
       case 'Workout for Abs':
         return const Absbody();
 
       default:
-        return Armsbody();
+        return const Armsbody();
     }
   }
 
@@ -126,7 +141,7 @@ class _BodySelectionState extends State<BodySelection> {
             const SizedBox(height: 50),
             InkWell(
               onTap: () {},
-              child: Container(
+              child: SizedBox(
                 height: 250,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -135,7 +150,7 @@ class _BodySelectionState extends State<BodySelection> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             const Padding(
@@ -149,26 +164,29 @@ class _BodySelectionState extends State<BodySelection> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => facebody()),
+                  MaterialPageRoute(builder: (context) => const Facebody()),
                 );
               },
               child: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  const EdgeInsets.all(16.0),
+
                   child: ListTile(
                     leading: Image.asset(
-                      'assets/image/assets/bodyparts/face.jpeg',
+                      'assest/image/assets/bodyparts/face.jpeg',
+
                       fit: BoxFit.cover,
                     ),
-                    title: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    title: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
-                        'Slim down your face \n\n Click here',
+                      "Slim Down Your Face",
+
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -179,17 +197,20 @@ class _BodySelectionState extends State<BodySelection> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 20,
+
             ),
             ElevatedButton(
               onPressed: () {
-
+                  store();
                 navigateToSelectedPage();
+
+            
                 
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(131, 172, 89, 218),
+                backgroundColor: const Color.fromARGB(131, 172, 89, 218),
                 minimumSize: const Size(150, 50),
               ),
               child: const Text(
@@ -203,5 +224,14 @@ class _BodySelectionState extends State<BodySelection> {
         ),
       ),
     );
+  }
+  Future<void> store ()async{
+     if (selectedImageIndex >= 0 &&
+        selectedImageIndex < imageDescriptions.length) {
+      String selectedFocusArea = imageDescriptions[selectedImageIndex];
+     await FocusDB().addfocusdata(FocusArea(name: selectedFocusArea));
+       print(selectedFocusArea);
+    }
+    
   }
 }

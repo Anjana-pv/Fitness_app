@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout2/screen/vitals.dart';
+import 'package:workout2/screen/vitals_screen.dart';
 import '../db/db_genter.dart';
 import '../models/data_model.dart';
 
@@ -16,10 +16,10 @@ String? selectedGender;
 
 class _FindGenderScreenState extends State<FindGenderScreen> {
   void navigateToNextPageWithDelay() {
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Screenvitals()),
+        MaterialPageRoute(builder: (context) => const Screenvitals()),
       );
     });
   }
@@ -31,7 +31,7 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
         body: Align(
           child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 60.0),
                 child: Column(
                   children: [
@@ -54,8 +54,9 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 70,
+              const SizedBox(
+                height: 60,
+
               ),
               GestureDetector(
                 onTap: () {
@@ -67,8 +68,8 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                 },
                 child: Card(
                   color: selectedGender == 'Male'
-                      ? Color.fromARGB(255, 146, 219, 146) // Selected color for Male
-                      : null, // Default color for other genders
+                      ? const Color.fromARGB(255, 146, 219, 146)
+                      : null,
                   child: Column(
                     children: [
                       Image.asset(
@@ -76,7 +77,7 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                         height: 200,
                         width: 200,
                       ),
-                      Text(
+                      const Text(
                         'Male',
                         style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                       ),
@@ -84,7 +85,7 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 20),
               
 
 
@@ -98,7 +99,7 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                 },
                 child: Card(
                   color: selectedGender == 'Female'
-                      ? Color.fromARGB(255, 138, 230, 138) // Selected color for Female
+                      ? const Color.fromARGB(255, 138, 230, 138) // Selected color for Female
                       : null, // Default color for other genders
                   child: Column(
                     children: [
@@ -107,7 +108,7 @@ class _FindGenderScreenState extends State<FindGenderScreen> {
                         height: 200,
                         width: 200,
                       ),
-                      Text(
+                      const Text(
                         'Female',
                         style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                       ),

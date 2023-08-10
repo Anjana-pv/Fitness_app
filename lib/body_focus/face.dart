@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:workout2/body_focus/body.dart';
+import 'package:workout2/body_focus/face_workout.dart';
 import 'package:workout2/demo_model/model.dart';
 
 
 enum SampleItem { itemOne, itemTwo }
 
 
-class facebody extends StatefulWidget {
-  const facebody({Key? key}) : super(key: key);
+// ignore: camel_case_types
+class Facebody extends StatefulWidget {
+  const Facebody({Key? key}) : super(key: key);
 
   @override
-  State<facebody> createState() => _facebodyState();
+  State<Facebody> createState() => _FacebodyState();
 }
 
-class _facebodyState extends State<facebody> {
+class _FacebodyState extends State<Facebody> {
   SampleItem? selectedMenu;
 
   @override
@@ -64,12 +66,12 @@ class _facebodyState extends State<facebody> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             '6 Mins, 6 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
@@ -77,30 +79,12 @@ class _facebodyState extends State<facebody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          PopupMenuButton<SampleItem>(
-                            initialValue: selectedMenu,
-                            onSelected: (SampleItem item) {
-                              setState(() {
-                                selectedMenu = item;
-                              });
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<SampleItem>>[
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemOne,
-                                child: Text('Edit Plan'),
-                              ),
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemTwo,
-                                child: Text('Reset Plan'),
-                              ),
-                            ],
-                          ),
+                         
                         ],
                       ),
                     ),
                     SingleChildScrollView(
-                      child: Container(
+                      child: SizedBox(
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
@@ -139,11 +123,29 @@ class _facebodyState extends State<facebody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => BodySelection()),
+                      MaterialPageRoute(builder: (ctx) =>const Facescreen(
+                        imagePaths: ['assest/image/assets/face/cheeks3.jpeg',
+                        'assest/image/assets/face/erss1.gif',
+                        'assest/image/assets/face/eyebross2.gif',
+                         'assest/image/assets/face/cheeksup4.gif',
+                         'assest/image/assets/face/eyebross2.gif',
+                          'assest/image/assets/face/Comp-1_1.webp',
+                            'assest/image/assets/face/cheeksup4.gif',
+
+
+                        ], 
+                        name: ['CHEEKS',
+                        'EYE RACE',
+                        'CHEEKS-UP',
+                        'EYEBROW LIFT',
+                        'STANDING BICYCLE CRUNCHES',
+                        'EYE BROW PRESS',
+
+                        ])),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(160, 190, 205, 27),
+                    backgroundColor: const Color.fromARGB(160, 190, 205, 27),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(

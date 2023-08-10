@@ -33,6 +33,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  circular_countdown_timer: ^0.2.3
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -42,8 +43,8 @@ dependencies:
   hive_flutter: ^1.1.0
   kdgaugeview: ^1.0.5
   path_provider: ^2.0.15
-  table_calendar: ^3.0.1
   shared_preferences: ^2.2.0
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -76,6 +77,10 @@ flutter:
     - assest/image/assets/typ.jpg
     - assest/image/assets/biggner.jpg
     - assest/image/assets/imagg333 (1).jpg
+    - assest/image/assets/break fast.jpeg
+    - assest/image/assets/lunch.jpeg
+    - assest/image/assets/snack.jpeg
+    - assest/image/assets/dinner.jpeg
     # body parts image
     - assest/image/assets/bodyparts/abbs.jpeg
     - assest/image/assets/bodyparts/arms.jpeg
@@ -104,6 +109,9 @@ flutter:
     - assest/image/assets/day1_images/goblet-squad.gif
     - assest/image/assets/123.jpg
     - assest/image/assets/output-onlinegiftools.gif
+    - assest/image/assets/answall paper.jpg
+    - assest/image/assets/image 6.webp
+    - assest/image/assets/444.jpg
    
 
     #Abs workOuts
@@ -120,13 +128,15 @@ flutter:
     - assest/image/assets/day1_images/side lunges.jpeg
     - assest/image/assets/abs/buttkick.gif
     - assest/image/assets/day1_images/cursty luges.jpeg
-    - assest/image/assets/day1_images/backward luges.jpeg
+    - assest/image/assets/day1_images/bnackwrd.gif
     - assest/image/assets/day1_images/alternate.gif
     - assest/image/assets/day1_images/Wall-Push-Up.gif
     - assest/image/assets/day1_images/knee arm swing.jpeg
     - assest/image/assets/day1_images/wall push.gif
     - assest/image/assets/day1_images/up and plank.jpeg
-    
+    - assest/image/assets/day1_images/Side-High-Knee-March-with-Swinging-Arms.gif
+    - assest/image/assets/day1_images/pike-plank.gif
+    - assest/image/assets/day1_images/pixel_3_wallpapers_droidviews-12.png
     # face of work
     #
   # An image asset can refer to one or more resolution-specific "variants", see

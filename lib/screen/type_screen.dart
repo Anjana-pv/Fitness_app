@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/screen/advanced_screen.dart';
 
-import 'package:workout2/body_focus/body.dart';
-
-
-import 'package:workout2/screen/biggner.dart';
+import 'package:workout2/screen/daily_screen.dart';
 
 class TypeselectScreen extends StatefulWidget {
-  TypeselectScreen({super.key});
+  const TypeselectScreen({super.key});
 
   @override
   State<TypeselectScreen> createState() => _TypeselectScreenState();
@@ -19,7 +17,7 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assest/image/assets/typ.jpg'),
                 fit: BoxFit.cover,
@@ -28,86 +26,91 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(30.5),
-            child:  Center(
+            child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                     
                     onTap: () {
-                      // Handle onTap for 'Beginner'
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => BignnerScreen()),
+                        MaterialPageRoute(
+                            builder: (ctx) => const DailyScreen(
+                                two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)),
                       );
-                      
-                    }  ,
-                    
-                 child: const Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 80,
-                        backgroundColor: Color.fromARGB(186, 9, 226, 190),
-                      ),
-                      Text(
-                        'Bignner',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                    },
+                    child: const Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 80,
+                          backgroundColor: Color.fromARGB(233, 131, 32, 128),
                         ),
-                      ),
-                    ],
+                        Text(
+                          'Beginner',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  ),
-                  const SizedBox(height: 50),
-               
+                  
+
+                   
+                  const SizedBox(height: 40),
                   GestureDetector(
                     onTap: () {
                       // Handle onTap for 'Advanced'
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) =>BodySelection()),
+                        MaterialPageRoute(
+                            builder: (ctx) =>  const ScreenAdvanced(
+                                two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)),
                       );
                     },
+                  
                 
-
-
-                  child:const Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 80,
-                        backgroundColor: Color.fromARGB(200, 200, 7, 110),
-                      ),
-                      Text(
-                        'Advanced',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                   child:  const Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 80,
+                          backgroundColor: Color.fromARGB(185, 9, 121, 226),
                         ),
-                      ),
-                    ],
+                        Text(
+                          'Advanced',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  // SizedBox(height: 40),
-                  // Padding(padding: EdgeInsets.only(top: 80)),
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     Navigator.of(context).push(
-                  //       MaterialPageRoute(builder: (ctx) => ScreenAdvanced()),
-                  //     );
-                  //   },
-                  //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Color.fromARGB(144, 10, 234, 73),
-                  //     minimumSize: const Size(200, 50),
-                  //   ),
-                  //   child: const Text(
-                  //     '    Next    ',
-                  //     style: TextStyle(
-                  //       color: Colors.white,
-                  //     ),
-                  //   ),
-                   ),
                 ],
               ),
             ),

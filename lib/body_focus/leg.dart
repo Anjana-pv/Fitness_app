@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 
-import 'package:workout2/body_focus/body.dart';
+import 'package:workout2/body_focus/leg_workout.dart';
 import 'package:workout2/demo_model/model.dart';
-
 
 enum SampleItem { itemOne, itemTwo }
 
-class leginbody extends StatefulWidget {
-  const leginbody({Key? key}) : super(key: key);
+class Leginbody extends StatefulWidget {
+  const Leginbody({Key? key}) : super(key: key);
 
   @override
-  State<leginbody> createState() => _leginbodyState();
+  State<Leginbody> createState() => _LeginbodyState();
 }
 
-class _leginbodyState extends State<leginbody> {
- 
-
+class _LeginbodyState extends State<Leginbody> {
   SampleItem? selectedMenu;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack( 
+      body: Stack(
         children: [
           Column(
             children: [
@@ -65,12 +62,12 @@ class _leginbodyState extends State<leginbody> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             '6 Mins, 5 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
@@ -78,37 +75,18 @@ class _leginbodyState extends State<leginbody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          // PopupMenuButton<SampleItem>(
-                          //   initialValue: selectedMenu,
-                          //   onSelected: (SampleItem item) {
-                          //     setState(() {
-                          //       selectedMenu = item;
-                          //     });
-                          //   },
-                          //   itemBuilder: (BuildContext context) =>
-                          //       <PopupMenuEntry<SampleItem>>[
-                          //     const PopupMenuItem<SampleItem>(
-                          //       value: SampleItem.itemOne,
-                          //       child: Text('Edit Plan'),
-                          //     ),
-                          //     const PopupMenuItem<SampleItem>(
-                          //       value: SampleItem.itemTwo,
-                          //       child: Text('Reset Plan'),
-                          //     ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
                     SingleChildScrollView(
-                      child: Container(
+                      child: SizedBox(
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
                             return ListTile(
                               title: Text(
                                 dayOneList[index].title,
-                                style:const TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -116,7 +94,7 @@ class _leginbodyState extends State<leginbody> {
                               ),
                               subtitle: Text(
                                 dayOneList[index].subtitle,
-                                style:const TextStyle(color: Colors.grey),
+                                style: const TextStyle(color: Colors.grey),
                               ),
                               leading: Image.asset(
                                 dayOneList[index].image,
@@ -126,7 +104,7 @@ class _leginbodyState extends State<leginbody> {
                             );
                           },
                           separatorBuilder: (context, index) {
-                            return  const Divider();
+                            return const Divider();
                           },
                           itemCount: dayOneList.length,
                         ),
@@ -140,11 +118,24 @@ class _leginbodyState extends State<leginbody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => BodySelection()),
+                      MaterialPageRoute(
+                          builder: (ctx) => const Legscreen(imagePaths: [
+                                'assest/image/assets/abs/Jumping-Jacks.gif',
+                                'assest/image/assets/day1_images/goblet-squad.gif',
+                                'assest/image/assets/day1_images/bnackwrd.gif',
+                                'assest/image/assets/day1_images/side-lunge.gif',
+                                'assest/image/assets/day1_images/how-to-do-squats.gif',
+                              ], name: [
+                                'SQUATS',
+                                'WALL PUSH-UPS',
+                                'BACKWARDS LUNGES',
+                                'CURSTY LUNGES',
+                                'SQUADS',
+                              ])),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(239, 130, 137, 228),
+                    backgroundColor: const Color.fromARGB(239, 130, 137, 228),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(
@@ -170,25 +161,23 @@ List<DayOneModel> dayOneList = [
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/squads.jpeg',
+    image: 'assest/image/assets/day1_images/goblet-squad.gif',
     title: 'WALL PUSH-UPS',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/backward luges.jpeg',
+    image: 'assest/image/assets/day1_images/bnackwrd.gif',
     title: 'BACKWARDS LUNGES',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/cursty luges.jpeg',
+    image: 'assest/image/assets/day1_images/side-lunge.gif',
     title: 'CURSTY LUNGES',
     subtitle: '20 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/squads.jpeg',
+    image: 'assest/image/assets/day1_images/how-to-do-squats.gif',
     title: 'SQUADS',
     subtitle: '30 s',
   ),
-  
 ];
-

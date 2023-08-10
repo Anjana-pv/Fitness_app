@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/body_congra.dart/cond.dart';
+// import 'package:workout2/workoutScreen/1_congradulation.dart';
 
-// import 'package:workout2/sub_wokoutscreen.dart/sub_screen.dart';
-import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
-import 'package:workout2/workoutScreen/2_congradulation.dart';
-import 'package:workout2/workoutScreen/3_congradulations.dart';
-import 'package:workout2/workoutScreen/4_congradulation.dart';
-import 'package:workout2/workoutScreen/5_congradulation.dart';
-import 'package:workout2/workoutScreen/6_congradulation.dart';
-import 'package:workout2/workoutScreen/1_congradulation.dart';
 
-// ignore: must_be_immutable
-class TimerScreen extends StatefulWidget {
+class Absscreen extends StatefulWidget {
   final List<String> imagePaths;
   final List<String> name;
-  int click;
+  // int click;
 
-  TimerScreen(
+ const Absscreen(
       {Key? key,
       required this.imagePaths,
-      required this.click,
+      // required this.click,
       required this.name})
       : super(key: key);
 
   @override
-  _TimerScreenState createState() => _TimerScreenState();
+  AbsscreenState createState() => AbsscreenState();
 }
 
 String? completed;
 
-class _TimerScreenState extends State<TimerScreen>
+class AbsscreenState extends State<Absscreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -37,10 +30,10 @@ class _TimerScreenState extends State<TimerScreen>
   bool timerStarted = false;
   bool isPaused = false;
 
-bool isResting = false;
-int restDuration = 10; 
-int restTimeRemaining = 10;
-bool showRestMessage = false;
+  bool isResting = false;
+  int restDuration = 10;
+  int restTimeRemaining = 10;
+  bool showRestMessage = false;
 
   @override
   void initState() {
@@ -59,43 +52,44 @@ bool showRestMessage = false;
   void _startTimer() {
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-         if (!isResting) {
-        if (currentIndex < widget.imagePaths.length - 1 &&
-            currentIndex < widget.name.length - 1) {
-          setState(() {
-            currentIndex++;
-            _controller.reset();
-            _controller.forward();
-          });
-        } else {
-          if (currentIndex >= widget.imagePaths.length - 1 ||
-              currentIndex >= widget.name.length - 1 && !hasNavigated) {
-            hasNavigated = true;
+        if (!isResting) {
+          if (currentIndex < widget.imagePaths.length - 1 &&
+              currentIndex < widget.name.length - 1) {
+            setState(() {
+              currentIndex++;
+              _controller.reset();
+              _controller.forward();
+            });
+          } else {
+            if (currentIndex >= widget.imagePaths.length - 1 ||
+                currentIndex >= widget.name.length - 1 && !hasNavigated) {
+              hasNavigated = true;
 
-            navigat();
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => const BodyCongrads()));
+            }
+          }
+        } else {
+          if (restTimeRemaining > 0) {
+            setState(() {
+              restTimeRemaining--;
+              showRestMessage = true;
+            });
+          } else {
+            setState(() {
+              isResting = false;
+              restTimeRemaining = restDuration;
+              showRestMessage = false;
+              currentIndex++;
+              _controller.reset();
+              _controller.forward();
+            });
           }
         }
-      }else {
-        // Handle rest time
-        if (restTimeRemaining > 0) {
-          setState(() {
-            restTimeRemaining--;
-            showRestMessage = true;
-          });
-   } else {
-          setState(() {
-            isResting = false;
-            restTimeRemaining = restDuration;
-            showRestMessage = false;
-            currentIndex++;
-            _controller.reset();
-            _controller.forward();
-          });
-        }
       }
-    }
-  });
-}
+    });
+  }
+
   void _handleStartTap() {
     setState(() {
       timerStarted = true;
@@ -126,7 +120,7 @@ bool showRestMessage = false;
           children: [
             Column(
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 80),
                 Center(
                   child: Text(
                     widget.name[currentIndex],
@@ -137,7 +131,7 @@ bool showRestMessage = false;
                   ),
                 ),
                 const SizedBox(
-                  height: 60,
+                  height: 40,
                 ),
                 Center(
                   child: Column(
@@ -212,14 +206,21 @@ bool showRestMessage = false;
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       ElevatedButton(
                         onPressed: _handlePauseRestartTap,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 186, 132, 245), 
+                        ),
                         child: Text(
                           isPaused ? 'Restart' : 'Pause',
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white), 
                       )
+                      ),
                     ],
                   ),
                 ),
@@ -229,49 +230,5 @@ bool showRestMessage = false;
         ),
       ),
     );
-  }
-
-  navigat() {
-    if (widget.click == 1) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => const Congrads()));
-    } else if (widget.click == 2) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => const Congrads1()));
-    } else if (widget.click == 3) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => const Congrads2()));
-    } else if (widget.click == 4) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => Congrads3()));
-    } else if (widget.click == 5) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => Congrads5()));
-    } else if (widget.click == 6) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => Congrads6()));
-    } else if (widget.click == 7) {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (ctx) => const week2(
-                two: false,
-                three: false,
-                four: false,
-                five: false,
-                six: false,
-                one: true,
-                day1: false,
-                day2: false,
-                day3: false,
-                day4: false,
-                day5: false,
-                day6: false,
-              )));
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/body_focus/fullbody.dart';
-import 'package:workout2/db/db_storeworkout.dart';
+
 import 'package:workout2/menu/celender.dart';
+
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
-import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
+
+import 'package:workout2/sub_wokoutscreen.dart/week4.dart';
 
 
-
-class ScreenAdvanced extends StatefulWidget {
-   final bool two;
+class Week3 extends StatefulWidget {
+  final bool two;
   final bool three;
   final bool four;
   final bool five;
@@ -22,9 +23,7 @@ class ScreenAdvanced extends StatefulWidget {
   final bool day4;
   final bool day5;
   final bool day6;
- 
-
-  const ScreenAdvanced (
+  const Week3(
       {super.key,
       required this.two,
       required this.three,
@@ -32,7 +31,7 @@ class ScreenAdvanced extends StatefulWidget {
       required this.five,
       required this.six,
       required this.one,
-      required this.day1,
+       required this.day1,
       required this.day2,
       required this.day3,
       required this.day4,
@@ -40,20 +39,11 @@ class ScreenAdvanced extends StatefulWidget {
       required this.day6,});
 
   @override
-  State<ScreenAdvanced> createState() => _ScreenAdvancedState();
+  State<Week3> createState() => Week3State();
 }
 
-class _ScreenAdvancedState extends State<ScreenAdvanced> {
+class Week3State extends State<Week3> {
   int _selectedIndex = 0;
-   int? check;
-
- @override
-  void initState(){
-    getworkoutlist();
-    super.initState();
-  
-
-  }
 
   void onItemTapped(int index) {
     setState(() {
@@ -70,13 +60,13 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  BodySelection()),
+          MaterialPageRoute(builder: (context) => Calendar(date: false)),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const BodySelection()),
         );
         break;
       case 3:
@@ -92,11 +82,11 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
 
   @override
   Widget build(BuildContext context) {
-   
+    // WorkoutHistory st = WorkoutHistory();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(210, 138, 51, 192),
+          backgroundColor: const Color.fromARGB(210, 84, 7, 216),
           title: const Text(
             'DAILY PLAN',
             style: TextStyle(
@@ -104,9 +94,13 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
               fontWeight: FontWeight.w900,
             ),
           ),
-          leading: null,
+          automaticallyImplyLeading: false,
+          
 
+         
           centerTitle: true,
+         
+
         ),
         body: SingleChildScrollView(
          
@@ -127,35 +121,29 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
               ),
 
               Card(
-                color:  widget.one
-                    ? Color.fromARGB(255, 137, 52, 194)
-                    : const Color.fromARGB(255, 250, 252, 253),
+                color: const Color.fromARGB(255, 153, 90, 234),
                 child: ListTile(
-                  title:  Text(
+                  title: const Text(
                     ' Day 1',
                     style: TextStyle(
-                      color: widget.one 
-                    ?Color.fromARGB(255, 247, 249, 249)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                      color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  subtitle:  Text(
-                    ' 6 Exercises', 
+                  subtitle: const Text(
+                    ' 6 Exercises', // Customize the subtitle
                     style: TextStyle(
-                      color: widget.one 
-                    ? Color.fromARGB(255, 244, 249, 249)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                      color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  trailing: widget.one ? ElevatedButton(
+                  trailing: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const WorkoutScreen(click: 1)));
+                          builder: (ctx) => WorkoutScreen(click: 1)));
                     },
                     child: const Text('Start'),
-                  ) : widget.day1 ? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
+                  ),
                 ),
 
                 //
@@ -165,61 +153,50 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
               ),
               Card(
                 color: widget.two
-                    ? Color.fromARGB(255, 165, 90, 234)
+                    ? const Color.fromARGB(255, 153, 90, 234)
                     : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                    title:  Text(
+                    title: const Text(
                       ' Day 2',
                       style: TextStyle(
-                        color: widget.two 
-                    ?Color.fromARGB(255, 247, 250, 250)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle:  Text(
+                    subtitle: const Text(
                       ' 6 Exercises', // Customize the subtitle
-                       style: TextStyle(
-                      color: widget.two
-                    ?  Color.fromARGB(255, 244, 246, 246)
-                    :  const Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w600,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     trailing: widget.two
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const WorkoutScreen(click: 2)));
+                                  builder: (ctx) => WorkoutScreen(click: 2)));
                             },
                             child: const Text('Start'),
                           )
-                        :widget.day2 ? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
-                ),
+                        : const Icon(Icons.lock_outline)),
               ),
-               const SizedBox(
+              const SizedBox(
                 height: 7,
               ),
               Card(
-                color: widget.three
-                    ? Color.fromARGB(255, 150, 90, 234)
-                    : const Color.fromARGB(255, 250, 252, 253),
+                color: const Color.fromARGB(255, 247, 249, 251),
                 child: ListTile(
-                    title:  Text(
+                    title: const Text(
                       ' Day 3',
                       style: TextStyle(
-                        color:  widget.three
-                    ?Color.fromARGB(255, 244, 246, 247)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle:  Text(
+                    subtitle: const Text(
                       ' 6 Exercises',
                       style: TextStyle(
-                        color:widget.three
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -227,34 +204,29 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const WorkoutScreen(click: 3)));
+                                  builder: (ctx) => WorkoutScreen(click: 3)));
                             },
                             child: const Text('Start'),
                           )
-                        :widget.day3? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline))),
+                        : const Icon(Icons.lock_outline)),
+              ),
               const SizedBox(
                 height: 10,
               ),
               Card(
-                color:  widget.four
-                    ? Color.fromARGB(255, 144, 52, 194)
-                    : const Color.fromARGB(255, 250, 252, 253),
+                color: const Color.fromARGB(255, 242, 245, 248),
                 child: ListTile(
-                    title:  Text(
+                    title: const Text(
                       ' Day 4',
                       style: TextStyle(
-                        color: widget.four
-                   ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Color.fromARGB(137, 9, 9, 9),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle:  Text(
+                    subtitle: const Text(
                       ' 6 Exercises', // Customize the subtitle
                       style: TextStyle(
-                        color: widget.four
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -262,35 +234,29 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const WorkoutScreen(click: 4)));
+                                  builder: (ctx) => WorkoutScreen(click: 4)));
                             },
                             child: const Text('Start'),
                           )
-                        : widget.day4? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) ),
+                        : const Icon(Icons.lock_outline)),
               ),
               const SizedBox(
                 height: 7,
               ),
               Card(
-                color:  widget.five
-                    ?Color.fromARGB(255, 156, 52, 194)
-                    : const Color.fromARGB(255, 250, 252, 253),
+                color: const Color.fromARGB(255, 239, 241, 243),
                 child: ListTile(
-                    title:  Text(
+                    title: const Text(
                       ' Day 5',
                       style: TextStyle(
-                        color: widget.five 
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle:  Text(
+                    subtitle: const Text(
                       ' 6 Exercises', // Customize the subtitle
                       style: TextStyle(
-                       color: widget.five
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -298,34 +264,27 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const WorkoutScreen(click: 5)));
+                                  builder: (ctx) => WorkoutScreen(click: 5)));
                             },
                             child: const Text('Start'),
                           )
-                        : widget.day5?const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
-              ),
+                        : const Icon(Icons.lock_outline)),
               ),
               const SizedBox(height: 7),
               Card(
-                color:  widget.six
-                    ? Color.fromARGB(255, 151, 52, 194)
-                    : const Color.fromARGB(255, 250, 252, 253),
+                color: const Color.fromARGB(255, 247, 249, 251),
                 child: ListTile(
-                    title:  Text(
+                    title: const Text(
                       ' Day 6',
                       style: TextStyle(
-                        color:widget.six
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle:  Text(
+                    subtitle: const Text(
                       ' 6 Exercises', // Customize the subtitle
                       style: TextStyle(
-                        color:widget.six
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : const Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -333,11 +292,11 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const WorkoutScreen(click: 6)));
+                                  builder: (ctx) => WorkoutScreen(click: 6)));
                             },
                             child: const Text('Start'),
                           )
-                        : widget.day6? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline)),
+                        : const Icon(Icons.lock_outline)),
               ),
               const SizedBox(
                 height: 7,
@@ -345,20 +304,18 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
                GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const week2(two: false, three: false, four: false, five: false, six: false, one: false,day1: true,day2: false,day3: false,day4: false,day5: false,day6: false,)
-                                   
-                  
-                      ));
+                                  builder: (ctx) => week4(two: false, three: false, four: false, five: false, six: false, one: true,day1: false,day2: false,day3: false,day4: false,day5: false,day6: false,)));
                 },
                  child: const Card(
                   color: Color.fromARGB(255, 247, 249, 251),
                   child: ListTile(
                     title: Center(
                       child: Text(
-                        'NEXT WEEK 2',
+                        'NEXT WEEK 4',
+
                         style: TextStyle(
-                          color:Color.fromARGB(255, 151, 52, 194),
-                          fontSize: 25,
+                          color: Color.fromARGB(223, 126, 23, 216),
+                          fontSize: 30,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -371,38 +328,37 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
         ),
                           
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor:Color.fromARGB(255, 156, 52, 194),
-          type: BottomNavigationBarType.fixed, 
-          
+          backgroundColor: Color.fromARGB(255, 183, 131, 246),
+          type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
-          selectedItemColor:  const Color.fromARGB(255, 245, 243, 243),
+          selectedItemColor: Colors.black,
           onTap: onItemTapped,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.local_dining_outlined,
-                color: Color.fromARGB(255, 249, 248, 248),
+                color: Colors.black,
               ),
               label: 'Recipes',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.offline_bolt_outlined,
-                color: Color.fromARGB(255, 247, 246, 246),
+                color: Colors.black,
               ),
               label: 'Plan',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.equalizer_rounded,
-                color: Color.fromARGB(255, 252, 251, 251),
+                color: Colors.black,
               ),
               label: 'Calendar',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: Color.fromARGB(255, 255, 254, 254),
+                color: Colors.black,
               ),
               label: 'Profile',
             ),
@@ -417,4 +373,3 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
   }
 
           
-  

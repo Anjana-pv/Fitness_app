@@ -79,16 +79,29 @@ class Targetweight {
 class FocusArea{
 
   @HiveField(0)
-  String? name;
+  final String? name;
 
   FocusArea({required this.name});
 }
 
 @HiveType(typeId: 6)
 class WorkoutHistory {
-  @HiveField(0)
-  final bool isCompleted;
 
-  WorkoutHistory(this.isCompleted);
+  @HiveField(0)
+  bool two = false;
+  @HiveField(1)
+  bool three = false;
+  @HiveField(2)
+  bool four = false;
+  @HiveField(3)
+  bool five = false;
+  @HiveField(4)
+  bool six = false;
+  @HiveField(5)
+  
+
+  WorkoutHistory({ two,three,four,five,six,});
+
+  get date => null;
 }
 

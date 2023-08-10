@@ -1,101 +1,46 @@
-import 'package:flutter/material.dart';
-// import 'package:table_calendar/table_calendar.dart';
+import "package:flutter/material.dart";
+import 'package:table_calendar/table_calendar.dart';
 
+// ignore: must_be_immutable
 class Calendar extends StatefulWidget {
-  Calendar({Key? key}) : super(key: key);
+  bool date;
+  Calendar({super.key,required this.date});
 
   @override
   State<Calendar> createState() => _CalendarState();
 }
- 
+
 class _CalendarState extends State<Calendar> {
-
-//    DateTime? _selectedDate;
-  
-//   List<DateTime> workoutDates = [
-//     DateTime(2023, 7, 22), // Replace with actual workout dates
-//     DateTime(2023, 7, 25),
-//     DateTime(2023, 7, 28),
-//     // Add more workout dates as needed
-//   ];
-
-//   void _onDaySelected(DateTime selectedDate, DateTime focusedDate) {
-//     setState(() {
-//       _selectedDate = selectedDate;
-//     });
-//   }
-
-//   Widget _buildCell(BuildContext context, DateTime date) {
-//     // ... (same code as shown in step 5) ...
-//   }
+   
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Workout Calendar'),
+        backgroundColor: const Color.fromARGB(255, 205, 133, 236),
+        title: const Text('CALENDAR',
+        style:TextStyle( fontSize:20,color: Colors.white,fontWeight: FontWeight.w500)),
+        centerTitle: true,
       ),
       body: Column(
         children: [
-//           TableCalendar(
-//             calendarController: _calendarController,
-//             onDaySelected: _onDaySelected,
-//             calendarBuilders: CalendarBuilders(
-//               defaultBuilder: (context, date, _) {
-//                 return _buildCell(context, date);
-//               },
-//               todayBuilder: (context, date, _) {
-//                 return _buildCell(context, date);
-//               },
-//               selectedBuilder: (context, date, _) {
-//                 return _buildCell(context, date);
-//               },
-],
-     ),
-      );
-//   }
-// }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Calendar'),
-//       ),
-//       body: Column(
-//         children: [
-//           TableCalendar(
-//             calendarController: _calendarController,
-//             onDaySelected: _onDaySelected,
-//             onVisibleDaysChanged: _onVisibleDaysChanged,
-//             calendarStyle: CalendarStyle(
-//               // Customize the calendar style as needed
-//               todayDecoration: BoxDecoration(
-//                 color: Colors.yellow,
-//                 shape: BoxShape.circle,
-//               ),
-//               selectedDecoration: BoxDecoration(
-//                 color: Colors.blue,
-//                 shape: BoxShape.circle,
-//               ),
-//               selectedTextStyle: TextStyle(color: Colors.white),
-//             ),
-//             calendarBuilders: CalendarBuilders(
-//               defaultBuilder: (context, date, _) {
-//                 return _buildCell(context, date);
-//               },
-//               todayBuilder: (context, date, _) {
-//                 return _buildCell(context, date);
-//               },
-//               selectedBuilder: (context, date, _) {
-//                 return _buildCell(context, date);
-//               },
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-  }
-}
+          
+          TableCalendar(
+            firstDay: DateTime.utc(2023, 1, 1), 
+            lastDay: DateTime.utc(2023, 12, 31), 
+            focusedDay: DateTime.now(),
+            calendarStyle: const CalendarStyle(
+              todayDecoration: BoxDecoration(
+                color: Colors.green,
+                shape: BoxShape.circle,
+              )
+            ),
+            //  selectedDayPredicate: (day) {
+              
+            //   return widget.date && day.isSameDay(DateTime.now());
+            // },
+          ),
+        ],
+      ),
+    );
+  }}

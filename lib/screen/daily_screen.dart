@@ -1,19 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/body_focus/fullbody.dart';
+import 'package:workout2/db/db_storeworkout.dart';
+
 import 'package:workout2/menu/celender.dart';
-import 'package:workout2/menu/plan.dart';
+
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
 
+
+import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
+
 class DailyScreen extends StatefulWidget {
-  const DailyScreen({super.key});
+  final bool two;
+  final bool three;
+  final bool four;
+  final bool five;
+  final bool six;
+  final bool one;
+  final bool day1;
+  final bool day2;
+  final bool day3;
+  final bool day4;
+  final bool day5;
+  final bool day6;
+  const DailyScreen(
+      {super.key,
+      required this.two,
+      required this.three,
+      required this.four,
+      required this.five,
+      required this.six,
+      required this.one,
+      required this.day1,
+      required this.day2,
+      required this.day3,
+      required this.day4,
+      required this.day5,
+      required this.day6,});
+
+
 
   @override
   State<DailyScreen> createState() => _DailyScreenState();
 }
 
+
 class _DailyScreenState extends State<DailyScreen> {
   int _selectedIndex = 0;
+   int? check;
+
+ @override
+  void initState(){
+    getworkoutlist();
+    super.initState();
+  
+
+  }
 
   void onItemTapped(int index) {
     setState(() {
@@ -24,19 +67,19 @@ class _DailyScreenState extends State<DailyScreen> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Recipies()),
+          MaterialPageRoute(builder: (context) => DietPage()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Plan()),
+          MaterialPageRoute(builder: (context) => const BodySelection()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar()),
+          MaterialPageRoute(builder: (context) => Calendar(date: false)),
         );
         break;
       case 3:
@@ -52,10 +95,11 @@ class _DailyScreenState extends State<DailyScreen> {
 
   @override
   Widget build(BuildContext context) {
+   
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(210, 84, 7, 216),
+          backgroundColor: const Color.fromARGB(210, 84, 7, 216),
           title: const Text(
             'DAILY PLAN',
             style: TextStyle(
@@ -63,9 +107,12 @@ class _DailyScreenState extends State<DailyScreen> {
               fontWeight: FontWeight.w900,
             ),
           ),
+          leading: null,
+
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
-          // Wrap the whole content inside SingleChildScrollView
+         
           child: Column(
             children: [
               Card(
@@ -81,114 +128,295 @@ class _DailyScreenState extends State<DailyScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        final weekList = week[index];
-                        if (index == 0) {
-                          // Display start button for Week 1
-                          return Card(
-                            color: const Color.fromARGB(192, 162, 131, 235),
-                            child: ListTile(
-                              title: Text('Day 1',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600)),
-                              subtitle: const Text(' 6 Exercises',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600)),
-                              trailing: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (ctx) => const WorkoutScreen(),
-                                    ),
-                                  );
-                                },
-                                child: const Text('Start'),
-                              ),
-                            ),
-                          );
-                        } else {
-                          // Display lock icon for other weeks
-                          return Card(
-                            color: const Color.fromARGB(255, 211, 214, 216),
-                            child: ListTile(
-                              title: Row(
-                                children: [
-                                  Text(weekList),
-                                  const SizedBox(width: 10),
-                                ],
-                              ),
-                              subtitle: const Text('  6 Exercises'),
-                              trailing: const Icon(Icons.lock),
-                            ),
-                          );
-                        }
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(height: 10);
-                      },
-                      itemCount: week.length,
+
+              Card(
+                color:  widget.one
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
+                child: ListTile(
+                  title:  Text(
+                    ' Day 1',
+                    style: TextStyle(
+                      color: widget.one 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
+                  subtitle:  Text(
+                    ' 6 Exercises', 
+                    style: TextStyle(
+                      color: widget.one 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  trailing: widget.one ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const WorkoutScreen(click: 1)));
+                    },
+                    child: const Text('Start'),
+                  ) : widget.day1 ? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
+                ),
+
+                //
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Card(
+                color: widget.two
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
+                child: ListTile(
+                    title:  Text(
+                      ' Day 2',
+                      style: TextStyle(
+                        color: widget.two 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle:  Text(
+                      ' 6 Exercises', // Customize the subtitle
+                       style: TextStyle(
+                      color: widget.two
+                    ?  const Color.fromARGB(255, 255, 255, 255)
+                    :  const Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: widget.two
+                        ? ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => const WorkoutScreen(click: 2)));
+                            },
+                            child: const Text('Start'),
+                          )
+                        :widget.day2 ? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
                 ),
               ),
+               const SizedBox(
+                height: 7,
+              ),
+              Card(
+                color: widget.three
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
+                child: ListTile(
+                    title:  Text(
+                      ' Day 3',
+                      style: TextStyle(
+                        color:  widget.three
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle:  Text(
+                      ' 6 Exercises',
+                      style: TextStyle(
+                        color:widget.three
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: widget.three
+                        ? ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => const WorkoutScreen(click: 3)));
+                            },
+                            child: const Text('Start'),
+                          )
+                        :widget.day3? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline))),
+              const SizedBox(
+                height: 10,
+              ),
+              Card(
+                color:  widget.four
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
+                child: ListTile(
+                    title:  Text(
+                      ' Day 4',
+                      style: TextStyle(
+                        color: widget.four
+                   ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle:  Text(
+                      ' 6 Exercises', // Customize the subtitle
+                      style: TextStyle(
+                        color: widget.four
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: widget.four
+                        ? ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => const WorkoutScreen(click: 4)));
+                            },
+                            child: const Text('Start'),
+                          )
+                        : widget.day4? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) ),
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Card(
+                color:  widget.five
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
+                child: ListTile(
+                    title:  Text(
+                      ' Day 5',
+                      style: TextStyle(
+                        color: widget.five 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle:  Text(
+                      ' 6 Exercises', // Customize the subtitle
+                      style: TextStyle(
+                       color: widget.five
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: widget.five
+                        ? ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => const WorkoutScreen(click: 5)));
+                            },
+                            child: const Text('Start'),
+                          )
+                        : widget.day5?const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
+              ),
+              ),
+              const SizedBox(height: 7),
+              Card(
+                color:  widget.six
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
+                child: ListTile(
+                    title:  Text(
+                      ' Day 6',
+                      style: TextStyle(
+                        color:widget.six
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle:  Text(
+                      ' 6 Exercises', // Customize the subtitle
+                      style: TextStyle(
+                        color:widget.six
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: widget.six
+                        ? ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => const WorkoutScreen(click: 6)));
+                            },
+                            child: const Text('Start'),
+                          )
+                        : widget.day6? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline)),
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+               GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => const week2(two: false, three: false, four: false, five: false, six: false, one: false,day1: true,day2: false,day3: false,day4: false,day5: false,day6: false,)
+                                   
+                  
+                      ));
+                },
+                 child: const Card(
+                  color: Color.fromARGB(255, 247, 249, 251),
+                  child: ListTile(
+                    title: Center(
+                      child: Text(
+                        'NEXT WEEK 2',
+                        style: TextStyle(
+                          color: Color.fromARGB(223, 126, 23, 216),
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                             ),
+               ),
             ],
           ),
         ),
+                          
         bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed, // Set the type to fixed
+          backgroundColor: const Color.fromARGB(255, 129, 32, 247),
+          type: BottomNavigationBarType.fixed, 
+          
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor:  const Color.fromARGB(255, 245, 243, 243),
           onTap: onItemTapped,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.local_dining_outlined,
-                color: Colors.black,
+                color: Color.fromARGB(255, 249, 248, 248),
               ),
               label: 'Recipes',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.offline_bolt_outlined,
-                color: Colors.black,
+                color: Color.fromARGB(255, 247, 246, 246),
               ),
               label: 'Plan',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.equalizer_rounded,
-                color: Colors.black,
+                color: Color.fromARGB(255, 252, 251, 251),
               ),
               label: 'Calendar',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: Colors.black,
+                color: Color.fromARGB(255, 255, 254, 254),
               ),
               label: 'Profile',
             ),
           ],
         ),
       ),
-    );
+        );
+      
+    
   }
 
-  List week = [
-    ' Day 1',
-    ' Day 2',
-    ' Day 3',
-    ' Day 4',
-    ' Day 5',
-    ' Day 6',
-    ' Day 7',
-  ];
-}
+  }
+
+          

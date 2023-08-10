@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/body_focus/abs_workout.dart';
 
-import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/demo_model/model.dart';
 
-
 enum SampleItem { itemOne, itemTwo }
-
 
 class Absbody extends StatefulWidget {
   const Absbody({Key? key}) : super(key: key);
@@ -20,7 +18,7 @@ class _AbsbodyState extends State<Absbody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack( 
+      body: Stack(
         children: [
           Column(
             children: [
@@ -29,7 +27,8 @@ class _AbsbodyState extends State<Absbody> {
                 height: 300,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assest/image/assets/bodyparts/abbs.jpeg'),
+                    image:
+                        AssetImage('assest/image/assets/bodyparts/abbs.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -38,21 +37,12 @@ class _AbsbodyState extends State<Absbody> {
           ),
           Positioned(
             top: 150,
-
             left: 170,
-
-
-
-
-
-
-
-
             right: 0,
             child: Container(
               padding: const EdgeInsets.all(20),
               child: const Text(
-               "   Sweat is just fat crying",
+                "   Sweat is just fat crying",
                 style: TextStyle(
                   color: Color.fromARGB(255, 240, 238, 238),
                   fontSize: 20,
@@ -61,29 +51,27 @@ class _AbsbodyState extends State<Absbody> {
               ),
             ),
           ),
-          SizedBox(height: 30,),
-
+          const SizedBox(
+            height: 30,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                
-                
                 width: double.infinity,
                 height: 600,
-
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 245, 244, 244),
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             '6 Mins, 6 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
@@ -91,35 +79,18 @@ class _AbsbodyState extends State<Absbody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          PopupMenuButton<SampleItem>(
-                            initialValue: selectedMenu,
-                            onSelected: (SampleItem item) {
-                              setState(() {
-                                selectedMenu = item;
-                              });
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<SampleItem>>[
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemOne,
-                                child: Text('Reset Plan'),
-                              ),
-                              
-                            ],
-                          ),
                         ],
                       ),
                     ),
                     SingleChildScrollView(
-                      child: Container(
-                       
+                      child: SizedBox(
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
                             return ListTile(
                               title: Text(
                                 dayOneList[index].title,
-                                style:const TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -127,7 +98,7 @@ class _AbsbodyState extends State<Absbody> {
                               ),
                               subtitle: Text(
                                 dayOneList[index].subtitle,
-                                style:const TextStyle(color: Colors.grey),
+                                style: const TextStyle(color: Colors.grey),
                               ),
                               leading: Image.asset(
                                 dayOneList[index].image,
@@ -137,7 +108,7 @@ class _AbsbodyState extends State<Absbody> {
                             );
                           },
                           separatorBuilder: (context, index) {
-                            return  const Divider();
+                            return const Divider();
                           },
                           itemCount: dayOneList.length,
                         ),
@@ -151,11 +122,26 @@ class _AbsbodyState extends State<Absbody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => BodySelection()),
+                      MaterialPageRoute(
+                          builder: (ctx) => const Absscreen(imagePaths: [
+                                'assest/image/assets/abs/high stepping.gif',
+                                'assest/image/assets/abs/maountain climber.gif',
+                                'assest/image/assets/abs/reverse crunches.gif',
+                                'assest/image/assets/day1_images/plank.png',
+                                'assest/image/assets/abs/cobra.gif',
+                                'assest/image/assets/abs/Jumping-Jacks.gif'
+                              ], name: [
+                                'HIGH STEPPING',
+                                'MOUNTAIN CLIMBER',
+                                'REVERSE CRUNCHES',
+                                'PLANK',
+                                'COBRA STRACH',
+                                'JUMPING JACKS',
+                              ])),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(161, 52, 51, 52),
+                    backgroundColor: const Color.fromARGB(161, 52, 51, 52),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(
@@ -204,8 +190,5 @@ List<DayOneModel> dayOneList = [
     image: 'assest/image/assets/abs/Jumping-Jacks.gif',
     title: 'JUMPING JACKS',
     subtitle: '30 s',
-
-
   ),
 ];
-

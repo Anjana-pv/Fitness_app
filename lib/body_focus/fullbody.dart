@@ -1,12 +1,16 @@
+
+
 import 'package:flutter/material.dart';
 
 import 'package:workout2/demo_model/model.dart';
+
 import 'package:workout2/sub_wokoutscreen.dart/sub_squard.dart';
 
 enum SampleItem { itemOne, itemTwo }
 
 class WorkoutScreen extends StatefulWidget {
-  const WorkoutScreen({Key? key}) : super(key: key);
+   final int? click;
+   const WorkoutScreen({Key? key,required  this.click, }) : super(key: key);
 
   @override
   _WorkoutScreenState createState() => _WorkoutScreenState();
@@ -62,43 +66,25 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            '6 Mins, 6 Exercises',
+                          Text(
+                            '4 Mins, 6 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          PopupMenuButton<SampleItem>(
-                            initialValue: selectedMenu,
-                            onSelected: (SampleItem item) {
-                              setState(() {
-                                selectedMenu = item;
-                              });
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<SampleItem>>[
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemOne,
-                                child: Text('Edit Plan'),
-                              ),
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemTwo,
-                                child: Text('Reset Plan'),
-                              ),
-                            ],
-                          ),
+                          
                         ],
                       ),
                     ),
                     SingleChildScrollView(
-                      child: Container(
+                      child: SizedBox(
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
@@ -138,24 +124,25 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (ctx) => const TimerScreen(
-                          imagePaths: [
-                           'assest/image/assets/day1_images/squads.jpeg',
+                        builder: (ctx) =>  TimerScreen(
+                          imagePaths: const [
+                           'assest/image/assets/day1_images/how-to-do-squats.gif',
                   'assest/image/assets/day1_images/Wall-Push-Up.gif',
                   'assest/image/assets/day1_images/butt_bridge.gif',
                   'assest/image/assets/day1_images/plank.png',
                   'assest/image/assets/day1_images/stand bicycle crunch.gif',
                   'assest/image/assets/day1_images/fire-hydrant-exercise-illustration (1) right.gif'
                           ],
-                          name: [
-                           " SQUARDS",
-                            'WALL PUSH_UP',
+                          name: const [
+                           " SQUARTS",
+                            'WALL PUSH UP',
                             'BUTT BRIDGE',
                             'PLANK',
-                            'asa',
-                            'as',
+                            'STAND BICYCLE CRUNCH',
+                            'FIRE HYDRATE',
                             
                           ],
+                        click: widget.click!,
                         ),
                       ),
                     );
@@ -199,7 +186,7 @@ List<DayOneModel> dayOneList = [
   DayOneModel(
     image: 'assest/image/assets/day1_images/plank.png',
     title: 'PLANK',
-    subtitle: '20 s',
+    subtitle: '30 s',
   ),
   DayOneModel(
     image: 'assest/image/assets/day1_images/stand bicycle crunch.gif',

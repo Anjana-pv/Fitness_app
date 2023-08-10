@@ -210,16 +210,28 @@ class WorkoutHistoryAdapter extends TypeAdapter<WorkoutHistory> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return WorkoutHistory(
-      fields[0] as bool,
+      two: fields[0] as dynamic,
+      three: fields[1] as dynamic,
+      four: fields[2] as dynamic,
+      five: fields[3] as dynamic,
+      six: fields[4] as dynamic,
     );
   }
 
   @override
   void write(BinaryWriter writer, WorkoutHistory obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.isCompleted);
+      ..write(obj.two)
+      ..writeByte(1)
+      ..write(obj.three)
+      ..writeByte(2)
+      ..write(obj.four)
+      ..writeByte(3)
+      ..write(obj.five)
+      ..writeByte(4)
+      ..write(obj.six);
   }
 
   @override

@@ -32,6 +32,8 @@ Future <void> main() async {
    }
    if (!Hive.isAdapterRegistered(WorkoutHistoryAdapter().typeId)) {
       Hive.registerAdapter( WorkoutHistoryAdapter());
+   
+     await Hive.openBox<WorkoutHistory>('workoutHistory');
    }
   
   runApp(const MyApp());
@@ -42,7 +44,7 @@ Future <void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
 
-import 'package:workout2/body_focus/body.dart';
+
+import 'package:flutter/material.dart';
+import 'package:workout2/body_focus/arms_workout.dart';
+
+
 import 'package:workout2/demo_model/model.dart';
+
 
 
 enum SampleItem { itemOne, itemTwo }
@@ -80,30 +84,30 @@ class _ArmsbodyState extends State<Armsbody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          PopupMenuButton<SampleItem>(
-                            initialValue: selectedMenu,
-                            onSelected: (SampleItem item) {
-                              setState(() {
-                                selectedMenu = item;
-                              });
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<SampleItem>>[
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemOne,
-                                child: Text('Edit Plan'),
-                              ),
-                              const PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemTwo,
-                                child: Text('Reset Plan'),
-                              ),
-                            ],
-                          ),
+                          // PopupMenuButton<SampleItem>(
+                          //   initialValue: selectedMenu,
+                          //   onSelected: (SampleItem item) {
+                          //     setState(() {
+                          //       selectedMenu = item;
+                          //     });
+                          //   },
+                          //   itemBuilder: (BuildContext context) =>
+                          //       <PopupMenuEntry<SampleItem>>[
+                          //     const PopupMenuItem<SampleItem>(
+                          //       value: SampleItem.itemOne,
+                          //       child: Text('Edit Plan'),
+                          //     ),
+                          //     const PopupMenuItem<SampleItem>(
+                          //       value: SampleItem.itemTwo,
+                          //       child: Text('Reset Plan'),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
                     SingleChildScrollView(
-                      child: Container(
+                      child: SizedBox(
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
@@ -142,11 +146,31 @@ class _ArmsbodyState extends State<Armsbody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => BodySelection()),
+                      MaterialPageRoute(builder: (ctx) =>Armscreen(
+                        imagePaths:const [
+                          'assest/image/assets/day1_images/alternate.gif',
+                         'assest/image/assets/day1_images/wall push.gif',
+                         'assest/image/assets/day1_images/Side-High-Knee-March-with-Swinging-Arms.gif',
+                         'assest/image/assets/day1_images/wall push.gif',
+                         'assest/image/assets/day1_images/pike-plank.gif',
+                         'assest/image/assets/day1_images/up and plank.jpeg'
+                        ], 
+                       
+                         name: const [
+                          'ALTERNATING HOOKS',
+                          'WALL PUSH-UPS',
+                          'KNEE ARM SWING',
+                          'WALL PUSH-UPS',
+                          'PINK-PLANK',
+                          'UP AND PLANK',
+                         ],
+                     
+                          )
+                          ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(240, 49, 187, 218),
+                    backgroundColor: const Color.fromARGB(240, 49, 187, 218),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(
@@ -172,27 +196,27 @@ List<DayOneModel> dayOneList = [
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/Wall-Push-Up.gif',
+    image: 'assest/image/assets/day1_images/wall push.gif',
     title: 'WALL PUSH-UPS',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/knee arm swing.jpeg',
+    image: 'assest/image/assets/day1_images/Side-High-Knee-March-with-Swinging-Arms.gif',
     title: 'KNEE ARM SWING',
     subtitle: '30 s',
   ),
   DayOneModel(
     image: 'assest/image/assets/day1_images/wall push.gif',
-    title: ' WALL PUSH',
+    title: ' WALL PUSH -UPS',
     subtitle: '20 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/up and plank.jpeg',
-    title: 'UP AND PLANK',
+    image:'assest/image/assets/day1_images/pike-plank.gif',
+    title: 'PINK PLANK',
     subtitle: '30 s',
   ),
   DayOneModel(
-    image: 'assest/image/assets/day1_images/Wall-Push-Up.gif',
+    image: 'assest/image/assets/day1_images/up and plank.jpeg',
     title: 'WALL PUSH-UP',
     subtitle: '30 s',
   ),

@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+    
     super.didChangeDependencies();
   }
 
@@ -62,8 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
 
         Positioned(
-         top: MediaQuery.of(context).size.height * 0.5 - 50, // Adjust the value based on the text size
-         left: 2,
+         top: MediaQuery.of(context).size.height * 0.5 - 50, 
          right: 0,
           child: const Center(
             
@@ -80,10 +79,10 @@ class _SplashScreenState extends State<SplashScreen> {
         
         
         Positioned(
-         top: MediaQuery.of(context).size.height * 0.6 - 70, // Adjust the value based on the text size
+         top: MediaQuery.of(context).size.height * 0.6 - 70, 
          left: 2,
          right: 0,
-          child: Center(
+          child: const Center(
             
             child: Text(
               'IN 30 DAYS',
@@ -113,11 +112,11 @@ class _SplashScreenState extends State<SplashScreen> {
      final usersignup=sharenew.getBool(savekey);
     if(usersignup == null||usersignup == false){
        Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (ctx) => Screenlogin()),
+      MaterialPageRoute(builder: (ctx) => const Screenlogin()),
      );
     }else{
       Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (ctx) => DailyScreen()),);
+      MaterialPageRoute(builder: (ctx) =>const  DailyScreen(two: false, three: false, four: false, five: false, six: false,one: true, day1: false,day2: false,day3: false,day4: false,day5: false,day6: false,)),);
 
     }
    }

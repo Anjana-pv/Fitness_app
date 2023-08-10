@@ -71,14 +71,14 @@ class _BeemState extends State<Beem> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                Text(
+                const Text(
                   "Let's Find your BMI",
                   style: TextStyle(
                     color: Colors.black,
@@ -87,10 +87,7 @@ class _BeemState extends State<Beem> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                 SizedBox(height: 35),
-
-
-
+                const SizedBox(height: 35),
                 Column(
                   children: [
                     Center(
@@ -100,13 +97,13 @@ class _BeemState extends State<Beem> {
                           Container(
                             width: 300,
                             height: 300,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             child: KdGaugeView(
                               minSpeed: 0,
                               maxSpeed: 100,
                               speed: double.parse(widget.bmi),
                               animate: true,
-                              duration: Duration(seconds: 5),
+                              duration: const Duration(seconds: 5),
                               alertSpeedArray: [
                                 double.parse(widget.bmi),
                                 getBMICategoryThreshold('Underweight'),
@@ -114,7 +111,7 @@ class _BeemState extends State<Beem> {
                                 getBMICategoryThreshold('Overweight'),
                                 // getBMICategoryThreshold('Obicity')
                               ],
-                              alertColorArray: [
+                              alertColorArray: const [
                                 Colors.yellow,
                                 Colors.green,
                                 Colors.orange,
@@ -129,7 +126,7 @@ class _BeemState extends State<Beem> {
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(
                               getEmojiText(bmiStatus),
-                              style: TextStyle(fontSize: 20),
+                              style: const TextStyle(fontSize: 20),
                             ),
                           ),
                         ],
@@ -155,7 +152,7 @@ class _BeemState extends State<Beem> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -178,9 +175,6 @@ class _BeemState extends State<Beem> {
                             ),
                             Container(
                               width: 90,
-
-
-
                               decoration: BoxDecoration(
                                 color: const Color.fromARGB(220, 226, 222, 222),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -206,8 +200,6 @@ class _BeemState extends State<Beem> {
                         ),
                         const SizedBox(
                           height: 10,
-
-
                         ),
                         ElevatedButton(
                           onPressed: () {

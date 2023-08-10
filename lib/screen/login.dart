@@ -1,18 +1,11 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workout2/db/db_signup_functions';
 import 'package:workout2/main.dart';
 import 'package:workout2/screen/daily_screen.dart';
-
-
-import 'package:workout2/screen/genter_screen.dart';
 import 'package:workout2/screen/sign_in.dart';
 
-// const String SAVEKEYNAME = 'isLoggedIn';
+
 
 class Screenlogin extends StatefulWidget {
   const Screenlogin({super.key});
@@ -21,17 +14,16 @@ class Screenlogin extends StatefulWidget {
   State<Screenlogin> createState() => _ScreenloginState();
 }
 
-
-
 class _ScreenloginState extends State<Screenlogin> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
- 
+
   @override
   void initState() {
+    
     super.initState();
-    // checkLoginStatus();
+    //  checkLoginStatus();
   }
 
   @override
@@ -68,11 +60,11 @@ class _ScreenloginState extends State<Screenlogin> {
                           child: TextFormField(
                             controller: _usernameController,
                             validator: (value) {
-                               if (value == null || value.isEmpty) {
-                        return '         Please enter your username';
-                      } else {
-                        return null;
-                      }
+                              if (value == null || value.isEmpty) {
+                                return '         Please enter your username';
+                              } else {
+                                return null;
+                              }
                             },
                             decoration: const InputDecoration(
                               border: InputBorder.none,
@@ -96,10 +88,10 @@ class _ScreenloginState extends State<Screenlogin> {
                             obscureText: true,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                        return '         Please enter your password';
-                      } else {
-                        return null;
-                      }
+                                return '         Please enter your password';
+                              } else {
+                                return null;
+                              }
                             },
                             decoration: const InputDecoration(
                               border: InputBorder.none,
@@ -121,15 +113,14 @@ class _ScreenloginState extends State<Screenlogin> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formkey.currentState!.validate()) {
-                      loginagain();
-                    } else {
-                      print('empty');
-                    }
-                  
+                              loginagain();
+                            } else {
+                              print('empty');
+                            }
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromARGB(163, 51, 168, 84),
+                              const Color.fromARGB(163, 51, 168, 84),
                             ),
                           ),
                           child: const Text(
@@ -144,7 +135,8 @@ class _ScreenloginState extends State<Screenlogin> {
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
-                            MaterialPageRoute(builder: (ctx) => const ScreenSignup()),
+                            MaterialPageRoute(
+                                builder: (ctx) => const ScreenSignup()),
                           );
                         },
                         child: const Text(
@@ -166,20 +158,31 @@ class _ScreenloginState extends State<Screenlogin> {
     );
   }
 
- loginagain()async{
-  final username = signUpListNotifier.value[0].username;
-  final password = signUpListNotifier.value[0].password;
-  final tousername = _usernameController.text.trim();
-  final topassword = _passwordController.text.trim();
+  loginagain() async {
+    final username = signUpListNotifier.value[0].username;
+    final password = signUpListNotifier.value[0].password;
+    final tousername = _usernameController.text.trim();
+    final topassword = _passwordController.text.trim();
 
-  if(username == tousername && password == topassword){
-    
-      final sharedata=await SharedPreferences.getInstance();
+    if (username == tousername && password == topassword) {
+      final sharedata = await SharedPreferences.getInstance();
       await sharedata.setBool(savekey, true);
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (ctx) => const DailyScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (ctx) => const DailyScreen(
+                five: false,
+                four: false,
+                six: false,
+                three: false,
+                two: false,
+                one: true,
+                day1: false,
+                day2: false,
+                day3: false,
+                day4: false,
+                day5: false,
+                day6: false,
+              )));
+    }
   }
-
- }
-  }
+}

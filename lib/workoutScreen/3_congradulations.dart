@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+
 import 'package:workout2/screen/daily_screen.dart';
 
-class Congrads extends StatefulWidget {
-  const Congrads({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class Congrads2 extends StatefulWidget {
+  
+   const Congrads2({Key? key}) : super(key: key);
 
   @override
-  State<Congrads> createState() => _CongradsState();
+  State<Congrads2> createState() => _Congrads2State();
+
 }
 
-class _CongradsState extends State<Congrads> {
+
+class _Congrads2State extends State<Congrads2> {
   final String backgroundImage = 'assest/image/assets/123.jpg'; 
   final String congratulationsGif = 'assest/image/assets/output-onlinegiftools.gif';
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,7 @@ class _CongradsState extends State<Congrads> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  '"Crush your workout. Embrace the burn. Become unstoppable." 💪🔥',
+                  '"Believe in the power of your potential."',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -53,12 +59,8 @@ class _CongradsState extends State<Congrads> {
                                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                         Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (ctx) => const DailyScreen(),
-                      ),
-                      );
-                   
+                        
+                          unlockworkout();
                         },
                     
                         child: const Text('Go Back to Home'),
@@ -72,5 +74,22 @@ class _CongradsState extends State<Congrads> {
         ],
       ),
     );
+  }
+
+  unlockworkout(){
+    bool one = false;
+    bool two = false;
+      bool three = false;
+    bool four = true;
+     bool five = false;
+      bool six = false;
+
+
+     Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>  DailyScreen(five: five,four: four,six: six,three: three,two: two,one: one,day1: true,day2: true,day3: true,day4: false,day5: false,day6: false,),
+                        
+                      ),
+                      );
   }
 }

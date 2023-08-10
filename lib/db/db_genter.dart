@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:workout2/models/data_model.dart';
@@ -26,8 +28,12 @@ Future<void> deletegenterDetail(String id) async {
 }
 
 Future<void> getallgenterDetails() async {
+   
   final genterDB = await Hive.openBox<GenterDetails>('genter_db');
+ 
   genterListNotifier.value.clear();
   genterListNotifier.value.addAll(genterDB.values);
+ 
   genterListNotifier.notifyListeners();
+   
 }
