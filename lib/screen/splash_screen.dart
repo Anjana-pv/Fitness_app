@@ -9,7 +9,7 @@ import 'package:workout2/screen/login.dart';
 
 
 class SplashScreen extends StatefulWidget{
-  const SplashScreen ({super.key});
+ const SplashScreen ({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Positioned(
          top: MediaQuery.of(context).size.height * 0.5 - 50, 
          right: 0,
-          child: const Center(
+          child:const Center(
             
             child: Text(
               'LOST WEIGHT',

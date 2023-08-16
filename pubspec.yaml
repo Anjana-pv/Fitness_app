@@ -33,6 +33,8 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  circular: ^0.0.5
+  circular_countdown: ^2.1.0
   circular_countdown_timer: ^0.2.3
   cupertino_icons: ^1.0.2
   flutter:
@@ -90,6 +92,7 @@ flutter:
     - assest/image/assets/bodyparts/face.jpeg
     - assest/image/assets/bodyparts/leg.jpeg
     - assest/male.png
+    - assest/image/assets/day1_images/side-lunge.gif
     # giff fullbody of workout
     - assest/image/assets/day1_images/butt_bridge.gif
     - assest/image/assets/day1_images/clapping crunches.gif
@@ -137,6 +140,15 @@ flutter:
     - assest/image/assets/day1_images/Side-High-Knee-March-with-Swinging-Arms.gif
     - assest/image/assets/day1_images/pike-plank.gif
     - assest/image/assets/day1_images/pixel_3_wallpapers_droidviews-12.png
+
+    # Adv
+    
+    - assest/image/assets/day1_images/mountain.gif
+    - assest/image/assets/day1_images/butt-kicks.gif
+    - assest/image/assets/day1_images/bureep.gif
+    - assest/image/assets/day1_images/Jumping-Jack.gif
+    - assest/image/assets/day1_images/butt-kicks.gif
+    - assest/image/assets/day1_images/jumping squards.gif
     # face of work
     #
   # An image asset can refer to one or more resolution-specific "variants", see

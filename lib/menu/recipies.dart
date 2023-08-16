@@ -1,16 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/body_focus/body.dart';
+import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/profile.dart';
+import 'package:workout2/screen/daily_screen.dart';
 
-class DietPage extends StatelessWidget {
-  DietPage({Key? key}) : super(key: key);
+class DietPage extends StatefulWidget {
+  const DietPage({Key? key}) : super(key: key);
+
+  @override
+  State<DietPage> createState() => _DietPageState();
+}
+
+class _DietPageState extends State<DietPage> {
+  int _selectedIndex = 0;
+
+  Widget buildBottomNavigationBar(int selectedIndex, void Function(int) onItemTapped) {
+    return BottomNavigationBar(
+      backgroundColor: const Color.fromARGB(255, 145, 54, 175),
+      type: BottomNavigationBarType.fixed,
+      currentIndex: selectedIndex,
+      selectedItemColor: const Color.fromARGB(255, 245, 243, 243),
+      onTap: onItemTapped,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.local_dining_outlined, color: Color.fromARGB(255, 249, 248, 248)),
+          label: 'Recipes',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.offline_bolt_outlined, color: Color.fromARGB(255, 247, 246, 246)),
+          label: 'Plan',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home, color: Color.fromARGB(255, 247, 246, 246)),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_month, color: Color.fromARGB(255, 252, 251, 251)),
+          label: 'Calendar',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person, color: Color.fromARGB(255, 255, 254, 254)),
+          label: 'Profile',
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DIET PLAN',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-        backgroundColor:
-            const Color.fromARGB(255, 147, 76, 175), 
+        title: const Text('DIET PLAN', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+        backgroundColor: const Color.fromARGB(255, 147, 76, 175),
         centerTitle: true,
       ),
       body: const Column(
@@ -76,6 +117,63 @@ class DietPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: buildBottomNavigationBar(_selectedIndex, (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+
+        switch (index) {
+          case 0:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DietPage()),
+            );
+            break;
+          case 1:
+           
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BodySelection()),
+        );
+        break;
+            
+          case 2:
+             Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  const DailyScreen(
+                                 two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)
+          ),
+        );
+            break;
+          case 3:
+            Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+        );
+        break;
+    
+           
+          case 4:
+             Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Profile(index: index),
+          ),
+        );
+        break;
+        }
+      }),
     );
   }
 }
@@ -85,7 +183,7 @@ class DietCard extends StatelessWidget {
   final String image;
   final List<String> foods;
 
-  const DietCard({super.key, required this.title, required this.image, required this.foods});
+  const DietCard({required this.title, required this.image, required this.foods});
 
   @override
   Widget build(BuildContext context) {
@@ -137,3 +235,4 @@ class DietCard extends StatelessWidget {
     );
   }
 }
+

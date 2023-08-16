@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/screen/adv_Fullbody.dart';
 import 'package:workout2/screen/advanced_screen.dart';
 
 import 'package:workout2/screen/daily_screen.dart';
@@ -73,11 +74,11 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
                   const SizedBox(height: 40),
                   GestureDetector(
                     onTap: () {
-                      // Handle onTap for 'Advanced'
+                      
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (ctx) =>  const ScreenAdvanced(
-                                two: false,
+                            builder: (ctx) =>  const ScreenAdvanced
+                            (  two: false,
                                 three: false,
                                 four: false,
                                 five: false,
@@ -89,6 +90,8 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
                                 day4: false,
                                 day5: false,
                                 day6: false)),
+                      
+                          
                       );
                     },
                   

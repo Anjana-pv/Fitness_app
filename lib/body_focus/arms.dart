@@ -71,12 +71,12 @@ class _ArmsbodyState extends State<Armsbody> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             '6 Mins, 6 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
@@ -84,25 +84,7 @@ class _ArmsbodyState extends State<Armsbody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          // PopupMenuButton<SampleItem>(
-                          //   initialValue: selectedMenu,
-                          //   onSelected: (SampleItem item) {
-                          //     setState(() {
-                          //       selectedMenu = item;
-                          //     });
-                          //   },
-                          //   itemBuilder: (BuildContext context) =>
-                          //       <PopupMenuEntry<SampleItem>>[
-                          //     const PopupMenuItem<SampleItem>(
-                          //       value: SampleItem.itemOne,
-                          //       child: Text('Edit Plan'),
-                          //     ),
-                          //     const PopupMenuItem<SampleItem>(
-                          //       value: SampleItem.itemTwo,
-                          //       child: Text('Reset Plan'),
-                          //     ),
-                          //   ],
-                          // ),
+                          
                         ],
                       ),
                     ),
@@ -146,8 +128,8 @@ class _ArmsbodyState extends State<Armsbody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) =>Armscreen(
-                        imagePaths:const [
+                      MaterialPageRoute(builder: (ctx) =>const Armscreen(
+                        imagePaths:[
                           'assest/image/assets/day1_images/alternate.gif',
                          'assest/image/assets/day1_images/wall push.gif',
                          'assest/image/assets/day1_images/Side-High-Knee-March-with-Swinging-Arms.gif',
@@ -156,7 +138,7 @@ class _ArmsbodyState extends State<Armsbody> {
                          'assest/image/assets/day1_images/up and plank.jpeg'
                         ], 
                        
-                         name: const [
+                         name: [
                           'ALTERNATING HOOKS',
                           'WALL PUSH-UPS',
                           'KNEE ARM SWING',

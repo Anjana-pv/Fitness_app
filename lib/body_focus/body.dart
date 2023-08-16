@@ -4,6 +4,9 @@ import 'package:workout2/body_focus/arms.dart';
 import 'package:workout2/body_focus/btt.dart';
 import 'package:workout2/body_focus/face.dart';
 import 'package:workout2/body_focus/leg.dart';
+import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/profile.dart';
+import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/models/data_model.dart';
 import 'package:workout2/screen/daily_screen.dart';
 
@@ -23,7 +26,8 @@ class BodySelection extends StatefulWidget {
 String? selectvalue;
 String ? focusvalue;
 
-class _BodySelectionState extends State<BodySelection> {
+class 
+_BodySelectionState extends State<BodySelection> {
   List<String> imagePaths = [
      'assest/image/assets/bodyparts/download (1).jpeg',
     'assest/image/assets/bodyparts/arms.jpeg',
@@ -41,6 +45,7 @@ class _BodySelectionState extends State<BodySelection> {
  
   int selectedIndex = 0;
   int selectedImageIndex = -1;
+   int  _selectedIndex = 1;
 
   Widget buildCard(int index) {
     final isCardSelected = index == selectedImageIndex;
@@ -64,7 +69,7 @@ class _BodySelectionState extends State<BodySelection> {
             const SizedBox(height: 15),
             Text(
               imageDescriptions[index],
-              style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style:  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -82,11 +87,59 @@ class _BodySelectionState extends State<BodySelection> {
       );
     }
   }
+  
+  Widget buildBottomNavigationBar(int selectedIndex, void Function(int) onItemTapped) {
+    return BottomNavigationBar(
+      backgroundColor:   const Color.fromARGB(255, 145, 54, 175),
+      type: BottomNavigationBarType.fixed,
+      currentIndex: selectedIndex,
+      selectedItemColor: const Color.fromARGB(255, 245, 243, 243),
+      onTap: onItemTapped,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.local_dining_outlined,
+            color: Color.fromARGB(255, 249, 248, 248),
+          ),
+          label: 'Recipes',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.offline_bolt_outlined,
+            color: Color.fromARGB(255, 247, 246, 246),
+          ),
+          label: 'Plan',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home,
+            color: Color.fromARGB(255, 247, 246, 246),
+          ),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.calendar_month,
+            color: Color.fromARGB(255, 252, 251, 251),
+          ),
+          label: 'Calendar',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.person,
+            color: Color.fromARGB(255, 255, 254, 254),
+          ),
+          label: 'Profile',
+        ),
+      ],
+    );
+ 
+  }
 
   Widget getPageForRouteName(String routeName) {
     switch (routeName) {
      case 'Workout for Fullbody':
-     return const DailyScreen(five: false,
+     return  const DailyScreen(five: false,
                 four: false,
                 six: false,
                 three: false,
@@ -109,7 +162,19 @@ class _BodySelectionState extends State<BodySelection> {
         return const Absbody();
 
       default:
-        return const Armsbody();
+      return
+  const DailyScreen(five: false,
+                four: false,
+                six: false,
+                three: false,
+                two: false,
+                one: true,
+                day1: false,
+                day2: false,
+                day3: false,
+                day4: false,
+                day5: false,
+                day6: false,);
     }
   }
 
@@ -210,7 +275,7 @@ class _BodySelectionState extends State<BodySelection> {
                 
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(131, 172, 89, 218),
+                backgroundColor: const Color.fromARGB(255, 145, 54, 175),
                 minimumSize: const Size(150, 50),
               ),
               child: const Text(
@@ -223,8 +288,67 @@ class _BodySelectionState extends State<BodySelection> {
           ],
         ),
       ),
+          bottomNavigationBar: buildBottomNavigationBar(_selectedIndex, (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+
+        switch (index) {
+          case 0:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const DietPage()),
+            );
+            break;
+          case 1:
+           
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BodySelection()),
+        );
+        break;
+            
+          case 2:
+             Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  const DailyScreen(
+                                 two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)
+          ),
+        );
+            break;
+          case 3:
+            Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+        );
+        break;
+    
+           
+          case 4:
+             Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Profile(index: index),
+          ),
+        );
+        break;
+        }
+      }),
     );
   }
+
+
   Future<void> store ()async{
      if (selectedImageIndex >= 0 &&
         selectedImageIndex < imageDescriptions.length) {

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/body_focus/face_workout.dart';
 import 'package:workout2/demo_model/model.dart';
 
-
 enum SampleItem { itemOne, itemTwo }
-
 
 // ignore: camel_case_types
 class Facebody extends StatefulWidget {
@@ -22,7 +19,7 @@ class _FacebodyState extends State<Facebody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack( 
+      body: Stack(
         children: [
           Column(
             children: [
@@ -31,7 +28,8 @@ class _FacebodyState extends State<Facebody> {
                 height: 300,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assest/image/assets/face/face wallpaper.jpg'),
+                    image: AssetImage(
+                        'assest/image/assets/face/face wallpaper.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -79,7 +77,6 @@ class _FacebodyState extends State<Facebody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                         
                         ],
                       ),
                     ),
@@ -91,7 +88,7 @@ class _FacebodyState extends State<Facebody> {
                             return ListTile(
                               title: Text(
                                 dayOneList[index].title,
-                                style:const TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -99,7 +96,7 @@ class _FacebodyState extends State<Facebody> {
                               ),
                               subtitle: Text(
                                 dayOneList[index].subtitle,
-                                style:const TextStyle(color: Colors.grey),
+                                style: const TextStyle(color: Colors.grey),
                               ),
                               leading: Image.asset(
                                 dayOneList[index].image,
@@ -109,7 +106,7 @@ class _FacebodyState extends State<Facebody> {
                             );
                           },
                           separatorBuilder: (context, index) {
-                            return  const Divider();
+                            return const Divider();
                           },
                           itemCount: dayOneList.length,
                         ),
@@ -123,25 +120,23 @@ class _FacebodyState extends State<Facebody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) =>const Facescreen(
-                        imagePaths: ['assest/image/assets/face/cheeks3.jpeg',
-                        'assest/image/assets/face/erss1.gif',
-                        'assest/image/assets/face/eyebross2.gif',
-                         'assest/image/assets/face/cheeksup4.gif',
-                         'assest/image/assets/face/eyebross2.gif',
-                          'assest/image/assets/face/Comp-1_1.webp',
-                            'assest/image/assets/face/cheeksup4.gif',
-
-
-                        ], 
-                        name: ['CHEEKS',
-                        'EYE RACE',
-                        'CHEEKS-UP',
-                        'EYEBROW LIFT',
-                        'STANDING BICYCLE CRUNCHES',
-                        'EYE BROW PRESS',
-
-                        ])),
+                      MaterialPageRoute(
+                          builder: (ctx) => const Facescreen(imagePaths: [
+                                'assest/image/assets/face/cheeks3.jpeg',
+                                'assest/image/assets/face/erss1.gif',
+                                'assest/image/assets/face/eyebross2.gif',
+                                'assest/image/assets/face/cheeksup4.gif',
+                                'assest/image/assets/face/eyebross2.gif',
+                                'assest/image/assets/face/Comp-1_1.webp',
+                                'assest/image/assets/face/cheeksup4.gif',
+                              ], name: [
+                                'CHEEKS',
+                                'EYE RACE',
+                                'CHEEKS-UP',
+                                'EYEBROW LIFT',
+                                'STANDING BICYCLE CRUNCHES',
+                                'EYE BROW PRESS',
+                              ])),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -152,7 +147,6 @@ class _FacebodyState extends State<Facebody> {
                     'START',
                     style: TextStyle(
                       color: Colors.white,
-                      
                     ),
                   ),
                 ),
@@ -197,4 +191,3 @@ List<DayOneModel> dayOneList = [
     subtitle: '30 s',
   ),
 ];
-

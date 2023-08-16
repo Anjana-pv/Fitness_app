@@ -49,6 +49,8 @@ class DailyScreen extends StatefulWidget {
 class _DailyScreenState extends State<DailyScreen> {
   int _selectedIndex = 0;
    int? check;
+   
+     
 
  @override
   void initState(){
@@ -67,22 +69,42 @@ class _DailyScreenState extends State<DailyScreen> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DietPage()),
+          MaterialPageRoute(builder: (context) => const DietPage()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const BodySelection()),
+          MaterialPageRoute(builder: (context) =>  const BodySelection()),
         );
         break;
-      case 2:
+          case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  const DailyScreen(
+                                 two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)
+          ),
+        );
+        break;
+         case 3:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Calendar(date: false)),
         );
         break;
-      case 3:
+    
+      case 4:
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -99,7 +121,7 @@ class _DailyScreenState extends State<DailyScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(210, 84, 7, 216),
+          backgroundColor: const Color.fromARGB(255, 145, 54, 175),
           title: const Text(
             'DAILY PLAN',
             style: TextStyle(
@@ -253,7 +275,7 @@ class _DailyScreenState extends State<DailyScreen> {
                       ),
                     ),
                     subtitle:  Text(
-                      ' 6 Exercises', // Customize the subtitle
+                      ' 6 Exercises', 
                       style: TextStyle(
                         color: widget.four
                     ? const Color.fromARGB(255, 255, 255, 255)
@@ -374,7 +396,7 @@ class _DailyScreenState extends State<DailyScreen> {
         ),
                           
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 129, 32, 247),
+          backgroundColor:  const Color.fromARGB(255, 145, 54, 175),
           type: BottomNavigationBarType.fixed, 
           
           currentIndex: _selectedIndex,
@@ -395,13 +417,22 @@ class _DailyScreenState extends State<DailyScreen> {
               ),
               label: 'Plan',
             ),
+             BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: Color.fromARGB(255, 252, 251, 251),
+              ),
+              label: 'Home',
+            ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.equalizer_rounded,
+                Icons.calendar_month,
                 color: Color.fromARGB(255, 252, 251, 251),
               ),
               label: 'Calendar',
             ),
+            
+
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,

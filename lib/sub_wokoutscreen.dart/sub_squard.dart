@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-// import 'package:workout2/sub_wokoutscreen.dart/sub_screen.dart';
 import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
 import 'package:workout2/workoutScreen/2_congradulation.dart';
 import 'package:workout2/workoutScreen/3_congradulations.dart';
@@ -8,6 +6,9 @@ import 'package:workout2/workoutScreen/4_congradulation.dart';
 import 'package:workout2/workoutScreen/5_congradulation.dart';
 import 'package:workout2/workoutScreen/6_congradulation.dart';
 import 'package:workout2/workoutScreen/1_congradulation.dart';
+
+import '../screen/rest_time.dart';
+
 
 // ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
@@ -23,12 +24,12 @@ class TimerScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  _TimerScreenState createState() => _TimerScreenState();
+  TimerScreenState createState() => TimerScreenState();
 }
 
 String? completed;
 
-class _TimerScreenState extends State<TimerScreen>
+class TimerScreenState extends State<TimerScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -38,9 +39,8 @@ class _TimerScreenState extends State<TimerScreen>
   bool isPaused = false;
 
 bool isResting = false;
-int restDuration = 10; 
-int restTimeRemaining = 10;
-bool showRestMessage = false;
+
+
 
   @override
   void initState() {
@@ -67,7 +67,11 @@ bool showRestMessage = false;
             _controller.reset();
             _controller.forward();
           });
-        } else {
+        
+         
+        
+       }
+        else {
           if (currentIndex >= widget.imagePaths.length - 1 ||
               currentIndex >= widget.name.length - 1 && !hasNavigated) {
             hasNavigated = true;
@@ -75,25 +79,18 @@ bool showRestMessage = false;
             navigat();
           }
         }
-      }else {
-        // Handle rest time
-        if (restTimeRemaining > 0) {
-          setState(() {
-            restTimeRemaining--;
-            showRestMessage = true;
-          });
-   } else {
+      } else {
           setState(() {
             isResting = false;
-            restTimeRemaining = restDuration;
-            showRestMessage = false;
             currentIndex++;
+            if (currentIndex < widget.imagePaths.length) {
             _controller.reset();
             _controller.forward();
+            }
           });
         }
       }
-    }
+    
   });
 }
   void _handleStartTap() {
@@ -126,7 +123,7 @@ bool showRestMessage = false;
           children: [
             Column(
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 40),
                 Center(
                   child: Text(
                     widget.name[currentIndex],

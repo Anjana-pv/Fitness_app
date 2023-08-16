@@ -13,10 +13,10 @@ class WorkoutScreen extends StatefulWidget {
    const WorkoutScreen({Key? key,required  this.click, }) : super(key: key);
 
   @override
-  _WorkoutScreenState createState() => _WorkoutScreenState();
+  WorkoutScreenState createState() => WorkoutScreenState();
 }
 
-class _WorkoutScreenState extends State<WorkoutScreen> {
+class WorkoutScreenState extends State<WorkoutScreen> {
   SampleItem? selectedMenu;
 
   @override
