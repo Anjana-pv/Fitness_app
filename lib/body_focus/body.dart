@@ -186,7 +186,7 @@ _BodySelectionState extends State<BodySelection> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 40),
               child: Center(
                 child: Column(
                   children: [
@@ -216,7 +216,7 @@ _BodySelectionState extends State<BodySelection> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 32,
             ),
             const Padding(
               padding: EdgeInsets.only(left: 10),
@@ -263,7 +263,7 @@ _BodySelectionState extends State<BodySelection> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 13,
 
             ),
             ElevatedButton(

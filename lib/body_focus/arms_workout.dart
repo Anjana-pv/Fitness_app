@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_congra.dart/cond.dart';
+import 'package:workout2/sub_wokoutscreen.dart/ten_sec.dart';
 
 
 
@@ -30,9 +31,8 @@ class ArmscreenState extends State<Armscreen>
   bool isPaused = false;
 
   bool isResting = false;
-  int restDuration = 10;
-  int restTimeRemaining = 10;
-  bool showRestMessage = false;
+  bool calmDown = true;
+  
 
   @override
   void initState() {
@@ -45,19 +45,23 @@ class ArmscreenState extends State<Armscreen>
     _animation = Tween<double>(begin: 0, end: 15).animate(_controller);
     _controller.forward();
 
-    _startTimer();
+    startTimer();
   }
 
-  void _startTimer() {
+  void startTimer() {
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         if (!isResting) {
           if (currentIndex < widget.imagePaths.length - 1 &&
               currentIndex < widget.name.length - 1) {
-            setState(() {
+             setState(() {
+              if (calmDown) {
+                _showRestDialog();
+              } else {
+                startExercise();
+              }
+
               currentIndex++;
-              _controller.reset();
-              _controller.forward();
             });
           } else {
             if (currentIndex >= widget.imagePaths.length - 1 ||
@@ -65,30 +69,30 @@ class ArmscreenState extends State<Armscreen>
               hasNavigated = true;
 
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => BodyCongrads()));
+                  .push(MaterialPageRoute(builder: (ctx) => const BodyCongrads()));
             }
           }
-        } else {
-          if (restTimeRemaining > 0) {
-            setState(() {
-              restTimeRemaining--;
-              showRestMessage = true;
-            });
-          } else {
-            setState(() {
-              isResting = false;
-              restTimeRemaining = restDuration;
-              showRestMessage = false;
-              currentIndex++;
+        
+           } else {
+          setState(() {
+            isResting = false;
+            if (currentIndex < widget.imagePaths.length) {
+              isResting = true;
+              _controller.duration = const Duration(seconds: 10);
               _controller.reset();
               _controller.forward();
-            });
-          }
+            }
+          });
         }
       }
     });
   }
-
+   void startExercise() {
+    calmDown = true;
+    _controller.duration = const Duration(seconds: 15);
+    _controller.reset();
+    _controller.forward();
+  }
   void _handleStartTap() {
     setState(() {
       timerStarted = true;
@@ -108,7 +112,45 @@ class ArmscreenState extends State<Armscreen>
       isPaused = !isPaused;
     });
 
-    {}
+  
+  }
+  void _showRestDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: const Text(
+            'Exercise Completed',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: const Text(
+              'Take Rest for 10 seconds or Skip to next exercise?',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromARGB(255, 24, 24, 24),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Take Rest',style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const TimerDialog()), 
+                );
+              },
+            ),
+            TextButton(
+              child: const Text('Skip',style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                startExercise();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -231,3 +273,5 @@ class ArmscreenState extends State<Armscreen>
     );
   }
 }
+
+  

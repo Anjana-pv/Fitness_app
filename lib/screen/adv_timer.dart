@@ -46,7 +46,7 @@ class _CountState extends State<Count> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Timer"),
+        title: const Text("Timer"),
         centerTitle: true,
       ),
       body: Center(

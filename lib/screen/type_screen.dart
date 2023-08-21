@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout2/screen/adv_Fullbody.dart';
+import 'package:workout2/screen/adv_fullbody.dart';
 import 'package:workout2/screen/advanced_screen.dart';
 
 import 'package:workout2/screen/daily_screen.dart';
@@ -55,7 +55,7 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
                       children: [
                         CircleAvatar(
                           radius: 80,
-                          backgroundColor: Color.fromARGB(233, 131, 32, 128),
+                          backgroundColor: Color.fromARGB(233, 168, 8, 109),
                         ),
                         Text(
                           'Beginner',
@@ -101,7 +101,7 @@ class _TypeselectScreenState extends State<TypeselectScreen> {
                       children: [
                         CircleAvatar(
                           radius: 80,
-                          backgroundColor: Color.fromARGB(185, 9, 121, 226),
+                          backgroundColor: Color.fromARGB(184, 179, 220, 16),
                         ),
                         Text(
                           'Advanced',

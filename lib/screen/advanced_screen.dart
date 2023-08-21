@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/body.dart';
-import 'package:workout2/body_focus/fullbody.dart';
 import 'package:workout2/db/db_storeworkout.dart';
 import 'package:workout2/menu/celender.dart';
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
-import 'package:workout2/screen/adv_Fullbody.dart';
+import 'package:workout2/screen/adv_fullbody.dart';
 import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
 
 class ScreenAdvanced extends StatefulWidget {
@@ -68,15 +67,33 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const BodySelection()),
+        ); 
+         case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  const ScreenAdvanced(
+                                 two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)
+          ),
         );
         break;
-      case 2:
+      case 3:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Calendar(date: false)),
         );
         break;
-      case 3:
+      case 4:
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -425,11 +442,18 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
+                Icons.home,
+                color: Color.fromARGB(255, 252, 251, 251),
+              ),
+              label: 'Home',
+            ),
+             BottomNavigationBarItem(
+              icon: Icon(
                 Icons.equalizer_rounded,
                 color: Color.fromARGB(255, 252, 251, 251),
               ),
               label: 'Calendar',
-            ),
+             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,

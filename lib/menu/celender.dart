@@ -5,10 +5,10 @@ import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/screen/daily_screen.dart';
 
-// ignore: must_be_immutable
+
 class Calendar extends StatefulWidget {
-  bool date;
-   Calendar({super.key, required this.date});
+  final bool date;
+   const Calendar({super.key, required this.date});
 
   @override
   State<Calendar> createState() => _CalendarState();
@@ -77,7 +77,7 @@ class _CalendarState extends State<Calendar> {
       ),
       body: Column(
         children: [
-          TableCalendar(
+          TableCalendar(rangeStartDay: DateTime.now(),rangeEndDay:DateTime.utc(2023, 8, 18),   
               firstDay: DateTime.utc(2023, 1, 1), 
             lastDay: DateTime.utc(2023, 12, 31), 
             focusedDay: DateTime.now(),
@@ -87,14 +87,16 @@ class _CalendarState extends State<Calendar> {
                 shape: BoxShape.circle,
               )
             ),
-            //  selectedDayPredicate: (day) {
+               selectedDayPredicate: (day) {
               
-            //   return widget.date && day.isSameDay(DateTime.now());
-            // },
-            // ... your existing TableCalendar code ...
+              return false; 
+            },
           ),
         ],
       ),
+           
+          
+       
       bottomNavigationBar: buildBottomNavigationBar(_selectedIndex, (index) {
        setState(() {
           _selectedIndex = index;
@@ -104,7 +106,7 @@ class _CalendarState extends State<Calendar> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DietPage()),
+          MaterialPageRoute(builder: (context) => const DietPage()),
         );
         break;
       case 1:

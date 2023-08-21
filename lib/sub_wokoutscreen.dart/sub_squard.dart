@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout2/sub_wokoutscreen.dart/ten_sec.dart';
 import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
 import 'package:workout2/workoutScreen/2_congradulation.dart';
 import 'package:workout2/workoutScreen/3_congradulations.dart';
@@ -6,9 +7,6 @@ import 'package:workout2/workoutScreen/4_congradulation.dart';
 import 'package:workout2/workoutScreen/5_congradulation.dart';
 import 'package:workout2/workoutScreen/6_congradulation.dart';
 import 'package:workout2/workoutScreen/1_congradulation.dart';
-
-import '../screen/rest_time.dart';
-
 
 // ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
@@ -38,9 +36,8 @@ class TimerScreenState extends State<TimerScreen>
   bool timerStarted = false;
   bool isPaused = false;
 
-bool isResting = false;
-
-
+  bool isResting = false;
+  bool calmDown = true;
 
   @override
   void initState() {
@@ -59,40 +56,48 @@ bool isResting = false;
   void _startTimer() {
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-         if (!isResting) {
-        if (currentIndex < widget.imagePaths.length - 1 &&
-            currentIndex < widget.name.length - 1) {
-          setState(() {
-            currentIndex++;
-            _controller.reset();
-            _controller.forward();
-          });
-        
-         
-        
-       }
-        else {
-          if (currentIndex >= widget.imagePaths.length - 1 ||
-              currentIndex >= widget.name.length - 1 && !hasNavigated) {
-            hasNavigated = true;
+        if (!isResting) {
+          if (currentIndex < widget.imagePaths.length - 1 &&
+              currentIndex < widget.name.length - 1) {
+            setState(() {
+              if (calmDown) {
+                _showRestDialog();
+              } else {
+                _startExercise();
+              }
 
-            navigat();
+              currentIndex++;
+            });
+          } else {
+            if ((currentIndex >= widget.imagePaths.length - 1 ||
+                    currentIndex >= widget.name.length - 1) &&
+                !hasNavigated) {
+              hasNavigated = true;
+              navigat();
+            }
           }
-        }
-      } else {
+        } else {
           setState(() {
             isResting = false;
-            currentIndex++;
             if (currentIndex < widget.imagePaths.length) {
-            _controller.reset();
-            _controller.forward();
+              isResting = true;
+              _controller.duration = const Duration(seconds: 10);
+              _controller.reset();
+              _controller.forward();
             }
           });
         }
       }
-    
-  });
-}
+    });
+  }
+
+  void _startExercise() {
+    calmDown = true;
+    _controller.duration = const Duration(seconds: 15);
+    _controller.reset();
+    _controller.forward();
+  }
+
   void _handleStartTap() {
     setState(() {
       timerStarted = true;
@@ -111,8 +116,45 @@ bool isResting = false;
     setState(() {
       isPaused = !isPaused;
     });
+  }
 
-    {}
+  void _showRestDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: const Text(
+            'Exercise Completed',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: const Text(
+              'Take Rest for 10 seconds or Skip to next exercise?',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromARGB(255, 24, 24, 24),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Take Rest',style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                // Navigator.of(dialogContext).pop();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const TimerDialog()), 
+                );
+              },
+            ),
+            TextButton(
+              child: const Text('Skip',style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                _startExercise();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -209,12 +251,16 @@ bool isResting = false;
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 5,),
                       ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>( const Color.fromARGB(255, 159, 33, 243)),
+                        ),
                         onPressed: _handlePauseRestartTap,
                         child: Text(
                           isPaused ? 'Restart' : 'Pause',
-                          style: const TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18,color: Colors.white),
                         ),
                       )
                     ],

@@ -4,14 +4,16 @@ import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/db/focuspard.db.dart';
 import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/screen/daily_screen.dart';
+import 'package:workout2/screen/splash_screen.dart';
 
 import '../db/db_genter.dart';
 import '../db/db_signup_functions';
 import '../db/new_db_functions.dart';
 import '../db/targetweight_function.dart';
 import '../models/data_model.dart';
-import '../screen/login.dart';
+
 import 'celender.dart';
+
 
 // ignore: must_be_immutable
 class Profile extends StatefulWidget {
@@ -46,29 +48,29 @@ class _ProfileState extends State<Profile> {
 
   Future<void> initData() async {
     if (signUpListNotifier.value.isNotEmpty) {
-      print("Username: ${signUpListNotifier.value[0].username}");
-      userController.text = signUpListNotifier.value[0].username;
+      print("Username: ${signUpListNotifier.value.last.username}");
+      userController.text = signUpListNotifier.value.last.username;
     }
     await getalDatas();
-
     await gettargetweight();
     await getallgenterDetails();
     await getallDetails();
 
     if (personalListNotifier.value.isNotEmpty) {
-      userController.text = signUpListNotifier.value[0].username;
-      heightController.text = personalListNotifier.value[0].height;
-      weightController.text = personalListNotifier.value[0].weight;
-      ageController.text = personalListNotifier.value[0].age;
-      targetWeightController.text = personalListNotifier.value[0].weight;
+      userController.text = signUpListNotifier.value.last.username;
+      heightController.text = personalListNotifier.value.last.height;
+      weightController.text = personalListNotifier.value.last.weight;
+      ageController.text = personalListNotifier.value.last.age;
+      targetWeightController.text = personalListNotifier.value.last.weight;
     }
 
     if (genterListNotifier.value.isNotEmpty) {
-      genderController.text = genterListNotifier.value[0].genter;
+      genderController.text = genterListNotifier.value.last.genter;
     }
     if (weighttarget.value.isNotEmpty) {
-      print("Target Weight: ${weighttarget.value[0].targetweight}");
-      targetWeightController.text = weighttarget.value[0].targetweight!;
+    
+      targetWeightController.text = weighttarget.value.last.targetweight!;
+      
     }
   }
 
@@ -153,7 +155,7 @@ class _ProfileState extends State<Profile> {
           ],
         ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 18.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -170,7 +172,7 @@ class _ProfileState extends State<Profile> {
               Card(
                 color: const Color.fromARGB(255, 241, 240, 238),
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(11.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -207,7 +209,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 15,
               ),
               Card(
                 color: const Color.fromARGB(255, 247, 243, 239),
@@ -236,7 +238,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -359,9 +361,19 @@ class _ProfileState extends State<Profile> {
   Future<void> signOut(BuildContext context) async {
     final sharedprefs = await SharedPreferences.getInstance();
     await sharedprefs.clear();
+     setState(() {
+       userController.text = '';
+      heightController.text = '';
+      weightController.text = '';
+      ageController.text = '';
+      genderController.text = '';
+      targetWeightController.text = '';
+      namenew = '';
+    });
+
 
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (ctx) => const Screenlogin()),
+      MaterialPageRoute(builder: (ctx) => const SplashScreen()),
       (route) => false,
     );
   }

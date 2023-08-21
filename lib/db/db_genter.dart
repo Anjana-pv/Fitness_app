@@ -21,11 +21,6 @@ Future<void> updategenterDetail(GenterDetails value) async {
   getallgenterDetails();
 }
 
-Future<void> deletegenterDetail(String id) async {
-  final genterDB = await Hive.openBox<GenterDetails>('genter_db');
-  genterDB.delete(id);
-  getallgenterDetails();
-}
 
 Future<void> getallgenterDetails() async {
    

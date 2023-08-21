@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_congra.dart/cond.dart';
+import 'package:workout2/sub_wokoutscreen.dart/ten_sec.dart';
 // import 'package:workout2/workoutScreen/1_congradulation.dart';
 
 
 class Absscreen extends StatefulWidget {
   final List<String> imagePaths;
   final List<String> name;
-  // int click;
+ 
 
  const Absscreen(
       {Key? key,
       required this.imagePaths,
-      // required this.click,
       required this.name})
       : super(key: key);
 
@@ -31,10 +31,8 @@ class AbsscreenState extends State<Absscreen>
   bool isPaused = false;
 
   bool isResting = false;
-  int restDuration = 10;
-  int restTimeRemaining = 10;
-  bool showRestMessage = false;
-
+  bool calmDown = true;
+  
   @override
   void initState() {
     super.initState();
@@ -56,9 +54,13 @@ class AbsscreenState extends State<Absscreen>
           if (currentIndex < widget.imagePaths.length - 1 &&
               currentIndex < widget.name.length - 1) {
             setState(() {
+              if (calmDown) {
+                showRestDialog();
+              } else {
+                startExercise();
+              }
+
               currentIndex++;
-              _controller.reset();
-              _controller.forward();
             });
           } else {
             if (currentIndex >= widget.imagePaths.length - 1 ||
@@ -70,24 +72,25 @@ class AbsscreenState extends State<Absscreen>
             }
           }
         } else {
-          if (restTimeRemaining > 0) {
-            setState(() {
-              restTimeRemaining--;
-              showRestMessage = true;
-            });
-          } else {
-            setState(() {
-              isResting = false;
-              restTimeRemaining = restDuration;
-              showRestMessage = false;
-              currentIndex++;
+          setState(() {
+            isResting = false;
+            if (currentIndex < widget.imagePaths.length) {
+              isResting = true;
+              _controller.duration = const Duration(seconds: 10);
               _controller.reset();
               _controller.forward();
-            });
-          }
+            }
+          });
         }
       }
     });
+  }
+
+void startExercise() {
+    calmDown = true;
+    _controller.duration = const Duration(seconds: 15);
+    _controller.reset();
+    _controller.forward();
   }
 
   void _handleStartTap() {
@@ -109,7 +112,42 @@ class AbsscreenState extends State<Absscreen>
       isPaused = !isPaused;
     });
 
-    {}
+  
+  }
+  void showRestDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: const Text(
+            'Exercise Completed',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: const Text(
+              'Take Rest for 10 seconds or Skip to next exercise?',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromARGB(255, 24, 24, 24),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Take Rest',style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const TimerDialog()),
+                );
+              },
+            ),
+            TextButton(
+              child: const Text('Skip',style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                startExercise();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

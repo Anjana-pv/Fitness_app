@@ -54,68 +54,70 @@ class _DietPageState extends State<DietPage> {
         backgroundColor: const Color.fromARGB(255, 147, 76, 175),
         centerTitle: true,
       ),
-      body: const Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              "To achieve better results, you need a better diet.",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      body: const SingleChildScrollView( 
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 7),
+              child: Text(
+                "To achieve better results, you need a better diet.",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          SizedBox(height: 7),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: 18),
-                DietCard(
-                  title: 'Breakfast',
-                  image:
-                      'assest/image/assets/break fast.jpeg', 
-                  foods: [
-                    'Whole-grain cereal',
-                    'Greek yogurt',
-                    'Fresh fruits',
-                    'Nuts',
-                  ],
-                ),
-                SizedBox(height: 18),
-                DietCard(
-                  title: 'Lunch',
-                  image: 'assest/image/assets/lunch.jpeg',
-                  foods: [
-                    'Grilled chicken',
-                    'Brown rice',
-                    'Steamed vegetables',
-                  ],
-                ),
-                SizedBox(height: 18),
-                DietCard(
-                  title: 'Snack',
-                  image: 'assest/image/assets/snack.jpeg',
-                  foods: [
-                    'Almonds',
-                    'Carrot sticks',
-                    'Hummus',
-                  ],
-                ),
-                SizedBox(height: 18),
-                DietCard(
-                  title: 'Dinner',
-                  image:
-                      'assest/image/assets/dinner.jpeg', 
-                  foods: [
-                    'Salmon fillet',
-                    'Quinoa',
-                    'Green salad',
-                  ],
-                ),
-              ],
+            SizedBox(height: 5),
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(height: 1),
+                  DietCard(
+                    title: 'Breakfast',
+                    image:
+                        'assest/image/assets/break fast.jpeg', 
+                    foods: [
+                      'Whole-grain cereal',
+                      'Greek yogurt',
+                      'Fresh fruits',
+                      'Nuts',
+                    ],
+                  ),
+                  SizedBox(height: 18),
+                  DietCard(
+                    title: 'Lunch',
+                    image: 'assest/image/assets/lunch.jpeg',
+                    foods: [
+                      'Grilled chicken',
+                      'Brown rice',
+                      'Steamed vegetables',
+                    ],
+                  ),
+                  SizedBox(height: 18),
+                  DietCard(
+                    title: 'Snack',
+                    image: 'assest/image/assets/snack.jpeg',
+                    foods: [
+                      'Almonds',
+                      'Carrot sticks',
+                      'Hummus',
+                    ],
+                  ),
+                  SizedBox(height: 18),
+                  DietCard(
+                    title: 'Dinner',
+                    image:
+                        'assest/image/assets/dinner.jpeg', 
+                    foods: [
+                      'Salmon fillet',
+                      'Quinoa',
+                      'Green salad',
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: buildBottomNavigationBar(_selectedIndex, (index) {
         setState(() {

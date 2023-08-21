@@ -63,6 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
         Positioned(
          top: MediaQuery.of(context).size.height * 0.5 - 50, 
+         left: 2,
          right: 0,
           child:const Center(
             
