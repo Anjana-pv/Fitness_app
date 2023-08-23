@@ -4,8 +4,9 @@ import 'package:workout2/body_focus/fullbody.dart';
 import 'package:workout2/db/db_storeworkout.dart';
 
 import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/mine.dart';
 
-import 'package:workout2/menu/profile.dart';
+
 import 'package:workout2/menu/recipies.dart';
 
 
@@ -100,7 +101,7 @@ class _DailyScreenState extends State<DailyScreen> {
          case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
     
@@ -108,7 +109,7 @@ class _DailyScreenState extends State<DailyScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) =>MinePage(index: index,),
           ),
         );
         break;
@@ -438,7 +439,7 @@ class _DailyScreenState extends State<DailyScreen> {
                 Icons.person,
                 color: Color.fromARGB(255, 255, 254, 254),
               ),
-              label: 'Profile',
+              label: 'Mine',
             ),
           ],
         ),

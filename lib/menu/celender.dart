@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import 'package:table_calendar/table_calendar.dart';
 import 'package:workout2/body_focus/body.dart';
-import 'package:workout2/menu/profile.dart';
+import 'package:workout2/menu/mine.dart';
 import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/screen/daily_screen.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Calendar extends StatefulWidget {
   final bool date;
@@ -15,6 +15,17 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+   DateTime? signInDate; 
+
+  @override
+  void initState() {
+    super.initState();
+    loadSignInDate();
+  }
+void loadSignInDate() async {
+    signInDate = await getSignInDate();
+    setState(() {});
+  }
  int _selectedIndex = 3;
 
   Widget buildBottomNavigationBar(int selectedIndex, void Function(int) onItemTapped) {
@@ -58,7 +69,7 @@ class _CalendarState extends State<Calendar> {
             Icons.person,
             color: Color.fromARGB(255, 255, 254, 254),
           ),
-          label: 'Profile',
+          label: 'Mine',
         ),
       ],
     );
@@ -77,7 +88,7 @@ class _CalendarState extends State<Calendar> {
       ),
       body: Column(
         children: [
-          TableCalendar(rangeStartDay: DateTime.now(),rangeEndDay:DateTime.utc(2023, 8, 18),   
+          TableCalendar(rangeStartDay: DateTime.now(),   
               firstDay: DateTime.utc(2023, 1, 1), 
             lastDay: DateTime.utc(2023, 12, 31), 
             focusedDay: DateTime.now(),
@@ -87,9 +98,9 @@ class _CalendarState extends State<Calendar> {
                 shape: BoxShape.circle,
               )
             ),
-               selectedDayPredicate: (day) {
-              
-              return false; 
+              selectedDayPredicate: (day) {
+              return signInDate != null &&
+                  isSameDay(signInDate!, day); 
             },
           ),
         ],
@@ -137,7 +148,7 @@ class _CalendarState extends State<Calendar> {
          case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
     
@@ -145,16 +156,27 @@ class _CalendarState extends State<Calendar> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) =>MinePage(index: index,),
           ),
         );
         break;
-  
-      
-
 
         }
       }),
     );
   }
+}
+Future<void> storeSignInDate(DateTime date) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('sign_in_date', date.toIso8601String());
+  print(date.toIso8601String());
+}
+
+Future<DateTime?> getSignInDate() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? dateString = prefs.getString('sign_in_date');
+  if (dateString != null) {
+    return DateTime.parse(dateString);
+  }
+  return null;
 }

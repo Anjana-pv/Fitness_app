@@ -3,8 +3,9 @@ import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/body_focus/fullbody.dart';
 
 import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/mine.dart';
 
-import 'package:workout2/menu/profile.dart';
+
 import 'package:workout2/menu/recipies.dart';
 
 import 'package:workout2/sub_wokoutscreen.dart/week4.dart';
@@ -54,13 +55,13 @@ class Week3State extends State<Week3> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DietPage()),
+          MaterialPageRoute(builder: (context) => const DietPage()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
       case 2:
@@ -73,7 +74,7 @@ class Week3State extends State<Week3> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) => MinePage(index: index),
           ),
         );
         break;
@@ -82,7 +83,7 @@ class Week3State extends State<Week3> {
 
   @override
   Widget build(BuildContext context) {
-    // WorkoutHistory st = WorkoutHistory();
+   
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -140,7 +141,7 @@ class Week3State extends State<Week3> {
                   trailing: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => WorkoutScreen(click: 1)));
+                          builder: (ctx) => const WorkoutScreen(click: 1)));
                     },
                     child: const Text('Start'),
                   ),
@@ -174,7 +175,7 @@ class Week3State extends State<Week3> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 2)));
+                                  builder: (ctx) => const WorkoutScreen(click: 2)));
                             },
                             child: const Text('Start'),
                           )
@@ -204,7 +205,7 @@ class Week3State extends State<Week3> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 3)));
+                                  builder: (ctx) => const WorkoutScreen(click: 3)));
                             },
                             child: const Text('Start'),
                           )
@@ -234,7 +235,7 @@ class Week3State extends State<Week3> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 4)));
+                                  builder: (ctx) => const WorkoutScreen(click: 4)));
                             },
                             child: const Text('Start'),
                           )
@@ -264,7 +265,7 @@ class Week3State extends State<Week3> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 5)));
+                                  builder: (ctx) => const WorkoutScreen(click: 5)));
                             },
                             child: const Text('Start'),
                           )
@@ -292,7 +293,7 @@ class Week3State extends State<Week3> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 6)));
+                                  builder: (ctx) => const WorkoutScreen(click: 6)));
                             },
                             child: const Text('Start'),
                           )
@@ -304,7 +305,7 @@ class Week3State extends State<Week3> {
                GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => week4(two: false, three: false, four: false, five: false, six: false, one: true,day1: false,day2: false,day3: false,day4: false,day5: false,day6: false,)));
+                                  builder: (ctx) => const Week4(two: false, three: false, four: false, five: false, six: false, one: true,day1: false,day2: false,day3: false,day4: false,day5: false,day6: false,)));
                 },
                  child: const Card(
                   color: Color.fromARGB(255, 247, 249, 251),

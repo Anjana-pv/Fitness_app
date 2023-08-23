@@ -5,7 +5,7 @@ import 'package:workout2/demo_model/model.dart';
 
 enum SampleItem { itemOne, itemTwo }
 
-// ignore: camel_case_types
+
 class Facebody extends StatefulWidget {
   const Facebody({Key? key}) : super(key: key);
 

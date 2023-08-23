@@ -5,7 +5,8 @@ import 'package:workout2/body_focus/btt.dart';
 import 'package:workout2/body_focus/face.dart';
 import 'package:workout2/body_focus/leg.dart';
 import 'package:workout2/menu/celender.dart';
-import 'package:workout2/menu/profile.dart';
+import 'package:workout2/menu/mine.dart';
+
 import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/models/data_model.dart';
 import 'package:workout2/screen/daily_screen.dart';
@@ -129,7 +130,7 @@ _BodySelectionState extends State<BodySelection> {
             Icons.person,
             color: Color.fromARGB(255, 255, 254, 254),
           ),
-          label: 'Profile',
+          label: 'Mine',
         ),
       ],
     );
@@ -330,7 +331,7 @@ _BodySelectionState extends State<BodySelection> {
           case 3:
             Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
     
@@ -339,7 +340,7 @@ _BodySelectionState extends State<BodySelection> {
              Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) => MinePage(index: index),
           ),
         );
         break;

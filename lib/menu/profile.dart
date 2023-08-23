@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workout2/body_focus/body.dart';
-import 'package:workout2/db/focuspard.db.dart';
-import 'package:workout2/menu/recipies.dart';
-import 'package:workout2/screen/daily_screen.dart';
-import 'package:workout2/screen/splash_screen.dart';
+
 
 import '../db/db_genter.dart';
 import '../db/db_signup_functions';
+import '../db/focuspard.db.dart';
 import '../db/new_db_functions.dart';
 import '../db/targetweight_function.dart';
 import '../models/data_model.dart';
+import '../screen/splash_screen.dart';
 
-import 'celender.dart';
+
+
 
 
 // ignore: must_be_immutable
 class Profile extends StatefulWidget {
-  int index;
+
   
 
-  Profile({super.key, required this.index});
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -34,10 +33,10 @@ class _ProfileState extends State<Profile> {
   TextEditingController targetWeightController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController focusareacntroller = TextEditingController();
-  var bmi;
+var  bmi;
   var data;
   var namenew = '';
-  int  _selectedIndex = 4;
+
 
   @override
   void initState() {
@@ -83,52 +82,7 @@ class _ProfileState extends State<Profile> {
       });
     }
   }
-  Widget buildBottomNavigationBar(int selectedIndex, void Function(int) onItemTapped) {
-    return BottomNavigationBar(
-      backgroundColor:   const Color.fromARGB(255, 145, 54, 175),
-      type: BottomNavigationBarType.fixed,
-      currentIndex: selectedIndex,
-      selectedItemColor: const Color.fromARGB(255, 245, 243, 243),
-      onTap: onItemTapped,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.local_dining_outlined,
-            color: Color.fromARGB(255, 249, 248, 248),
-          ),
-          label: 'Recipes',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.offline_bolt_outlined,
-            color: Color.fromARGB(255, 247, 246, 246),
-          ),
-          label: 'Plan',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-            color: Color.fromARGB(255, 247, 246, 246),
-          ),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.calendar_month,
-            color: Color.fromARGB(255, 252, 251, 251),
-          ),
-          label: 'Calendar',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-            color: Color.fromARGB(255, 255, 254, 254),
-          ),
-          label: 'Profile',
-        ),
-      ],
-    );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -259,63 +213,7 @@ class _ProfileState extends State<Profile> {
           ),
           
         ),
-         bottomNavigationBar: buildBottomNavigationBar(_selectedIndex, (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-
-        switch (index) {
-          case 0:
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const DietPage()),
-            );
-            break;
-          case 1:
-           
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const BodySelection()),
-        );
-        break;
-            
-          case 2:
-             Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>  const DailyScreen(
-                                 two: false,
-                                three: false,
-                                four: false,
-                                five: false,
-                                six: false,
-                                one: true,
-                                day1: false,
-                                day2: false,
-                                day3: false,
-                                day4: false,
-                                day5: false,
-                                day6: false)
-          ),
-        );
-            break;
-          case 3:
-            Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
-        );
-        break;
-    
-           
-          case 4:
-             Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Profile(index: index),
-          ),
-        );
-        break;
-        }
-      }),
+      
       ),
     );
   }

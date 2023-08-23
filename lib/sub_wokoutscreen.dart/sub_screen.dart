@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Sub_screen extends StatefulWidget {
-  const Sub_screen({super.key});
+class Subscreen extends StatefulWidget {
+  const Subscreen({super.key});
 
   @override
-  State<Sub_screen> createState() => _Sub_screenState();
+  State<Subscreen> createState() => SubscreenState();
 }
 
-class _Sub_screenState extends State<Sub_screen> {
+class SubscreenState extends State<Subscreen> {
   final String backgroundImage = 'assest/image/assets/answall paper.jpg';
   final String congratulationsGif ='assest/image/assets/output-onlinegiftools.gif';
 

@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:workout2/models/data_model.dart';
 
-ValueNotifier<List<WorkoutHistory>>Workoutlist = ValueNotifier([]);
+ValueNotifier<List<WorkoutHistory>>workoutlist = ValueNotifier([]);
 
 Future<void>openworkout(WorkoutHistory value)async{
 
@@ -22,14 +22,14 @@ Future<void>openworkout(WorkoutHistory value)async{
 
 Future<void> getworkoutlist() async {
   final workoutDb = await Hive.openBox<WorkoutHistory>('wrkout_db'); 
- Workoutlist.value.clear();
-  Workoutlist.value.addAll(workoutDb.values);
- Workoutlist.notifyListeners();
+ workoutlist.value.clear();
+  workoutlist.value.addAll(workoutDb.values);
+ workoutlist.notifyListeners();
 }
 bool? openfield(){
   bool returnvalue = false;
 
-  for (var x in Workoutlist.value) {
+  for (var x in workoutlist.value) {
     returnvalue = x.two;
     returnvalue = x.three;
     returnvalue = x.four;

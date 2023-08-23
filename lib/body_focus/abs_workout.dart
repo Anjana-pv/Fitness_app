@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_congra.dart/cond.dart';
 import 'package:workout2/sub_wokoutscreen.dart/ten_sec.dart';
-// import 'package:workout2/workoutScreen/1_congradulation.dart';
 
 
 class Absscreen extends StatefulWidget {

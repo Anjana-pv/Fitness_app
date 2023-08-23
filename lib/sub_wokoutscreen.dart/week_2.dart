@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/fullbody.dart';
 
 import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/mine.dart';
 
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/menu/recipies.dart';
@@ -73,7 +74,7 @@ class week2State extends State<week2> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) =>MinePage(index: index),
           ),
         );
         break;

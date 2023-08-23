@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/body.dart';
 
-// import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
+
 
 class BodyCongrads extends StatefulWidget {
   const BodyCongrads({
@@ -19,10 +19,7 @@ class _BodyCongradsState extends State<BodyCongrads> {
       'assest/image/assets/output-onlinegiftools.gif';
 
   @override
-  // void initState() {
-  //   print('first one');
-  //   super.initState();
-  // }
+ 
 
   @override
   Widget build(BuildContext context) {

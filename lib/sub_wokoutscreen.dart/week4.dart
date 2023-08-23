@@ -3,13 +3,15 @@ import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/body_focus/fullbody.dart';
 
 import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/mine.dart';
 
-import 'package:workout2/menu/profile.dart';
+
 import 'package:workout2/menu/recipies.dart';
-
 import 'package:workout2/sub_wokoutscreen.dart/sub_screen.dart';
 
-class week4 extends StatefulWidget {
+
+
+class Week4 extends StatefulWidget {
   final bool two;
   final bool three;
   final bool four;
@@ -22,7 +24,9 @@ class week4 extends StatefulWidget {
   final bool day4;
   final bool day5;
   final bool day6;
-  const week4({
+
+
+  const Week4({
     super.key,
     required this.two,
     required this.three,
@@ -39,10 +43,10 @@ class week4 extends StatefulWidget {
   });
 
   @override
-  State<week4> createState() => week4State();
+  State<Week4> createState() => Week4State();
 }
 
-class week4State extends State<week4> {
+class Week4State extends State<Week4> {
   int _selectedIndex = 0;
 
   void onItemTapped(int index) {
@@ -54,13 +58,13 @@ class week4State extends State<week4> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DietPage()),
+          MaterialPageRoute(builder: (context) => const DietPage()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
       case 2:
@@ -73,7 +77,7 @@ class week4State extends State<week4> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) => MinePage(index: index),
           ),
         );
         break;
@@ -82,7 +86,7 @@ class week4State extends State<week4> {
 
   @override
   Widget build(BuildContext context) {
-    // WorkoutHistory st = WorkoutHistory();
+ 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -98,7 +102,7 @@ class week4State extends State<week4> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          // Wrap the whole content inside SingleChildScrollView
+        
           child: Column(
             children: [
               Card(
@@ -134,7 +138,7 @@ class week4State extends State<week4> {
                   trailing: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => WorkoutScreen(click: 1)));
+                          builder: (ctx) => const WorkoutScreen(click: 1)));
                     },
                     child: const Text('Start'),
                   ),
@@ -168,7 +172,7 @@ class week4State extends State<week4> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 2)));
+                                  builder: (ctx) => const WorkoutScreen(click: 2)));
                             },
                             child: const Text('Start'),
                           )
@@ -198,7 +202,7 @@ class week4State extends State<week4> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 3)));
+                                  builder: (ctx) => const WorkoutScreen(click: 3)));
                             },
                             child: const Text('Start'),
                           )
@@ -228,7 +232,7 @@ class week4State extends State<week4> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 4)));
+                                  builder: (ctx) => const WorkoutScreen(click: 4)));
                             },
                             child: const Text('Start'),
                           )
@@ -258,7 +262,7 @@ class week4State extends State<week4> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 5)));
+                                  builder: (ctx) => const WorkoutScreen(click: 5)));
                             },
                             child: const Text('Start'),
                           )
@@ -286,7 +290,7 @@ class week4State extends State<week4> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 6)));
+                                  builder: (ctx) => const WorkoutScreen(click: 6)));
                             },
                             child: const Text('Start'),
                           )
@@ -298,7 +302,7 @@ class week4State extends State<week4> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (ctx) => Sub_screen()));
+                      .push(MaterialPageRoute(builder: (ctx) => const Subscreen()));
                 },
                 child: const Card(
                   color: Color.fromARGB(255, 247, 249, 251),
@@ -320,7 +324,7 @@ class week4State extends State<week4> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(255, 183, 131, 246),
+          backgroundColor: const Color.fromARGB(255, 183, 131, 246),
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.black,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout2/screen/adv_fullbody.dart';
+
 import 'package:workout2/screen/advanced_screen.dart';
 
 import 'package:workout2/screen/daily_screen.dart';

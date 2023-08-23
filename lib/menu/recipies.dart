@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/menu/celender.dart';
+import 'package:workout2/menu/mine.dart';
 import 'package:workout2/menu/profile.dart';
 import 'package:workout2/screen/daily_screen.dart';
 
@@ -40,7 +41,7 @@ class _DietPageState extends State<DietPage> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person, color: Color.fromARGB(255, 255, 254, 254)),
-          label: 'Profile',
+          label: 'Mine',
         ),
       ],
     );
@@ -161,7 +162,7 @@ class _DietPageState extends State<DietPage> {
           case 3:
             Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
     
@@ -170,7 +171,7 @@ class _DietPageState extends State<DietPage> {
              Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Profile(index: index),
+            builder: (context) => MinePage(index: index),
           ),
         );
         break;
@@ -185,7 +186,7 @@ class DietCard extends StatelessWidget {
   final String image;
   final List<String> foods;
 
-  const DietCard({required this.title, required this.image, required this.foods});
+  const DietCard({super.key, required this.title, required this.image, required this.foods});
 
   @override
   Widget build(BuildContext context) {

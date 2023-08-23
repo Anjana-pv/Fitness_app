@@ -19,8 +19,7 @@ final TextEditingController _passwordController = TextEditingController();
 final _formkey = GlobalKey<FormState>();
 
 class _ScreenSignupState extends State<ScreenSignup> {
-  
-   bool matched = true;
+  bool matched = true;
   @override
   void initState() {
     getallDetails();
@@ -35,7 +34,6 @@ class _ScreenSignupState extends State<ScreenSignup> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assest/image/assets/imagg333 (1).jpg'),
-
               fit: BoxFit.cover,
             ),
           ),
@@ -110,17 +108,19 @@ class _ScreenSignupState extends State<ScreenSignup> {
                     color: const Color.fromARGB(133, 238, 235, 235),
                   ),
                   child: TextFormField(
-                    maxLength: 10,
-                    keyboardType: TextInputType.number,
-
+                    keyboardType: TextInputType.phone,
                     controller: _phonecontroller,
+                    maxLength: 10,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Phone',
                       prefixIcon: Icon(Icons.phone),
+                      counterText: '',
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty||value.length!=10) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          value.length != 10) {
                         return '         Please enter your Phonenumber';
                       } else {
                         return null;
@@ -194,24 +194,20 @@ class _ScreenSignupState extends State<ScreenSignup> {
   }
 
   Future<void> addDetailToModel() async {
-  
- SignUpModel workoutObject = SignUpModel(
-          id: DateTime.now().millisecond.toString(),
-          username: _usernameController.text.trim(),
-          email: _emailController.text.trim(),
-          phone: _phonecontroller.text.trim(),
-          password: _passwordController.text.trim());
-      
-      addSignupDetail(workoutObject);
+    SignUpModel workoutObject = SignUpModel(
+        id: DateTime.now().millisecond.toString(),
+        username: _usernameController.text.trim(),
+        email: _emailController.text.trim(),
+        phone: _phonecontroller.text.trim(),
+        password: _passwordController.text.trim());
 
-      final sharedata=await SharedPreferences.getInstance();
-      await sharedata.setBool(savekey, true);
+    addSignupDetail(workoutObject);
 
-      
-       // ignore: use_build_context_synchronously
-       Navigator.of(context).push(
-      MaterialPageRoute(builder: (ctx) =>const FindGenderScreen()),
-      );
-    }
+    final sharedata = await SharedPreferences.getInstance();
+    await sharedata.setBool(savekey, true);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (ctx) => const FindGenderScreen()),
+    );
   }
-
+}
