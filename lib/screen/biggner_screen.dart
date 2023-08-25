@@ -64,7 +64,7 @@ class _BeginnerScreen extends State<BeginnerScreen> {
                           ),
                         );
                       } else {
-                        // Display lock icon for other weeks
+                      
                         return Card(
                           color: Colors.blueGrey.shade50,
                           child: ListTile(

@@ -9,7 +9,7 @@ class Count extends StatefulWidget {
 }
 
 class _CountState extends State<Count> {
-  CountDownController _controller = CountDownController();
+  final CountDownController _controller = CountDownController();
   bool isRelaxing = false;
   bool isPaused = false;
 
@@ -18,7 +18,7 @@ class _CountState extends State<Count> {
   }
 
   Color getTimerFillColor() {
-    return isRelaxing ? Color.fromARGB(255, 232, 49, 49) : Color.fromARGB(255, 49, 79, 232);
+    return isRelaxing ? const Color.fromARGB(255, 232, 49, 49) : const Color.fromARGB(255, 49, 79, 232);
   }
 
   String getModeText() {
@@ -61,8 +61,8 @@ class _CountState extends State<Count> {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 30),
-            Container(
+            const SizedBox(height: 30),
+            SizedBox(
               height: 400,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +74,7 @@ class _CountState extends State<Count> {
                     fillColor: getTimerFillColor(),
                     ringColor: const Color.fromARGB(255, 249, 248, 248),
                     controller: _controller,
-                    backgroundColor: Color.fromARGB(255, 172, 172, 169),
+                    backgroundColor: const Color.fromARGB(255, 172, 172, 169),
                     strokeWidth: 10.0,
                     strokeCap: StrokeCap.round,
                     isTimerTextShown: true,
@@ -86,7 +86,7 @@ class _CountState extends State<Count> {
                   Text(
                     getModeText(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 105, 224, 109),
                       fontSize: 40,
                     ),

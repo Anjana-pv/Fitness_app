@@ -95,6 +95,7 @@ _BodySelectionState extends State<BodySelection> {
       type: BottomNavigationBarType.fixed,
       currentIndex: selectedIndex,
       selectedItemColor: const Color.fromARGB(255, 245, 243, 243),
+      unselectedItemColor: const Color.fromARGB(255, 249, 248, 248), 
       onTap: onItemTapped,
       items: const [
         BottomNavigationBarItem(

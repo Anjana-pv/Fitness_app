@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
+
 import 'package:workout2/db/db_signup_functions';
-import 'package:workout2/main.dart';
+
 import 'package:workout2/screen/daily_screen.dart';
 import 'package:workout2/screen/sign_in.dart';
+
+import '../models/data_model.dart';
 
 
 
@@ -21,7 +24,7 @@ class _ScreenloginState extends State<Screenlogin> {
 
   @override
   void initState() {
-    
+    loginagain();
     super.initState();
     //  checkLoginStatus();
   }
@@ -158,31 +161,33 @@ class _ScreenloginState extends State<Screenlogin> {
     );
   }
 
-  loginagain() async {
-    final username = signUpListNotifier.value[0].username;
-    final password = signUpListNotifier.value[0].password;
-    final tousername = _usernameController.text.trim();
-    final topassword = _passwordController.text.trim();
+ Future loginagain() async {
+  final signUpDB = await Hive.openBox<SignUpModel>('signUp_db');
+  final username = _usernameController.text.trim();
+  final password = _passwordController.text.trim();
 
-    if (username == tousername && password == topassword) {
-      final sharedata = await SharedPreferences.getInstance();
-      await sharedata.setBool(savekey, true);
+  final user = signUpListNotifier.value.firstWhere(
+    (element) => element.username == username && element.password == password,
+   
+  );
 
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (ctx) => const DailyScreen(
-                five: false,
-                four: false,
-                six: false,
-                three: false,
-                two: false,
-                one: true,
-                day1: false,
-                day2: false,
-                day3: false,
-                day4: false,
-                day5: false,
-                day6: false,
-              )));
-    }
+  if (user != true) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (ctx) => const DailyScreen(
+        five: false,
+        four: false,
+        six: false,
+        three: false,
+        two: false,
+        one: true,
+        day1: false,
+        day2: false,
+        day3: false,
+        day4: false,
+        day5: false,
+        day6: false,
+      ),
+    ));
   }
+}
 }

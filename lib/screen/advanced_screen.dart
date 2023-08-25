@@ -3,7 +3,7 @@ import 'package:workout2/body_focus/body.dart';
 import 'package:workout2/db/db_storeworkout.dart';
 import 'package:workout2/menu/celender.dart';
 import 'package:workout2/menu/mine.dart';
-import 'package:workout2/menu/profile.dart';
+
 import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/screen/adv_fullbody.dart';
 import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
@@ -91,7 +91,7 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
       case 4:
@@ -425,6 +425,7 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
           selectedItemColor: const Color.fromARGB(255, 245, 243, 243),
+             unselectedItemColor: const Color.fromARGB(255, 249, 248, 248), 
           onTap: onItemTapped,
           items: const [
             BottomNavigationBarItem(

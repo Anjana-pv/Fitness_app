@@ -19,6 +19,7 @@ final TextEditingController _passwordController = TextEditingController();
 final _formkey = GlobalKey<FormState>();
 
 class _ScreenSignupState extends State<ScreenSignup> {
+  DateTime date = DateTime.now();
   bool matched = true;
   @override
   void initState() {
@@ -39,16 +40,14 @@ class _ScreenSignupState extends State<ScreenSignup> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(30.5),
+          padding: const EdgeInsets.all(20.0),
           child: Form(
             key: _formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column( 
+              mainAxisAlignment: MainAxisAlignment.center, 
               children: [
+                
                 Container(
-                  width: 400,
-                  height: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(90.0),
                     color: const Color.fromARGB(133, 238, 235, 235),
@@ -199,7 +198,8 @@ class _ScreenSignupState extends State<ScreenSignup> {
         username: _usernameController.text.trim(),
         email: _emailController.text.trim(),
         phone: _phonecontroller.text.trim(),
-        password: _passwordController.text.trim());
+        password: _passwordController.text.trim(),
+        date: date.toString());
 
     addSignupDetail(workoutObject);
 

@@ -20,12 +20,16 @@ class SignUpModel {
   @HiveField(4)
   final String id;
 
+   @HiveField(5)
+  final String date;
+
   SignUpModel({
     required this.id,
     required this.username,
     required this.email,
     required this.phone,
     required this.password,
+    required this.date,
   });
 }
 
