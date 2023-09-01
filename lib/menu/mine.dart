@@ -93,15 +93,9 @@ class _MinePageState extends State<MinePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 167, 45, 204),
-        leading: IconButton(
-          color: const Color.fromARGB(255, 246, 240, 240),
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        
         title: const Text(
-          'Mine',
+          'MINE',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,

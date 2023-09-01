@@ -2,7 +2,7 @@
    
    
     <application
-        android:label="Fitness everyday"
+        android:label="Fitness Everyday"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

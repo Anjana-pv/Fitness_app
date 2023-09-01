@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/body_focus/fullbody.dart';
+import 'package:workout2/db/db_storeworkout.dart';
 
 import 'package:workout2/menu/celender.dart';
 import 'package:workout2/menu/mine.dart';
 
-import 'package:workout2/menu/profile.dart';
+
 import 'package:workout2/menu/recipies.dart';
 
 
 import 'package:workout2/sub_wokoutscreen.dart/week3.dart';
 
+import '../screen/daily_screen.dart';
 
-class week2 extends StatefulWidget {
+
+class Week2 extends StatefulWidget {
   final bool two;
   final bool three;
   final bool four;
@@ -24,7 +27,7 @@ class week2 extends StatefulWidget {
   final bool day4;
   final bool day5;
   final bool day6;
-  const week2(
+  const Week2(
       {super.key,
       required this.two,
       required this.three,
@@ -40,11 +43,24 @@ class week2 extends StatefulWidget {
       required this.day6,});
 
   @override
-  State<week2> createState() => week2State();
+  State<Week2> createState() => Week2State();
 }
 
-class week2State extends State<week2> {
+class Week2State extends State<Week2> {
   int _selectedIndex = 0;
+   int? check;
+
+
+ @override
+  void initState(){
+    getworkoutlist();
+    super.initState();
+  
+
+  }
+
+
+
 
   void onItemTapped(int index) {
     setState(() {
@@ -55,39 +71,62 @@ class week2State extends State<week2> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DietPage()),
+          MaterialPageRoute(builder: (context) => const DietPage()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Calendar(date: false)),
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BackButton()),
+          MaterialPageRoute(builder: (context) =>  const DailyScreen(
+                                 two: false,
+                                three: false,
+                                four: false,
+                                five: false,
+                                six: false,
+                                one: true,
+                                day1: false,
+                                day2: false,
+                                day3: false,
+                                day4: false,
+                                day5: false,
+                                day6: false)
+          ),
+        );
+        
+        break;
+    
+         case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Calendar(date: false)),
         );
         break;
-      case 3:
+        case 4:
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>MinePage(index: index),
+            builder: (context) =>MinePage(index: index,),
           ),
         );
         break;
     }
   }
+    
+  
 
   @override
   Widget build(BuildContext context) {
-    // WorkoutHistory st = WorkoutHistory();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(210, 84, 7, 216),
+          backgroundColor:  const Color.fromARGB(255, 145, 54, 175),
           title: const Text(
             'DAILY PLAN',
             style: TextStyle(
@@ -103,7 +142,7 @@ class week2State extends State<week2> {
 
         ),
         body: SingleChildScrollView(
-          // Wrap the whole content inside SingleChildScrollView
+         
           child: Column(
             children: [
               Card(
@@ -119,31 +158,36 @@ class week2State extends State<week2> {
                   ),
                 ),
               ),
-
-              Card(
-                color: const Color.fromARGB(255, 153, 90, 234),
+ Card(
+                color:  widget.one
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                  title: const Text(
+                  title:  Text(
                     ' Day 1',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: widget.one 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  subtitle: const Text(
-                    ' 6 Exercises', // Customize the subtitle
+                  subtitle:  Text(
+                    ' 6 Exercises', 
                     style: TextStyle(
-                      color: Colors.white,
+                      color: widget.one 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  trailing: ElevatedButton(
+                  trailing: widget.one ? ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => WorkoutScreen(click: 1)));
+                          builder: (ctx) => const WorkoutScreen(click: 1)));
                     },
                     child: const Text('Start'),
-                  ),
+                  ) : widget.day1 ? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
                 ),
 
                 //
@@ -156,47 +200,58 @@ class week2State extends State<week2> {
                     ? const Color.fromARGB(255, 153, 90, 234)
                     : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                    title: const Text(
+                    title:  Text(
                       ' Day 2',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: widget.two 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle: const Text(
+                    subtitle:  Text(
                       ' 6 Exercises', // Customize the subtitle
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
+                       style: TextStyle(
+                      color: widget.two
+                    ?  const Color.fromARGB(255, 255, 255, 255)
+                    :  const Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w600,
                       ),
                     ),
                     trailing: widget.two
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 2)));
+                                  builder: (ctx) => const WorkoutScreen(click: 2)));
                             },
                             child: const Text('Start'),
                           )
-                        : const Icon(Icons.lock_outline)),
+                        :widget.day2 ? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
+                ),
               ),
-              const SizedBox(
+               const SizedBox(
                 height: 7,
               ),
               Card(
-                color: const Color.fromARGB(255, 247, 249, 251),
+                color: widget.three
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                    title: const Text(
+                    title:  Text(
                       ' Day 3',
                       style: TextStyle(
-                        color: Colors.black,
+                        color:  widget.three
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle: const Text(
+                    subtitle:  Text(
                       ' 6 Exercises',
                       style: TextStyle(
-                        color: Colors.black,
+                        color:widget.three
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -204,29 +259,34 @@ class week2State extends State<week2> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 3)));
+                                  builder: (ctx) => const WorkoutScreen(click: 3)));
                             },
                             child: const Text('Start'),
                           )
-                        : const Icon(Icons.lock_outline)),
-              ),
+                        :widget.day3? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline))),
               const SizedBox(
                 height: 10,
               ),
               Card(
-                color: const Color.fromARGB(255, 242, 245, 248),
+                color:  widget.four
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                    title: const Text(
+                    title:  Text(
                       ' Day 4',
                       style: TextStyle(
-                        color: Color.fromARGB(137, 9, 9, 9),
+                        color: widget.four
+                   ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle: const Text(
-                      ' 6 Exercises', // Customize the subtitle
+                    subtitle:  Text(
+                      ' 6 Exercises', 
                       style: TextStyle(
-                        color: Colors.black,
+                        color: widget.four
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -234,29 +294,35 @@ class week2State extends State<week2> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 4)));
+                                  builder: (ctx) => const WorkoutScreen(click: 4)));
                             },
                             child: const Text('Start'),
                           )
-                        : const Icon(Icons.lock_outline)),
+                        : widget.day4? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) ),
               ),
               const SizedBox(
                 height: 7,
               ),
               Card(
-                color: const Color.fromARGB(255, 239, 241, 243),
+                color:  widget.five
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                    title: const Text(
+                    title:  Text(
                       ' Day 5',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: widget.five 
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle: const Text(
+                    subtitle:  Text(
                       ' 6 Exercises', // Customize the subtitle
                       style: TextStyle(
-                        color: Colors.black,
+                       color: widget.five
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -264,27 +330,34 @@ class week2State extends State<week2> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 5)));
+                                  builder: (ctx) => const WorkoutScreen(click: 5)));
                             },
                             child: const Text('Start'),
                           )
-                        : const Icon(Icons.lock_outline)),
+                        : widget.day5?const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline) 
+              ),
               ),
               const SizedBox(height: 7),
               Card(
-                color: const Color.fromARGB(255, 247, 249, 251),
+                color:  widget.six
+                    ? const Color.fromARGB(255, 153, 90, 234)
+                    : const Color.fromARGB(255, 250, 252, 253),
                 child: ListTile(
-                    title: const Text(
+                    title:  Text(
                       ' Day 6',
                       style: TextStyle(
-                        color: Colors.black,
+                        color:widget.six
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    subtitle: const Text(
+                    subtitle:  Text(
                       ' 6 Exercises', // Customize the subtitle
                       style: TextStyle(
-                        color: Colors.black,
+                        color:widget.six
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -292,11 +365,11 @@ class week2State extends State<week2> {
                         ? ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WorkoutScreen(click: 6)));
+                                  builder: (ctx) => const WorkoutScreen(click: 6)));
                             },
                             child: const Text('Start'),
                           )
-                        : const Icon(Icons.lock_outline)),
+                        : widget.day6? const Icon(Icons.task_alt_outlined,color: Colors.green,) : const Icon(Icons.lock_outline)),
               ),
               const SizedBox(
                 height: 7,
@@ -304,7 +377,10 @@ class week2State extends State<week2> {
                GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => Week3(two: false, three: false, four: false, five: false, six: false, one: true,day1: false,day2: false,day3: false,day4: false,day5: false,day6: false)));
+                                  builder: (ctx) => const Week3(two: false, three: false, four: false, five: false, six: false, one: true,day1: false,day2: false,day3: false,day4: false,day5: false,day6: false,)
+                                   
+                  
+                      ));
                 },
                  child: const Card(
                   color: Color.fromARGB(255, 247, 249, 251),
@@ -314,7 +390,7 @@ class week2State extends State<week2> {
                         'NEXT WEEK 3',
                         style: TextStyle(
                           color: Color.fromARGB(223, 126, 23, 216),
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -325,41 +401,51 @@ class week2State extends State<week2> {
             ],
           ),
         ),
-                          
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 183, 131, 246),
+          backgroundColor:  const Color.fromARGB(255, 145, 54, 175),
           type: BottomNavigationBarType.fixed, 
+          
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor:  const Color.fromARGB(255, 245, 243, 243),
+          unselectedItemColor: const Color.fromARGB(255, 249, 248, 248), 
           onTap: onItemTapped,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.local_dining_outlined,
-                color: Colors.black,
+                color: Color.fromARGB(255, 249, 248, 248),
               ),
               label: 'Recipes',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.offline_bolt_outlined,
-                color: Colors.black,
+                color: Color.fromARGB(255, 247, 246, 246),
               ),
               label: 'Plan',
             ),
-            BottomNavigationBarItem(
+             BottomNavigationBarItem(
               icon: Icon(
-                Icons.equalizer_rounded,
-                color: Colors.black,
+                Icons.home,
+                color: Color.fromARGB(255, 252, 251, 251),
               ),
-              label: 'Calendar',
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.person,
-                color: Colors.black,
+                Icons.calendar_month,
+                color: Color.fromARGB(255, 252, 251, 251),
               ),
-              label: 'Profile',
+              label: 'Calendar',
+            ),
+            
+
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+                color: Color.fromARGB(255, 255, 254, 254),
+              ),
+              label: 'Mine',
             ),
           ],
         ),

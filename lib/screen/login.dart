@@ -172,6 +172,7 @@ class _ScreenloginState extends State<Screenlogin> {
   );
 
   if (user != true) {
+
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (ctx) => const DailyScreen(
         five: false,

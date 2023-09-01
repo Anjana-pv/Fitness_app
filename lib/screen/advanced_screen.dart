@@ -6,7 +6,9 @@ import 'package:workout2/menu/mine.dart';
 
 import 'package:workout2/menu/recipies.dart';
 import 'package:workout2/screen/adv_fullbody.dart';
-import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
+
+import '../sub_wokoutscreen.dart/week_2.dart';
+
 
 class ScreenAdvanced extends StatefulWidget {
   final bool two;
@@ -386,14 +388,14 @@ class _ScreenAdvancedState extends State<ScreenAdvanced> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (ctx) => const week2(
+                      builder: (ctx) => const Week2(
                             two: false,
                             three: false,
                             four: false,
                             five: false,
                             six: false,
-                            one: false,
-                            day1: true,
+                            one: true,
+                            day1: false,
                             day2: false,
                             day3: false,
                             day4: false,

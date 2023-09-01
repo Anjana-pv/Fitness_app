@@ -67,7 +67,7 @@ class _BodyCongradsState extends State<BodyCongrads> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 232, 214, 248), 
+                    backgroundColor: const Color.fromARGB(255, 232, 214, 248), 
                   ),
                   child: const Text('Go Back'),
                 )

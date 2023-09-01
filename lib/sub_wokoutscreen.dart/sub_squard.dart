@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:workout2/sub_wokoutscreen.dart/ten_sec.dart';
 import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
-import 'package:workout2/workoutScreen/2_congradulation.dart';
-import 'package:workout2/workoutScreen/3_congradulations.dart';
-import 'package:workout2/workoutScreen/4_congradulation.dart';
-import 'package:workout2/workoutScreen/5_congradulation.dart';
-import 'package:workout2/workoutScreen/6_congradulation.dart';
-import 'package:workout2/workoutScreen/1_congradulation.dart';
+
+import 'package:workout2/workoutScreen/congradu_1.dart';
+import 'package:workout2/workoutScreen/congradu_5.dart';
+import 'package:workout2/workoutScreen/congradul_3.dart';
+import 'package:workout2/workoutScreen/congradu_4.dart';
+
+import 'package:workout2/workoutScreen/congrsdu_6.dart';
+import 'package:workout2/workoutScreen/congrad_1.dart';
 
 // ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
@@ -289,13 +291,13 @@ class TimerScreenState extends State<TimerScreen>
           .push(MaterialPageRoute(builder: (ctx) => Congrads3()));
     } else if (widget.click == 5) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => Congrads5()));
+          .push(MaterialPageRoute(builder: (ctx) => const Congrads5()));
     } else if (widget.click == 6) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => Congrads6()));
+          .push(MaterialPageRoute(builder: (ctx) => const Congrads6()));
     } else if (widget.click == 7) {
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (ctx) => const week2(
+          builder: (ctx) => const Week2(
                 two: false,
                 three: false,
                 four: false,

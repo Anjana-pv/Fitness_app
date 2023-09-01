@@ -1,29 +1,21 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:workout2/screen/daily_screen.dart';
 
-// import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
 
-class Congrads extends StatefulWidget {
-  const Congrads({
+import 'package:workout2/sub_wokoutscreen.dart/week_2.dart';
+
+class Congrads6 extends StatefulWidget {
+  const Congrads6({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Congrads> createState() => _CongradsState();
+  State<Congrads6> createState() => _Congrads6State();
 }
 
-class _CongradsState extends State<Congrads> {
+class _Congrads6State extends State<Congrads6> {
   final String backgroundImage = 'assest/image/assets/123.jpg';
   final String congratulationsGif =
       'assest/image/assets/output-onlinegiftools.gif';
-
-  @override
-  void initState() {
-    print('first one');
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +32,7 @@ class _CongradsState extends State<Congrads> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  '"Crush your workout. Embrace the burn. Become unstoppable." 💪🔥',
+                  '"Embrace the challenge, and watch yourself grow"',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -56,7 +48,7 @@ class _CongradsState extends State<Congrads> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Congratulations!',
+                  'Congratulations! ',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -67,10 +59,8 @@ class _CongradsState extends State<Congrads> {
                 ElevatedButton(
                   onPressed: () {
                     unlockworkout();
-                    
                   },
-                  
-                  child: const Text('Go Back to Home'),
+                  child: const Text('Go Back '),
                 ),
               ],
             ),
@@ -81,30 +71,34 @@ class _CongradsState extends State<Congrads> {
   }
 
   unlockworkout() {
-    bool one = false;
-    bool two = true;
-    bool three = false;
-    bool four = false;
-    bool five = false;
-    bool six = false;
+  bool one = false;
+  bool two = false;
+  bool three = false;
+  bool four = false;
+  bool five = false;
+  bool six = false;
 
+
+  
+    
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) => DailyScreen(
-          five: five,
-          four: four,
-          six: six,
-          three: three,
-          two: two,
+        builder: (ctx) =>Week2(
           one: one,
+          two: two,
+          three: three,
+          four: four,
+          five: five,
+          six: six,
           day1: true,
-          day2: false,
-          day3: false,
-          day4: false,
-          day5: false,
-          day6: false,
+          day2: true,
+          day3: true,
+          day4: true,
+          day5: true,
+          day6: true,
         ),
       ),
     );
-  }
+  
+}
 }

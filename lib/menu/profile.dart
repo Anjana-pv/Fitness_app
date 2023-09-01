@@ -14,7 +14,7 @@ import '../screen/splash_screen.dart';
 
 
 
-// ignore: must_be_immutable
+
 class Profile extends StatefulWidget {
 
   
@@ -86,28 +86,27 @@ var  bmi;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 176, 56, 184),
-          title: const Text(
-            'PROFILE',
-            style: TextStyle(
-              fontSize: 26,
-              color: Color.fromARGB(255, 244, 245, 241),
-              fontWeight: FontWeight.w700,
-            ),
+  return SafeArea(
+    child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 176, 56, 184),
+        title: const Text(
+          'PROFILE',
+          style: TextStyle(
+            fontSize: 26,
+            color: Color.fromARGB(255, 244, 245, 241),
+            fontWeight: FontWeight.w700,
           ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {
-                logout(context);
-              },
-              icon: const Icon(Icons.logout, color: Colors.white),
-            )
-          ],
         ),
+        centerTitle: true,
+       leading: IconButton(
+          color: const Color.fromARGB(255, 246, 240, 240),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 18.0),
           child: Column(

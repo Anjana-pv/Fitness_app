@@ -371,7 +371,7 @@ class _DailyScreenState extends State<DailyScreen> {
                GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => const week2(two: false, three: false, four: false, five: false, six: false, one: false,day1: true,day2: false,day3: false,day4: false,day5: false,day6: false,)
+                                  builder: (ctx) => const Week2(two: false, three: false, four: false, five: false, six: false, one: true,day1: false,day2: false,day3: false,day4: false,day5: false,day6: false,)
                                    
                   
                       ));

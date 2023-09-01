@@ -65,12 +65,12 @@ class _BttbodyState extends State<Bttbody> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             '6 Mins, 6 Exercises',
                             style: TextStyle(
                               color: Colors.grey,
@@ -78,30 +78,12 @@ class _BttbodyState extends State<Bttbody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          // PopupMenuButton<SampleItem>(
-                          //   initialValue: selectedMenu,
-                          //   onSelected: (SampleItem item) {
-                          //     setState(() {
-                          //       selectedMenu = item;
-                          //     });
-                          //   },
-                          //   itemBuilder: (BuildContext context) =>
-                          //       <PopupMenuEntry<SampleItem>>[
-                          //     const PopupMenuItem<SampleItem>(
-                          //       value: SampleItem.itemOne,
-                          //       child: Text('Edit Plan'),
-                          //     ),
-                          //     const PopupMenuItem<SampleItem>(
-                          //       value: SampleItem.itemTwo,
-                          //       child: Text('Reset Plan'),
-                          //     ),
-                          //   ],
-                          // ),
+                          
                         ],
                       ),
                     ),
                     SingleChildScrollView(
-                      child: Container(
+                      child: SizedBox(
                         height: 500,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
@@ -140,11 +122,11 @@ class _BttbodyState extends State<Bttbody> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => BodySelection()),
+                      MaterialPageRoute(builder: (ctx) => const BodySelection()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(161, 173, 196, 58),
+                    backgroundColor: const Color.fromARGB(161, 173, 196, 58),
                     minimumSize: const Size(200, 50),
                   ),
                   child: const Text(

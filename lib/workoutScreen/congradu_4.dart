@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:workout2/screen/daily_screen.dart';
 
-// ignore: must_be_immutable
-class Congrads2 extends StatefulWidget {
-  
-   const Congrads2({Key? key}) : super(key: key);
+class Congrads3 extends StatefulWidget {
+
+   const Congrads3({Key? key}) : super(key: key);
 
   @override
-  State<Congrads2> createState() => _Congrads2State();
+  State<Congrads3> createState() => _Congrads3State();
 
 }
 
 
-class _Congrads2State extends State<Congrads2> {
+class _Congrads3State extends State<Congrads3> {
   final String backgroundImage = 'assest/image/assets/123.jpg'; 
   final String congratulationsGif = 'assest/image/assets/output-onlinegiftools.gif';
   
@@ -33,7 +32,7 @@ class _Congrads2State extends State<Congrads2> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  '"Believe in the power of your potential."',
+                  '"Your only competition is who you were yesterday" 💪🔥',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -63,7 +62,7 @@ class _Congrads2State extends State<Congrads2> {
                           unlockworkout();
                         },
                     
-                        child: const Text('Go Back to Home'),
+                        child: const Text('Go Back '),
                       
                       ),
                     ],
@@ -77,17 +76,18 @@ class _Congrads2State extends State<Congrads2> {
   }
 
   unlockworkout(){
-    bool one = false;
+    
     bool two = false;
       bool three = false;
-    bool four = true;
+    bool four = false;
      bool five = false;
-      bool six = false;
+      bool six = true;
+      bool one = false;
 
 
      Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (ctx) =>  DailyScreen(five: five,four: four,six: six,three: three,two: two,one: one,day1: true,day2: true,day3: true,day4: false,day5: false,day6: false,),
+                        builder: (ctx) =>  DailyScreen(five: five,four: four,six: six,three: three,two: two,one: one,day1: true,day2: true,day3: true,day4: true,day5: true,day6: false,),
                         
                       ),
                       );

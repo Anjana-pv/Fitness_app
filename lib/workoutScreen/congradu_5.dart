@@ -1,26 +1,25 @@
+
+
 import 'package:flutter/material.dart';
 
 import 'package:workout2/screen/daily_screen.dart';
 
-class Congrads1 extends StatefulWidget {
+
+class Congrads5 extends StatefulWidget {
   
-   const Congrads1({Key? key,}) : super(key: key);
+   const Congrads5({Key? key,}) : super(key: key);
 
   @override
-  State<Congrads1> createState() => _Congrads1State();
+  State<Congrads5> createState() => _Congrads5State();
 
 }
 
 
-class _Congrads1State extends State<Congrads1> {
+class _Congrads5State extends State<Congrads5> {
   final String backgroundImage = 'assest/image/assets/123.jpg'; 
   final String congratulationsGif = 'assest/image/assets/output-onlinegiftools.gif';
   
-@override
-  void initState() {
-    print('second one');
-    super.initState();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +35,7 @@ class _Congrads1State extends State<Congrads1> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  ' "Consistency is the key to success 😄."',
+                  '"Progress is made one step at a time.🔥',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -52,7 +51,7 @@ class _Congrads1State extends State<Congrads1> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Congratulations! ',
+                  'Congratulations!',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -66,7 +65,7 @@ class _Congrads1State extends State<Congrads1> {
                           unlockworkout();
                         },
                     
-                        child: const Text('Go Back to Home'),
+                        child: const Text('Go Back '),
                       
                       ),
                     ],
@@ -81,16 +80,17 @@ class _Congrads1State extends State<Congrads1> {
 
   unlockworkout(){
     bool one = false;
+
     bool two = false;
-    bool three = true;
+      bool three = false;
     bool four = false;
      bool five = false;
-      bool six = false;
+      bool six = true;
 
 
      Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (ctx) =>  DailyScreen(five: five,four: four,six: six,three: three,two: two,one: one,day1: true,day2: true,day3: false,day4: false,day5: false,day6: false,),
+                        builder: (ctx) =>  DailyScreen(five: five,four: four,six: six,three: three,two: two,one: one,day1: true,day2: true,day3: true,day4: true,day5: true,day6: true,),
                         
                       ),
                       );
